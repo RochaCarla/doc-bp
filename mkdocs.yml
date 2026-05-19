@@ -1,42 +1,112 @@
-site_name: GovHub BR
-site_description: Documentação técnica da plataforma GovHub BR — Integração de Dados Governamentais
-site_url: https://govhub-br.github.io/docs/
-repo_url: https://github.com/GovHub-br
+site_name: Gov Hub
+site_url: https://rochacarla.github.io/doc-govhub/
+site_author: Lab Livre
+site_description: >-
+  Gov Hub - plataforma livre de integração de dados e informações governamentais.
+  Explore como a gestão orientada a dados pode transformar a administração pública,
+  integrando e qualificando dados de sistemas estruturantes essenciais.
+
+# Repository
 repo_name: GovHub-br
+repo_url: https://github.com/GovHub-br
 docs_dir: docs
 
+# Copyright
+copyright: Lab Livre 2025
+
+# Configuration
 theme:
   name: material
   language: pt-BR
-  palette:
-    - scheme: default
-      primary: green
-      accent: green
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - search.highlight
-    - search.suggest
     - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-4
+        name: Alternar tema
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      accent: purple
+      toggle:
+        icon: material/weather-night
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: purple
+      accent: purple
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+  font:
+    text: Inter
+    code: JetBrains Mono
 
+# Extra
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/GovHub-br
+
+extra_css:
+  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap
+  - stylesheets/custom.css
+
+# Plugins
 plugins:
   - search:
       lang: pt
+      separator: '[\s\u200b\-_,:!=\[\]()"\\`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 
+# Extensions
 markdown_extensions:
+  - abbr
   - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.highlight
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
   - tables
-  - toc:
-      permalink: true
 
 nav:
   - Home: index.md

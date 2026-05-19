@@ -1,0 +1,91 @@
+/* Gov Hub - Custom Styles */
+/* Matching visual identity from gov-hub.io */
+
+:root {
+  --md-primary-fg-color: #7c3aed;
+  --md-primary-fg-color--light: #a78bfa;
+  --md-primary-fg-color--dark: #5b21b6;
+  --md-accent-fg-color: #8b5cf6;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #a78bfa;
+  --md-primary-fg-color--light: #c4b5fd;
+  --md-primary-fg-color--dark: #7c3aed;
+  --md-accent-fg-color: #a78bfa;
+}
+
+/* Typography */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header */
+.md-header {
+  background-color: var(--md-primary-fg-color--dark);
+}
+
+/* Navigation tabs */
+.md-tabs {
+  background-color: var(--md-primary-fg-color);
+}
+
+/* Footer */
+.md-footer {
+  background-color: #1a1a2e;
+}
+
+.md-footer-meta {
+  background-color: #16162a;
+}
+
+/* Code blocks */
+.highlight code {
+  font-size: 0.85em;
+}
+
+/* Admonitions */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-primary-fg-color);
+  color: white;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background-color: var(--md-primary-fg-color--dark);
+}
+
+/* Mermaid diagrams */
+.mermaid {
+  margin: 1.5em 0;
+}
+
+/* Content area */
+.md-content {
+  max-width: none;
+}
+
+/* Links */
+.md-typeset a {
+  text-decoration: none;
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation */
+.md-nav__item--active > .md-nav__link {
+  font-weight: 600;
+}
