@@ -1,0 +1,98 @@
+# PostgreSQL
+
+Banco de dados analítico para as camadas Silver e Gold do GovHub BR.
+
+## Papel na Arquitetura
+
+PostgreSQL armazena os dados transformados pelo dbt e serve como backend para Superset e JupyterHub.
+
+```mermaid
+graph LR
+    DBT[dbt] -->|Materializa| PG[(PostgreSQL)]
+    PG --> SS[Superset]
+    PG --> JH[JupyterHub]
+    PG --> OM[OpenMetadata]
+```
+
+## Schemas
+
+| Schema | Camada | Conteúdo |
+|--------|--------|----------|
+| `silver` | Silver | Dados limpos e normalizados |
+| `gold` | Gold | Dados agregados, fatos e dimensões |
+| `public` | Staging | Views temporárias do dbt |
+
+## Tabelas Principais
+
+### Silver
+
+| Tabela | Fonte | Descrição |
+|--------|-------|-----------|
+| `silver.transferencias` | TransfereGov | Convênios limpos |
+| `silver.servidores` | Siape | Dados de pessoal |
+| `silver.execucao_financeira` | Siafi | Execução orçamentária |
+| `silver.contratos` | ComprasGov | Contratos públicos |
+| `silver.orgaos` | Siorg | Estrutura organizacional |
+
+### Gold
+
+| Tabela | Tipo | Descrição |
+|--------|------|-----------|
+| `gold.fato_transferencias` | Fato | Transferências por órgão/período |
+| `gold.fato_servidores` | Fato | Indicadores de pessoal |
+| `gold.fato_compras` | Fato | Métricas de compras |
+| `gold.dim_orgaos` | Dimensão | Órgãos consolidados |
+| `gold.dim_tempo` | Dimensão | Calendário |
+
+## Conexão
+
+### Local
+
+```bash
+# Via docker-compose
+psql -h localhost -p 5432 -U govhub -d govhub
+```
+
+### dbt (profiles.yml)
+
+```yaml
+govhub:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: govhub
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      dbname: govhub
+      schema: public
+      threads: 4
+```
+
+### Superset Dataset
+
+```
+Database: govhub
+SQLAlchemy URI: postgresql://govhub:<password>@postgres:5432/govhub
+```
+
+## Deploy (Produção)
+
+Gerenciado via Argo CD:
+
+```
+continuous-deployment/
+└── postgres/
+    ├── values.yaml
+    └── values.prod.yaml
+```
+
+## Backups
+
+Configurados via manifests Kubernetes (CronJob ou operador).
+
+## Referências
+
+- [PostgreSQL Docs](https://www.postgresql.org/docs/)
+- Repo: [`continuous-deployment/postgres`](https://github.com/GovHub-br/continuous-deployment/tree/main/postgres)

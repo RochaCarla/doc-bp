@@ -1,18 +1,13 @@
-site_name: DestaquesGovbr
-site_description: Documentação técnica da plataforma DestaquesGovbr
-site_url: https://destaquesgovbr.github.io/docs/
-repo_url: https://github.com/destaquesgovbr/docs
-repo_name: destaquesgovbr/docs
+site_name: GovHub BR
+site_description: Documentação técnica da plataforma GovHub BR — Integração de Dados Governamentais
+site_url: https://govhub-br.github.io/docs/
+repo_url: https://github.com/GovHub-br
+repo_name: GovHub-br
 docs_dir: docs
-
-extra_css:
-  - stylesheets/blog.css
 
 theme:
   name: material
   language: pt-BR
-  logo: assets/logo-header.png
-  favicon: assets/logo.png
   palette:
     - scheme: default
       primary: green
@@ -28,9 +23,6 @@ theme:
 plugins:
   - search:
       lang: pt
-  - blog:
-      blog_dir: blog
-      post_excerpt_separator: "<!-- more -->"
 
 markdown_extensions:
   - admonition
@@ -50,68 +42,35 @@ nav:
   - Home: index.md
   - Arquitetura:
     - Visão Geral: arquitetura/visao-geral.md
-    - Pipeline Event-Driven: arquitetura/pubsub-workers.md
-    - PostgreSQL: arquitetura/postgresql.md
     - Fluxo de Dados: arquitetura/fluxo-de-dados.md
-    - Componentes: arquitetura/componentes-estruturantes.md
-    - ADRs:
-      - Índice: arquitetura/adrs/index.md
-      - "ADR-001: Arquitetura de Dados Medallion": arquitetura/adrs/adr-001-arquitetura-dados-medallion.md
-  - Módulos:
-    - Data Platform: modulos/data-platform.md
-    - Scraper: modulos/scraper.md
-    - Portal: modulos/portal.md
-    - Cogfy/LLM: modulos/cogfy-integracao.md
-    - Árvore Temática: modulos/arvore-tematica.md
-    - Órgãos: modulos/agencies.md
-    - Typesense: modulos/typesense-local.md
-    - Umami Analytics: modulos/umami.md
-    - GrowthBook: modulos/growthbook.md
-    - Streamlit: modulos/spaces-streamlit.md
-  - Workflows:
-    - Pipeline Scraper: workflows/scraper-pipeline.md
-    - Deploy Portal: workflows/portal-deploy.md
-    - Docker Builds: workflows/docker-builds.md
-    - Typesense Data: workflows/typesense-data.md
-    - Airflow DAGs: workflows/airflow-dags.md
+    - Arquitetura Medallion: arquitetura/medallion.md
+    - Componentes: arquitetura/componentes.md
+  - Pipeline de Dados:
+    - Apache Airflow: pipeline/airflow.md
+    - dbt: pipeline/dbt.md
+    - Ingestão de Dados: pipeline/ingestao.md
+    - Qualidade de Dados: pipeline/qualidade.md
   - Infraestrutura:
-    - Arquitetura GCP: infraestrutura/arquitetura-gcp.md
-    - Terraform: infraestrutura/terraform-guide.md
-    - VMs de Desenvolvimento: infraestrutura/devvm.md
-    - Secrets & IAM: infraestrutura/secrets-iam.md
+    - Kubernetes: infraestrutura/kubernetes.md
+    - Argo CD (GitOps): infraestrutura/argocd.md
+    - MinIO: infraestrutura/minio.md
+    - PostgreSQL: infraestrutura/postgres.md
+    - Secrets & Segurança: infraestrutura/secrets.md
+  - Visualização:
+    - Apache Superset: visualizacao/superset.md
+    - JupyterHub: visualizacao/jupyterhub.md
+  - Governança:
+    - OpenMetadata: governanca/openmetadata.md
+    - Controle de Acesso: governanca/acesso.md
   - Onboarding:
-    - Roteiro: onboarding/roteiro-onboarding.md
-    - Git Fundamentos: onboarding/git-fundamentos.md
-    - GitHub Colaboração: onboarding/github-colaboracao.md
-    - Setup Claude Code: onboarding/setup-claude-code.md
-    - Trilha Backend:
-      - Setup Backend: onboarding/setup-backend.md
-      - Apache Airflow: onboarding/airflow-tutorial.md
-      - Cloud Pub/Sub: onboarding/cloud-pubsub-tutorial.md
-    - Trilha Frontend:
-      - Setup Frontend: onboarding/setup-frontend.md
-    - Trilha Data Science:
-      - Setup Data Science: onboarding/setup-datascience.md
-      - Explorando o Dataset:
-        - Introdução: onboarding/ds/explorando-dataset/index.md
-        - Análise Temática: onboarding/ds/explorando-dataset/analise-tematica.md
-        - Análise de Texto: onboarding/ds/explorando-dataset/analise-texto.md
-      - NLP Aplicado:
-        - Fundamentos: onboarding/ds/nlp-pipeline/index.md
-        - Embeddings: onboarding/ds/nlp-pipeline/embeddings.md
-        - Busca Semântica: onboarding/ds/nlp-pipeline/busca-semantica.md
-      - ML Classificação:
-        - Introdução: onboarding/ds/ml-classificacao/index.md
-        - Modelos Clássicos: onboarding/ds/ml-classificacao/modelos-classicos.md
-        - Deep Learning: onboarding/ds/ml-classificacao/deep-learning.md
-      - Qualidade de Dados:
-        - Validação: onboarding/ds/qualidade-dados/index.md
-        - Métricas: onboarding/ds/qualidade-dados/metricas.md
-        - Feedback Loop: onboarding/ds/qualidade-dados/feedback-loop.md
-    - Setup Dev VM: onboarding/setup-devvm.md
-    - Primeiro PR: onboarding/primeiro-pr.md
+    - Roteiro: onboarding/roteiro.md
+    - Setup Local: onboarding/setup-local.md
+    - Git Workflow: onboarding/git-workflow.md
+    - Tutorial Airflow: onboarding/airflow-tutorial.md
+    - Tutorial dbt: onboarding/dbt-tutorial.md
+    - Tutorial Superset: onboarding/superset-tutorial.md
     - Troubleshooting: onboarding/troubleshooting.md
-  - Blog: blog/index.md
-  - Sobre:
+  - Comunidade:
     - Contribuir: CONTRIBUTING.md
-    - Engenharia de Prompt: plano/PLANO_IMPLEMENTACAO.md
+    - Forks Temáticos: comunidade/forks.md
+    - Pesquisa: comunidade/pesquisa.md

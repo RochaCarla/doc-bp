@@ -1,69 +1,39 @@
-# Como Contribuir
+# Contribuindo com o GovHub BR
 
-Obrigado por considerar contribuir com o projeto DestaquesGovbr!
+Obrigado pelo interesse em contribuir! O GovHub BR é um projeto open source que busca transformar dados governamentais em ativos estratégicos.
 
-## Formas de Contribuir
+## Como Contribuir
 
-### Reportar Bugs
+1. **Abra uma issue** para reportar problemas ou sugerir melhorias
+2. **Fork** o repositório
+3. **Crie uma branch** (`feat/`, `fix/`, `docs/`)
+4. **Faça suas alterações** com commits assinados (GPG)
+5. **Abra um PR** descrevendo o porquê das mudanças
 
-1. Verifique se o bug já foi reportado nas [issues](https://github.com/destaquesgovbr)
-2. Se não, abra uma nova issue com:
+## Áreas de Contribuição
 
-   - Descrição clara do problema
-   - Passos para reproduzir
-   - Comportamento esperado vs atual
-   - Screenshots se aplicável
+| Área | Descrição | Repo |
+|------|-----------|------|
+| Pipeline | Novas DAGs, models dbt | `data-application-gov-hub` |
+| Dashboards | Novos painéis Superset | `data-application-gov-hub` |
+| Infra | Manifests K8s, Helm | `continuous-deployment` |
+| Documentação | Melhorias nos docs | `gov-hub` ou este repo |
+| Pesquisa | POCs, IA, OCR | `govhub-research` |
+| Governança | OpenMetadata config | `openmetadata-declarative-governance` |
 
-### Sugerir Melhorias
+## Padrões
 
-1. Abra uma issue com a tag `enhancement`
-2. Descreva a melhoria proposta
-3. Explique o benefício para o projeto
+- **Branches**: `feat/`, `fix/`, `refactor/`, `docs/`
+- **Commits**: [Conventional Commits](https://www.conventionalcommits.org/)
+- **GPG**: Commits assinados obrigatórios
+- **Code style**: Seguir `make lint`
+- **Testes**: `make test` deve passar
 
-### Contribuir com Código
+## Ambiente
 
-1. Faça fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Faça commit das alterações (`git commit -m 'feat: adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
+Veja [Setup Local](onboarding/setup-local.md) para configurar seu ambiente de desenvolvimento.
 
-## Padrões de Código
+## Contato
 
-### Python (Scraper)
-
-- Formatação: Black
-- Linting: Ruff
-- Testes: pytest
-
-### TypeScript (Portal)
-
-- Formatação: Biome
-- Linting: Biome
-- Framework: Next.js 15
-
-## Convenção de Commits
-
-Usamos [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
-feat: nova funcionalidade
-fix: correção de bug
-docs: documentação
-style: formatação
-refactor: refatoração
-test: testes
-chore: manutenção
-```
-
-## Code Review
-
-- Todos os PRs precisam de pelo menos 1 aprovação
-- Responda ao feedback de forma construtiva
-- Mantenha PRs pequenos e focados
-
-## Dúvidas?
-
-- Consulte a [documentação de onboarding](./onboarding/roteiro-onboarding.md)
-- Pergunte no canal do projeto
-- Abra uma issue com a tag `question`
+- Issues no GitHub
+- Email: lablivreunb@gmail.com
