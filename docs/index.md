@@ -82,6 +82,7 @@ graph TB
 - [Pipeline](pipeline/airflow.md) — Airflow, dbt, ingestão
 - [Infraestrutura](infraestrutura/kubernetes.md) — Kubernetes, Argo CD, GitOps
 - [Visualização](visualizacao/superset.md) — Superset, JupyterHub
+- [Forks Temáticos](forks/index.md) — Cidades, Ministério da Cultura, criar novos forks
 - [Onboarding](onboarding/roteiro.md) — Guia para novos contribuidores
 
 ---

@@ -160,12 +160,20 @@ graph TB
 | `docs/onboarding/superset-tutorial.md` | Primeiro dashboard |
 | `docs/onboarding/troubleshooting.md` | Problemas comuns |
 
-### Fase 6 — Contribuição & Comunidade
+### Fase 6 — Forks Temáticos (Prioridade Alta)
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| `docs/forks/index.md` | Visão geral: conceito, stack, diagrama, forks ativos |
+| `docs/forks/cidades.md` | Fork Cidades: fontes (IBGE, SICONV, FNDE, DataSUS), medallion, dashboards |
+| `docs/forks/minc.md` | Fork MinC: fontes (SALIC, MapaCultural, SNIIC, IPHAN), medallion, dashboards |
+| `docs/forks/guia-criar-fork.md` | Guia completo para criar novo fork: DAGs, dbt, dashboards, sync |
+
+### Fase 7 — Contribuição & Comunidade
 
 | Arquivo | Conteúdo |
 |---------|----------|
 | `docs/CONTRIBUTING.md` | Guia de contribuição, padrões |
-| `docs/comunidade/forks.md` | Como criar um fork temático (cidades, minc) |
 | `docs/comunidade/pesquisa.md` | govhub-research: POCs, IA, OCR |
 
 ---
@@ -205,9 +213,13 @@ nav:
     - Tutorial dbt: onboarding/dbt-tutorial.md
     - Tutorial Superset: onboarding/superset-tutorial.md
     - Troubleshooting: onboarding/troubleshooting.md
+  - Forks Temáticos:
+    - Visão Geral: forks/index.md
+    - Cidades: forks/cidades.md
+    - Ministério da Cultura: forks/minc.md
+    - Criar Novo Fork: forks/guia-criar-fork.md
   - Comunidade:
     - Contribuir: CONTRIBUTING.md
-    - Forks Temáticos: comunidade/forks.md
     - Pesquisa: comunidade/pesquisa.md
 ```
 

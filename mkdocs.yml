@@ -70,7 +70,11 @@ nav:
     - Tutorial dbt: onboarding/dbt-tutorial.md
     - Tutorial Superset: onboarding/superset-tutorial.md
     - Troubleshooting: onboarding/troubleshooting.md
+  - Forks Temáticos:
+    - Visão Geral: forks/index.md
+    - Cidades: forks/cidades.md
+    - Ministério da Cultura: forks/minc.md
+    - Criar Novo Fork: forks/guia-criar-fork.md
   - Comunidade:
     - Contribuir: CONTRIBUTING.md
-    - Forks Temáticos: comunidade/forks.md
     - Pesquisa: comunidade/pesquisa.md
