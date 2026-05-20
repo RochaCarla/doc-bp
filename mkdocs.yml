@@ -18,6 +18,10 @@ copyright: Lab Livre 2025
 theme:
   name: material
   language: pt-BR
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
   features:
     - content.code.copy
     - content.code.annotate
