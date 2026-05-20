@@ -14,6 +14,7 @@ Crie `airflow/dags/minha_primeira_dag.py`:
 ```python
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
 
 default_args = {
@@ -24,39 +25,49 @@ default_args = {
 
 
 def extract():
-    """Simula extração de dados."""
-    print("Extraindo dados...")
+    """1. Extract: simula extração de dados de uma API gov."""
+    print("Extraindo dados da API...")
     data = {"registros": 42, "fonte": "exemplo"}
+    # Em produção: salva como arquivo no MinIO (Bronze)
     return data
 
 
 def load(**context):
-    """Simula carga no MinIO."""
+    """2. Load: simula carga do MinIO para PostgreSQL."""
     data = context["ti"].xcom_pull(task_ids="extract")
-    print(f"Carregando {data['registros']} registros no MinIO")
+    print(f"Carregando {data['registros']} registros no PostgreSQL (staging)")
+    # Em produção: lê do MinIO e insere em staging tables no PG
 
 
 with DAG(
     "minha_primeira_dag",
     default_args=default_args,
-    description="Tutorial - primeira DAG",
+    description="Tutorial - primeira DAG (3 passos)",
     schedule_interval=None,  # Trigger manual
     start_date=datetime(2025, 1, 1),
     catchup=False,
     tags=["tutorial"],
 ) as dag:
 
+    # 1. Extract: API → MinIO (Bronze)
     task_extract = PythonOperator(
         task_id="extract",
         python_callable=extract,
     )
 
+    # 2. Load: MinIO → PostgreSQL (staging)
     task_load = PythonOperator(
         task_id="load",
         python_callable=load,
     )
 
-    task_extract >> task_load
+    # 3. Trigger dbt: staging → Silver/Gold
+    task_dbt = BashOperator(
+        task_id="trigger_dbt",
+        bash_command="cd /opt/dbt && dbt run --select staging.+",
+    )
+
+    task_extract >> task_load >> task_dbt
 ```
 
 ## 2. Verificar na UI

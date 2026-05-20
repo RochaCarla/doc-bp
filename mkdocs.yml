@@ -115,23 +115,7 @@ nav:
     - Fluxo de Dados: arquitetura/fluxo-de-dados.md
     - Arquitetura Medallion: arquitetura/medallion.md
     - Componentes: arquitetura/componentes.md
-  - Pipeline de Dados:
-    - Apache Airflow: pipeline/airflow.md
-    - dbt: pipeline/dbt.md
-    - Ingestão de Dados: pipeline/ingestao.md
-    - Qualidade de Dados: pipeline/qualidade.md
-  - Infraestrutura:
-    - Kubernetes: infraestrutura/kubernetes.md
-    - Argo CD (GitOps): infraestrutura/argocd.md
-    - MinIO: infraestrutura/minio.md
-    - PostgreSQL: infraestrutura/postgres.md
-    - Secrets & Segurança: infraestrutura/secrets.md
-  - Visualização:
-    - Apache Superset: visualizacao/superset.md
-    - JupyterHub: visualizacao/jupyterhub.md
-  - Governança:
-    - OpenMetadata: governanca/openmetadata.md
-    - Controle de Acesso: governanca/acesso.md
+    - Fontes de Dados: arquitetura/fontes-de-dados.md
   - Onboarding:
     - Roteiro: onboarding/roteiro.md
     - Setup Local: onboarding/setup-local.md
@@ -140,11 +124,36 @@ nav:
     - Tutorial dbt: onboarding/dbt-tutorial.md
     - Tutorial Superset: onboarding/superset-tutorial.md
     - Troubleshooting: onboarding/troubleshooting.md
-  - Forks Temáticos:
-    - Visão Geral: forks/index.md
-    - Cidades: forks/cidades.md
-    - Ministério da Cultura: forks/minc.md
-    - Criar Novo Fork: forks/guia-criar-fork.md
+  - Pipeline de Dados:
+    - Apache Airflow: pipeline/airflow.md
+    - dbt: pipeline/dbt.md
+    - Ingestão de Dados: pipeline/ingestao.md
+    - Qualidade de Dados: pipeline/qualidade.md
+  - Dicionário de Dados:
+    - Visão Geral: dados/dicionario.md
+    - TransfereGov: dados/transferegov.md
+    - Siape: dados/siape.md
+    - Siafi: dados/siafi.md
+    - ComprasGov: dados/comprasgov.md
+    - Siorg: dados/siorg.md
+  - Infraestrutura:
+    - Kubernetes: infraestrutura/kubernetes.md
+    - Argo CD (GitOps): infraestrutura/argocd.md
+    - MinIO: infraestrutura/minio.md
+    - PostgreSQL: infraestrutura/postgres.md
+    - Secrets & Segurança: infraestrutura/secrets.md
+  - Adoção:
+    - Requisitos: adocao/requisitos.md
+    - Deploy Inicial: adocao/deploy-inicial.md
+    - Conectar Fontes: adocao/conectar-fontes.md
+    - Fork Temático: adocao/fork-tematico.md
+  - Visualização:
+    - Apache Superset: visualizacao/superset.md
+    - JupyterHub: visualizacao/jupyterhub.md
+  - Governança:
+    - OpenMetadata: governanca/openmetadata.md
+    - Trino + Ranger: governanca/trino-ranger.md
+    - Controle de Acesso: governanca/acesso.md
   - Comunidade:
     - Contribuir: CONTRIBUTING.md
     - Pesquisa: comunidade/pesquisa.md

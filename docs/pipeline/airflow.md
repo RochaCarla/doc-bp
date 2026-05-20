@@ -39,12 +39,13 @@ airflow/
 | `ingestao_siorg` | `0 4 * * 1` | Semanal (segunda) |
 | `dbt_transform` | Trigger (pós-ingestão) | Após sucesso das DAGs |
 
-### Exemplo de DAG
+### Exemplo de DAG (3 passos)
 
 ```python
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from datetime import datetime
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
+from datetime import datetime, timedelta
 
 default_args = {
     "owner": "govhub",
@@ -61,17 +62,26 @@ with DAG(
     tags=["ingestao", "transferegov"],
 ) as dag:
 
+    # 1. Extract: API → MinIO (Bronze)
     extract = PythonOperator(
-        task_id="extract_transferegov",
+        task_id="extract",
         python_callable=extract_transferegov_data,
     )
 
-    upload = PythonOperator(
-        task_id="upload_to_minio",
-        python_callable=upload_raw_to_minio,
+    # 2. Load: MinIO → PostgreSQL (staging tables)
+    load = PythonOperator(
+        task_id="load",
+        python_callable=load_minio_to_postgres,
     )
 
-    extract >> upload
+    # 3. Trigger dbt: staging → Silver/Gold
+    trigger_dbt = TriggerDagRunOperator(
+        task_id="trigger_dbt",
+        trigger_dag_id="dbt_transform",
+        wait_for_completion=True,
+    )
+
+    extract >> load >> trigger_dbt
 ```
 
 ## Conexões

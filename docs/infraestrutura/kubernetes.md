@@ -16,6 +16,7 @@ Todos os componentes (Airflow, MinIO, PostgreSQL, Superset, JupyterHub) rodam co
 | `postgres` | PostgreSQL (metastore/analytics) |
 | `superset` | Apache Superset |
 | `jupyterhub` | JupyterHub |
+| `trino` | Trino + Ranger (acesso governado) |
 
 ## Pré-requisitos
 

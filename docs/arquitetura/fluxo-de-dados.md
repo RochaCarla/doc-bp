@@ -6,7 +6,7 @@ Pipeline completo do GovHub BR: desde a ingestão de sistemas governamentais at�
 
 ```mermaid
 graph LR
-    subgraph "1. Ingestão"
+    subgraph "1. Extract"
         AF[Airflow DAGs]
     end
 
@@ -14,31 +14,33 @@ graph LR
         MN[MinIO]
     end
 
-    subgraph "3. Silver"
-        S[dbt - Clean]
+    subgraph "3. Load"
+        PG_STG[(PG staging)]
     end
 
-    subgraph "4. Gold"
-        G[dbt - Aggregate]
+    subgraph "4. Transform"
+        DBT[dbt Silver/Gold]
     end
 
     subgraph "5. Consumo"
         SS[Superset]
+        TR[Trino + Ranger]
         JH[JupyterHub]
     end
 
-    AF -->|Raw files| MN
-    MN -->|dbt source| S
-    S -->|Models| G
-    G -->|PostgreSQL| SS
-    G -->|PostgreSQL| JH
+    AF -->|"raw files"| MN
+    AF -->|"load"| PG_STG
+    PG_STG --> DBT
+    DBT -->|"silver/gold"| SS
+    DBT -->|"dados sensíveis"| TR
+    TR --> JH
 ```
 
 ## Etapas Detalhadas
 
-### Etapa 1: Ingestão (Airflow)
+### Etapa 1: Extract + Load (Airflow)
 
-DAGs do Apache Airflow extraem dados de APIs e sistemas governamentais.
+DAGs do Apache Airflow executam 3 tasks sequenciais:
 
 ```mermaid
 sequenceDiagram
@@ -46,12 +48,16 @@ sequenceDiagram
     participant DAG as DAG de Ingestão
     participant API as API Gov (ex: TransfereGov)
     participant MinIO as MinIO (Bronze)
+    participant PG as PostgreSQL (staging)
+    participant dbt as dbt
 
     Scheduler->>DAG: Trigger (schedule)
-    DAG->>API: Request dados
+    DAG->>API: 1. Extract: request dados
     API-->>DAG: Response (JSON/CSV)
     DAG->>MinIO: Upload raw file
     Note over MinIO: Bronze layer (raw, imutável)
+    DAG->>PG: 2. Load: MinIO → staging tables
+    DAG->>dbt: 3. Trigger dbt run
 ```
 
 **Fontes**:
@@ -66,17 +72,17 @@ sequenceDiagram
 
 ### Etapa 2: Bronze → Silver (dbt)
 
-dbt lê dados brutos do MinIO (via staging) e aplica limpeza e normalização.
+dbt lê dados das staging tables no PostgreSQL (carregadas pelo Airflow a partir do MinIO) e aplica limpeza e normalização.
 
 ```mermaid
 sequenceDiagram
-    participant MinIO as MinIO (Bronze)
+    participant PG_STG as PostgreSQL (staging)
     participant dbt as dbt
-    participant PG as PostgreSQL (Silver)
+    participant PG_S as PostgreSQL (Silver)
 
-    MinIO->>dbt: External source (raw)
+    PG_STG->>dbt: Read staging tables
     dbt->>dbt: Clean, deduplicate, normalize
-    dbt->>PG: Materialized tables (silver schema)
+    dbt->>PG_S: Materialized tables (silver schema)
     dbt->>dbt: Run tests (not_null, unique, etc.)
 ```
 
@@ -109,18 +115,26 @@ sequenceDiagram
 - `fato_compras` — Métricas de compras públicas
 - `dim_orgaos` — Dimensão consolidada de órgãos
 
-### Etapa 4: Consumo (Superset / JupyterHub)
+### Etapa 4: Consumo (Superset / Trino / JupyterHub)
 
 ```mermaid
 sequenceDiagram
     participant User as Usuário
     participant SS as Superset
+    participant TR as Trino + Ranger
+    participant JH as JupyterHub
     participant PG as PostgreSQL (Gold)
 
-    User->>SS: Acessa dashboard
-    SS->>PG: SQL query
+    User->>SS: Acessa dashboard (dados públicos)
+    SS->>PG: SQL query direto
     PG-->>SS: Resultados
     SS-->>User: Visualização interativa
+
+    User->>JH: Análise de dados sensíveis
+    JH->>TR: Query via Trino
+    TR->>PG: SQL com row-level security
+    PG-->>TR: Resultados filtrados
+    TR-->>JH: Dados governados
 ```
 
 ## Schedule de Execução

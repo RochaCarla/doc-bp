@@ -4,7 +4,7 @@ Ambiente de notebooks para análise interativa e pesquisa no GovHub BR.
 
 ## Papel na Arquitetura
 
-JupyterHub permite análises exploratórias conectadas ao PostgreSQL (Silver/Gold) e ao MinIO (Bronze), para cientistas de dados e pesquisadores.
+JupyterHub permite análises exploratórias conectadas ao PostgreSQL (Silver/Gold) e ao MinIO (Bronze), para cientistas de dados e pesquisadores. Para dados sensíveis (ex: Siape/folha), o acesso é feito via Trino + Ranger com row-level security.
 
 ## Acesso
 
@@ -32,6 +32,23 @@ engine = create_engine("postgresql://govhub:govhub_dev@postgres:5432/govhub")
 # Ler tabela Gold
 df = pd.read_sql("SELECT * FROM gold.fato_transferencias LIMIT 1000", engine)
 ```
+
+### Trino (Dados Sensíveis)
+
+```python
+from sqlalchemy import create_engine
+
+# Conexão via Trino — Ranger aplica row-level security automaticamente
+engine = create_engine("trino://trino:8443/postgres/silver")
+
+# Apenas dados autorizados para o usuário são retornados
+df = pd.read_sql("SELECT * FROM silver.servidores LIMIT 1000", engine)
+```
+
+!!! warning "Dados sensíveis"
+    Acesso a dados de pessoal (Siape) e financeiro detalhado (Siafi) deve
+    obrigatoriamente passar por Trino + Ranger. Conexão direta ao PG para
+    esses schemas é bloqueada em produção.
 
 ### MinIO (Bronze)
 

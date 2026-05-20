@@ -126,6 +126,28 @@ Detalhamento dos componentes principais da plataforma GovHub BR.
 - Ownership e domínios
 - Integração com testes dbt
 
+## Trino + Apache Ranger
+
+**Papel**: Acesso governado para dados sensíveis (row-level security, column masking).
+
+| Aspecto | Detalhe |
+|---------|---------|
+| Trino | Query engine federada sobre PostgreSQL |
+| Ranger | Políticas centralizadas de acesso |
+| Caso de uso | Dados sensíveis (Siape/folha de pagamento) |
+| Caminho | JupyterHub → Trino → PostgreSQL |
+
+**Responsabilidades**:
+
+- Row-level security (filtrar linhas por perfil do usuário)
+- Column masking (ocultar colunas sensíveis)
+- Audit log de acessos a dados restritos
+- Centralizar políticas de acesso em um único ponto
+
+!!! note "Quando usar Trino vs acesso direto"
+    Superset e análises com dados públicos acessam PostgreSQL diretamente.
+    Trino + Ranger é o caminho obrigatório apenas para dados sensíveis (pessoal, folha).
+
 ## Argo CD
 
 **Papel**: Deploy GitOps de toda a infraestrutura.

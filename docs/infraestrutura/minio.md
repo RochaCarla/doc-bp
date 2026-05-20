@@ -8,8 +8,9 @@ MinIO armazena os dados raw ingeridos pelo Airflow antes de qualquer transformaÃ
 
 ```mermaid
 graph LR
-    AF[Airflow] -->|Upload raw| MN[MinIO - Bronze]
-    MN -->|dbt source| DBT[dbt]
+    AF[Airflow] -->|"1. extract: upload raw"| MN[MinIO - Bronze]
+    AF -->|"2. load: MinIO â†’ PG"| PG[(PostgreSQL staging)]
+    PG --> DBT[dbt]
 ```
 
 ## Buckets

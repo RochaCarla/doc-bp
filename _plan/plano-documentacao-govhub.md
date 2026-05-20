@@ -8,15 +8,28 @@
 **Site**: https://gov-hub.io
 **Apoio**: Lab Livre (UnB) + IPEA/Dides
 
+### Público-Alvo
+
+| Público | Perfil | Ponto de entrada |
+|---------|--------|------------------|
+| **Estudantes de Engenharia de Software** | Primeira contribuição open source, pouco contexto sobre governo | Onboarding → Tutoriais |
+| **Equipes de TI do Governo** | Querem adotar/implantar o GovHub no seu órgão | Adoção → Infraestrutura |
+
+### Tom e Estilo
+
+- **Referência** (arquitetura, pipeline, infra, governança): técnico neutro, voz impessoal
+- **Tutoriais e onboarding**: imperativo/segunda pessoa ("Clone o repositório", "Execute o comando")
+- **Idioma**: pt-BR em todo o conteúdo
+
 ### Fontes de Dados
 
 Sistemas estruturantes do governo federal:
 
-- **TransfereGov** — Transferências voluntárias
-- **Siape** — Pessoal civil e militar
-- **Siafi** — Administração financeira
-- **ComprasGov** — Compras públicas
-- **Siorg** — Estrutura organizacional
+- **TransfereGov** — Transferências voluntárias (convênios, contratos de repasse entre União e entes subnacionais)
+- **Siape** — Pessoal civil e militar (cadastro de servidores, folha de pagamento)
+- **Siafi** — Administração financeira (execução orçamentária e financeira da União)
+- **ComprasGov** — Compras públicas (licitações, contratos, atas de registro de preço)
+- **Siorg** — Estrutura organizacional (órgãos, unidades, cargos)
 
 ---
 
@@ -36,9 +49,12 @@ graph TB
         AF[Apache Airflow]
     end
 
-    subgraph "Armazenamento"
+    subgraph "Bronze - Raw"
         MN[MinIO - Object Storage]
-        PG[(PostgreSQL - Metastore)]
+    end
+
+    subgraph "Silver / Gold"
+        PG[(PostgreSQL)]
     end
 
     subgraph "Transformação"
@@ -50,8 +66,9 @@ graph TB
         JH[JupyterHub]
     end
 
-    subgraph "Governança"
+    subgraph "Governança & Acesso"
         OM[OpenMetadata]
+        TR[Trino + Ranger]
     end
 
     TG --> AF
@@ -59,37 +76,50 @@ graph TB
     SF --> AF
     CG --> AF
     SO --> AF
-    AF --> MN
-    AF --> PG
-    MN --> DBT
+    AF -->|"1. extract"| MN
+    AF -->|"2. load"| PG
     PG --> DBT
-    DBT --> PG
+    DBT -->|"silver/gold"| PG
     PG --> SS
-    PG --> JH
+    PG -->|"dados sensíveis"| TR
+    TR --> JH
     PG --> OM
+```
+
+### Fluxo Real da DAG (3 passos)
+
+```
+Fonte Gov → [Airflow: extract] → MinIO (raw)
+MinIO → [Airflow: load] → PostgreSQL (staging/bronze tables)
+PostgreSQL → [Airflow: trigger dbt] → PostgreSQL (silver/gold)
 ```
 
 ### Arquitetura Medallion
 
 | Camada | Descrição | Storage |
 |--------|-----------|---------|
-| **Bronze** | Dados brutos ingeridos (raw) | MinIO |
-| **Silver** | Dados limpos e normalizados | PostgreSQL |
-| **Gold** | Dados agregados e prontos para consumo | PostgreSQL |
+| **Bronze** | Dados brutos ingeridos (raw files) | MinIO |
+| **Silver** | Dados limpos e normalizados | PostgreSQL (schemas por fork) |
+| **Gold** | Dados agregados e prontos para consumo | PostgreSQL (schemas por fork) |
 
 ### Stack Principal
 
 | Componente | Tecnologia | Papel |
 |------------|-----------|-------|
-| Orquestração | Apache Airflow | ETL/ELT pipelines |
-| Transformação | dbt | Data models e testes |
-| Object Storage | MinIO | Armazenamento de dados brutos |
-| Banco Analítico | PostgreSQL | Metastore e analytics |
-| BI / Dashboards | Apache Superset | Visualização e exploração |
-| Notebooks | JupyterHub | Análise interativa |
-| Governança | OpenMetadata | Catálogo e linhagem de dados |
+| Orquestração | Apache Airflow | DAGs de ingestão (extract → load → trigger dbt) |
+| Transformação | dbt | Models SQL, testes, documentação |
+| Object Storage | MinIO | Camada Bronze (dados brutos) |
+| Banco Analítico | PostgreSQL | Camadas Silver e Gold |
+| BI / Dashboards | Apache Superset | Visualização (acesso direto ao PG) |
+| Notebooks | JupyterHub | Análise interativa (via Trino para dados sensíveis) |
+| Governança | OpenMetadata | Catálogo e linhagem (deployed, config parcial) |
+| Acesso Governado | Trino + Ranger | Row-level security para dados sensíveis (Siape) |
 | Deploy | Argo CD (GitOps) | Kubernetes declarativo |
 | Container | Docker / Kubernetes | Execução dos serviços |
+
+### Modelo de Forks
+
+Forks são **leves**: mesmo cluster/infra, novas DAGs + models dbt. Isolamento por **schemas PostgreSQL** (ex: `cidades_silver`, `minc_gold`).
 
 ---
 
@@ -100,80 +130,103 @@ graph TB
 | [`data-application-gov-hub`](https://github.com/GovHub-br/data-application-gov-hub) | Pipeline de dados principal | Airflow, dbt, Jupyter, Superset |
 | [`gov-hub`](https://github.com/GovHub-br/gov-hub) | Site institucional e documentação | HTML |
 | [`continuous-deployment`](https://github.com/GovHub-br/continuous-deployment) | Infra GitOps (K8s, Helm, Argo CD) | Python, YAML |
-| [`data-application-cidades`](https://github.com/GovHub-br/data-application-cidades) | Fork — dados municipais | Airflow, dbt |
-| [`data-application-minc`](https://github.com/GovHub-br/data-application-minc) | Fork — Ministério da Cultura | Airflow, dbt |
+| [`data-application-cidades`](https://github.com/GovHub-br/data-application-cidades) | Fork leve — dados municipais | Airflow, dbt |
+| [`data-application-minc`](https://github.com/GovHub-br/data-application-minc) | Fork leve — Ministério da Cultura | Airflow, dbt |
 | [`govhub-research`](https://github.com/GovHub-br/govhub-research) | Pesquisa: IA, OCR, parsers | Python |
 | [`openmetadata-declarative-governance`](https://github.com/GovHub-br/openmetadata-declarative-governance) | Governança declarativa | Python |
 | [`data-governance-workshop`](https://github.com/GovHub-br/data-governance-workshop) | Workshop Ranger + Trino | HTML |
 
 ---
 
-## Documentação a Criar
+## Documentação a Produzir
 
-### Fase 1 — Arquitetura (Prioridade Alta)
+### Fase 1 — Arquitetura + Fontes de Dados (Prioridade Alta)
+
+Base conceitual para tudo. Inclui glossário de domínio governamental para estudantes.
 
 | Arquivo | Conteúdo |
 |---------|----------|
 | `docs/index.md` | Home: missão, diagrama geral, links rápidos |
 | `docs/arquitetura/visao-geral.md` | Medallion, stack, repositórios, decisões |
-| `docs/arquitetura/fluxo-de-dados.md` | Pipeline: ingestão → bronze → silver → gold → BI |
+| `docs/arquitetura/fluxo-de-dados.md` | Pipeline: extract → load → dbt (3 passos) |
 | `docs/arquitetura/medallion.md` | Detalhamento das camadas Bronze/Silver/Gold |
-| `docs/arquitetura/componentes.md` | Airflow, dbt, MinIO, PostgreSQL, Superset, JupyterHub |
+| `docs/arquitetura/componentes.md` | Airflow, dbt, MinIO, PostgreSQL, Superset, JupyterHub, Trino |
+| `docs/arquitetura/fontes-de-dados.md` | **NOVO** — Glossário: o que é cada sistema gov, entidades principais, que perguntas o GovHub responde |
 
-### Fase 2 — Pipeline de Dados (Prioridade Alta)
+### Fase 2 — Onboarding (Prioridade Alta)
+
+Desbloqueia estudantes imediatamente. Tom: imperativo, acessível.
 
 | Arquivo | Conteúdo |
 |---------|----------|
-| `docs/pipeline/airflow.md` | DAGs, plugins, conexões, schedules |
-| `docs/pipeline/dbt.md` | Models, seeds, tests, materializations |
-| `docs/pipeline/ingestao.md` | Fontes (TransfereGov, Siape, etc.), conectores |
-| `docs/pipeline/qualidade.md` | Testes dbt, validações, monitoramento |
+| `docs/onboarding/roteiro.md` | Roteiro geral, trilhas por perfil |
+| `docs/onboarding/setup-local.md` | Docker Compose, Make, primeiros passos |
+| `docs/onboarding/git-workflow.md` | Branches, commits assinados, GPG, PRs |
+| `docs/onboarding/airflow-tutorial.md` | Primeira DAG (3 passos), conexões, testes |
+| `docs/onboarding/dbt-tutorial.md` | Primeiro model, run, test |
+| `docs/onboarding/superset-tutorial.md` | Primeiro dashboard |
+| `docs/onboarding/troubleshooting.md` | Problemas comuns |
 
-### Fase 3 — Infraestrutura (Prioridade Alta)
+### Fase 3 — Pipeline + Dicionário de Dados (Prioridade Alta)
+
+Core técnico. Dicionário conceitual com link para dbt docs para detalhe de colunas.
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| `docs/pipeline/airflow.md` | DAGs (3 passos), plugins, conexões, schedules |
+| `docs/pipeline/dbt.md` | Models, seeds, tests, materializations |
+| `docs/pipeline/ingestao.md` | Fontes, APIs, certificados, formatos |
+| `docs/pipeline/qualidade.md` | Testes dbt, validações, monitoramento |
+| `docs/dados/dicionario.md` | **NOVO** — Visão conceitual por fonte: entidades, relacionamentos, exemplos de queries Gold |
+| `docs/dados/transferegov.md` | **NOVO** — Entidades TransfereGov, exemplos |
+| `docs/dados/siape.md` | **NOVO** — Entidades Siape, exemplos |
+| `docs/dados/siafi.md` | **NOVO** — Entidades Siafi, exemplos |
+| `docs/dados/comprasgov.md` | **NOVO** — Entidades ComprasGov, exemplos |
+| `docs/dados/siorg.md` | **NOVO** — Entidades Siorg, exemplos |
+
+> Detalhe de colunas: apontar para [dbt docs](https://dbt.ipea.gov-hub.io/#!/overview)
+
+### Fase 4 — Infraestrutura (Prioridade Alta)
+
+Suporte ao deploy. Necessário para a seção de Adoção.
 
 | Arquivo | Conteúdo |
 |---------|----------|
 | `docs/infraestrutura/kubernetes.md` | Cluster K8s, namespaces, recursos |
 | `docs/infraestrutura/argocd.md` | GitOps, app-of-apps, sync waves, overlays |
 | `docs/infraestrutura/minio.md` | Object storage, buckets, políticas |
-| `docs/infraestrutura/postgres.md` | Metastore, schemas, backups |
+| `docs/infraestrutura/postgres.md` | Metastore, schemas por fork, backups |
 | `docs/infraestrutura/secrets.md` | Gestão de segredos, certificados (SIAFI/SIAPE) |
 
-### Fase 4 — Visualização & Governança (Prioridade Média)
+### Fase 5 — Adoção (Prioridade Média)
+
+**NOVA SEÇÃO** — Desbloqueia equipes de TI do governo que querem implantar.
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| `docs/adocao/requisitos.md` | **NOVO** — Pré-requisitos de infra, recursos mínimos |
+| `docs/adocao/deploy-inicial.md` | **NOVO** — Passo a passo do primeiro deploy |
+| `docs/adocao/conectar-fontes.md` | **NOVO** — Como adicionar fontes de dados do órgão |
+| `docs/adocao/fork-tematico.md` | **NOVO** — Como criar e manter um fork leve (schemas PG, DAGs, dbt models) |
+
+### Fase 6 — Visualização & Governança (Prioridade Média)
+
+Inclui Trino+Ranger como camada de acesso governado.
 
 | Arquivo | Conteúdo |
 |---------|----------|
 | `docs/visualizacao/superset.md` | Dashboards, datasets, permissões |
-| `docs/visualizacao/jupyterhub.md` | Notebooks, kernels, acesso |
-| `docs/governanca/openmetadata.md` | Catálogo, linhagem, domínios, owners |
-| `docs/governanca/acesso.md` | Políticas de acesso (Ranger/Trino se aplicável) |
+| `docs/visualizacao/jupyterhub.md` | Notebooks, kernels, acesso (via Trino para dados sensíveis) |
+| `docs/governanca/openmetadata.md` | Catálogo, linhagem, domínios, owners; como completar config |
+| `docs/governanca/trino-ranger.md` | **NOVO** — Acesso governado: Trino como query layer para dados sensíveis, Ranger policies |
+| `docs/governanca/acesso.md` | Visão geral: roles PG (básico) + Trino/Ranger (sensíveis) |
 
-### Fase 5 — Onboarding (Prioridade Média)
-
-| Arquivo | Conteúdo |
-|---------|----------|
-| `docs/onboarding/roteiro.md` | Roteiro geral para novos contribuidores |
-| `docs/onboarding/setup-local.md` | Docker Compose, Make, primeiros passos |
-| `docs/onboarding/git-workflow.md` | Branches, commits assinados, GPG, PRs |
-| `docs/onboarding/airflow-tutorial.md` | Primeira DAG, conexões, testes |
-| `docs/onboarding/dbt-tutorial.md` | Primeiro model, run, test |
-| `docs/onboarding/superset-tutorial.md` | Primeiro dashboard |
-| `docs/onboarding/troubleshooting.md` | Problemas comuns |
-
-### Fase 6 — Forks Temáticos (Prioridade Alta)
-
-| Arquivo | Conteúdo |
-|---------|----------|
-| `docs/forks/index.md` | Visão geral: conceito, stack, diagrama, forks ativos |
-| `docs/forks/cidades.md` | Fork Cidades: fontes (IBGE, SICONV, FNDE, DataSUS), medallion, dashboards |
-| `docs/forks/minc.md` | Fork MinC: fontes (SALIC, MapaCultural, SNIIC, IPHAN), medallion, dashboards |
-| `docs/forks/guia-criar-fork.md` | Guia completo para criar novo fork: DAGs, dbt, dashboards, sync |
-
-### Fase 7 — Contribuição & Comunidade
+### Fase 7 — Contribuição & Comunidade (Prioridade Baixa)
 
 | Arquivo | Conteúdo |
 |---------|----------|
 | `docs/CONTRIBUTING.md` | Guia de contribuição, padrões |
+| `docs/comunidade/forks.md` | Referência técnica sobre forks (schemas, convenções) |
 | `docs/comunidade/pesquisa.md` | govhub-research: POCs, IA, OCR |
 
 ---
@@ -188,23 +241,7 @@ nav:
     - Fluxo de Dados: arquitetura/fluxo-de-dados.md
     - Arquitetura Medallion: arquitetura/medallion.md
     - Componentes: arquitetura/componentes.md
-  - Pipeline de Dados:
-    - Apache Airflow: pipeline/airflow.md
-    - dbt: pipeline/dbt.md
-    - Ingestão de Dados: pipeline/ingestao.md
-    - Qualidade de Dados: pipeline/qualidade.md
-  - Infraestrutura:
-    - Kubernetes: infraestrutura/kubernetes.md
-    - Argo CD (GitOps): infraestrutura/argocd.md
-    - MinIO: infraestrutura/minio.md
-    - PostgreSQL: infraestrutura/postgres.md
-    - Secrets & Segurança: infraestrutura/secrets.md
-  - Visualização:
-    - Apache Superset: visualizacao/superset.md
-    - JupyterHub: visualizacao/jupyterhub.md
-  - Governança:
-    - OpenMetadata: governanca/openmetadata.md
-    - Controle de Acesso: governanca/acesso.md
+    - Fontes de Dados: arquitetura/fontes-de-dados.md
   - Onboarding:
     - Roteiro: onboarding/roteiro.md
     - Setup Local: onboarding/setup-local.md
@@ -213,11 +250,36 @@ nav:
     - Tutorial dbt: onboarding/dbt-tutorial.md
     - Tutorial Superset: onboarding/superset-tutorial.md
     - Troubleshooting: onboarding/troubleshooting.md
-  - Forks Temáticos:
-    - Visão Geral: forks/index.md
-    - Cidades: forks/cidades.md
-    - Ministério da Cultura: forks/minc.md
-    - Criar Novo Fork: forks/guia-criar-fork.md
+  - Pipeline de Dados:
+    - Apache Airflow: pipeline/airflow.md
+    - dbt: pipeline/dbt.md
+    - Ingestão de Dados: pipeline/ingestao.md
+    - Qualidade de Dados: pipeline/qualidade.md
+  - Dicionário de Dados:
+    - Visão Geral: dados/dicionario.md
+    - TransfereGov: dados/transferegov.md
+    - Siape: dados/siape.md
+    - Siafi: dados/siafi.md
+    - ComprasGov: dados/comprasgov.md
+    - Siorg: dados/siorg.md
+  - Infraestrutura:
+    - Kubernetes: infraestrutura/kubernetes.md
+    - Argo CD (GitOps): infraestrutura/argocd.md
+    - MinIO: infraestrutura/minio.md
+    - PostgreSQL: infraestrutura/postgres.md
+    - Secrets & Segurança: infraestrutura/secrets.md
+  - Adoção:
+    - Requisitos: adocao/requisitos.md
+    - Deploy Inicial: adocao/deploy-inicial.md
+    - Conectar Fontes: adocao/conectar-fontes.md
+    - Fork Temático: adocao/fork-tematico.md
+  - Visualização:
+    - Apache Superset: visualizacao/superset.md
+    - JupyterHub: visualizacao/jupyterhub.md
+  - Governança:
+    - OpenMetadata: governanca/openmetadata.md
+    - Trino + Ranger: governanca/trino-ranger.md
+    - Controle de Acesso: governanca/acesso.md
   - Comunidade:
     - Contribuir: CONTRIBUTING.md
     - Pesquisa: comunidade/pesquisa.md
@@ -230,7 +292,7 @@ nav:
 ```
 .
 ├── airflow/
-│   ├── dags/          # DAGs de ingestão e transformação
+│   ├── dags/          # DAGs de ingestão (extract → load → trigger dbt)
 │   └── plugins/       # Plugins customizados
 ├── dbt/
 │   └── models/        # Models bronze/silver/gold
@@ -259,120 +321,22 @@ nav:
 
 ---
 
-## Identidade Visual (`mkdocs.yml`)
+## Decisões de Design (Registro)
 
-Alinhada com o site oficial [gov-hub.io](https://gov-hub.io) e o repositório [`gov-hub`](https://github.com/GovHub-br/gov-hub).
-
-### Paleta de Cores
-
-| Propriedade | Valor | Uso |
-|-------------|-------|-----|
-| `primary` | `purple` | Header, tabs, links, tabelas |
-| `accent` | `purple` | Hover, elementos interativos |
-| Dark mode | `scheme: slate` | Toggle automático (light/dark/system) |
-
-CSS custom vars:
-
-```css
---md-primary-fg-color: #7c3aed;
---md-primary-fg-color--light: #a78bfa;
---md-primary-fg-color--dark: #5b21b6;
---md-accent-fg-color: #8b5cf6;
-```
-
-### Tipografia
-
-| Tipo | Fonte | Referência |
-|------|-------|-----------|
-| Texto | **Inter** | Google Fonts (400, 500, 600, 700, 800) |
-| Código | **JetBrains Mono** | Built-in Material theme |
-
-### Theme Toggle
-
-Três modos com ícones Material:
-
-| Modo | Ícone | `scheme` |
-|------|-------|----------|
-| System | `material/brightness-4` | Auto-detect |
-| Light | `material/weather-night` | `default` |
-| Dark | `material/weather-sunny` | `slate` |
-
-### Features do Theme
-
-```yaml
-features:
-  - content.code.copy          # Copiar blocos de código
-  - content.code.annotate      # Anotações em código
-  - content.tooltips           # Tooltips em abreviações
-  - navigation.footer          # Links prev/next no footer
-  - navigation.indexes         # Index pages para seções
-  - navigation.sections        # Seções expandidas no sidebar
-  - navigation.tabs            # Tabs no header
-  - navigation.top             # Botão "back to top"
-  - navigation.tracking        # URL tracking no scroll
-  - search.highlight           # Highlight dos termos buscados
-  - search.share               # Compartilhar busca
-  - search.suggest             # Sugestões de busca
-  - toc.follow                 # TOC segue o scroll
-```
-
-### Markdown Extensions
-
-```yaml
-extensions:
-  - abbr                       # Abreviações com tooltip
-  - admonition                 # Callouts (note, warning, tip)
-  - attr_list                  # Atributos HTML em Markdown
-  - def_list                   # Listas de definição
-  - footnotes                  # Notas de rodapé
-  - md_in_html                 # Markdown dentro de HTML
-  - pymdownx.betterem          # Ênfase melhorada
-  - pymdownx.caret             # Superscript (^text^)
-  - pymdownx.details           # Admonitions colapsáveis
-  - pymdownx.emoji             # Emojis twemoji
-  - pymdownx.highlight         # Syntax highlighting
-  - pymdownx.inlinehilite      # Highlight inline
-  - pymdownx.keys              # Teclas (++ctrl+c++)
-  - pymdownx.mark              # Texto marcado (==text==)
-  - pymdownx.smartsymbols      # Símbolos tipográficos
-  - pymdownx.superfences       # Fenced code + Mermaid
-  - pymdownx.tabbed            # Tabs em conteúdo
-  - pymdownx.tasklist          # Checklists
-  - pymdownx.tilde             # Strikethrough (~~text~~)
-```
-
-### CSS Customizado
-
-Arquivo: `docs/stylesheets/custom.css`
-
-- Header com `--md-primary-fg-color--dark`
-- Footer dark (`#1a1a2e`)
-- Tabelas com `th` roxo e bordas arredondadas
-- Admonitions com `border-radius: 8px`
-- Links sem underline (hover underline)
-- Font smoothing (antialiased)
-
-### Extra
-
-```yaml
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/GovHub-br
-
-extra_css:
-  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap
-  - stylesheets/custom.css
-
-copyright: Lab Livre 2025
-```
-
-### Deploy
-
-- **GitHub Action**: `.github/workflows/deploy-docs.yml`
-- **Branch**: `main` → build → `gh-pages`
-- **URL**: `https://rochacarla.github.io/doc-govhub/`
-- **Build**: `docker run --rm -v .:/docs squidfunk/mkdocs-material build`
+| # | Decisão | Contexto |
+|---|---------|----------|
+| 1 | Público-alvo: estudantes + equipes de TI gov | Dois perfis com pontos de entrada distintos |
+| 2 | Tom: neutro em referência, imperativo em tutoriais | Equilibra acessibilidade e profissionalismo |
+| 3 | DAG tem 3 passos: extract → load → trigger dbt | MinIO não é lido diretamente pelo dbt |
+| 4 | Trino+Ranger: acesso governado para dados sensíveis | Superset acessa PG direto; Jupyter/análises sensíveis via Trino |
+| 5 | Fork leve: mesmo cluster, schemas PG separados | Não requer infra própria por fork |
+| 6 | OpenMetadata: deployed com config parcial | Documentar o que existe + como completar |
+| 7 | Dicionário de dados híbrido | Conceitual no MkDocs, colunas no dbt docs |
+| 8 | dbt docs hospedado | https://dbt.ipea.gov-hub.io/#!/overview |
+| 9 | Nova seção "Adoção" | Caminho claro para equipes de governo implantarem |
+| 10 | Nova seção "Fontes de Dados" | Glossário gov para estudantes sem contexto |
+| 11 | Diagramas corrigidos | Mostrar 3 passos + Trino na governança |
+| 12 | Docs existentes: mix | Auditar antes de revisar (completos/drafts/stubs) |
 
 ---
 
@@ -382,7 +346,19 @@ copyright: Lab Livre 2025
 2. `docker run --rm -p 8000:8000 -v .:/docs squidfunk/mkdocs-material serve -a 0.0.0.0:8000` — preview local
 3. Validar todos os links internos
 4. Testar diagramas Mermaid
-5. Verificar toggle dark/light/system
-6. Confirmar paleta purple e fonte Inter
-7. Verificar que não há referências ao projeto antigo (DestaquesGovbr, Cogfy, Bedrock, Typesense, HuggingFace)
-8. Confirmar alinhamento com repos reais do GitHub
+5. Verificar que não há referências ao projeto antigo (DestaquesGovbr, Cogfy, Bedrock, Typesense, HuggingFace)
+6. Confirmar alinhamento com repos reais do GitHub
+7. Verificar que diagramas mostram os 3 passos da DAG e Trino+Ranger
+
+---
+
+## Próximos Passos
+
+1. [ ] Auditar os 27 docs existentes (classificar: completo / draft / stub)
+2. [ ] Criar arquivos novos: `fontes-de-dados.md`, `dados/*.md`, `adocao/*.md`, `trino-ranger.md`
+3. [ ] Corrigir diagramas em `visao-geral.md`, `index.md`, `fluxo-de-dados.md`
+4. [ ] Atualizar `mkdocs.yml` com nova navegação
+5. [ ] Revisar docs existentes para consistência com decisões acima
+
+**Status**: 📋 Plano revisado com decisões de design consolidadas
+**Última atualização**: 2026-05-20

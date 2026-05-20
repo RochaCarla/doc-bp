@@ -35,18 +35,41 @@ WHERE orgao_concedente = '{{ current_user.org_code }}'
 ## Dados Sensíveis
 
 | Fonte | Sensibilidade | Tratamento |
-|-------|---------------|-----------|
-| Siape | Alta (dados pessoais) | Anonimização na camada Silver |
-| Siafi | Média (financeiro) | Acesso restrito |
-| TransfereGov | Baixa (público) | Sem restrições |
-| ComprasGov | Baixa (público) | Sem restrições |
-| Siorg | Baixa (público) | Sem restrições |
+|-------|---------------|------------|
+| Siape | Alta (dados pessoais) | Acesso governado via Trino + Ranger |
+| Siafi | Média (financeiro detalhado) | Acesso governado via Trino + Ranger |
+| TransfereGov | Baixa (público) | Acesso direto via PostgreSQL |
+| ComprasGov | Baixa (público) | Acesso direto via PostgreSQL |
+| Siorg | Baixa (público) | Acesso direto via PostgreSQL |
 
-## Workshop: Apache Ranger + Trino
+## Modelo de Dois Níveis
 
-Para cenários avançados de controle de acesso, o GovHub mantém um workshop sobre:
+O GovHub opera com dois caminhos de acesso:
 
-- **Apache Ranger**: Políticas centralizadas de acesso
-- **Trino**: Query engine federada com controle por coluna/row
+```mermaid
+graph LR
+    subgraph "Dados Públicos"
+        SS[Superset] --> PG[(PostgreSQL)]
+    end
 
-Repo: [`data-governance-workshop`](https://github.com/GovHub-br/data-governance-workshop)
+    subgraph "Dados Sensíveis"
+        JH[JupyterHub] --> TR[Trino + Ranger]
+        TR --> PG
+    end
+```
+
+| Nível | Caminho | Dados | Controle |
+|-------|---------|-------|----------|
+| Básico | Superset/JupyterHub → PostgreSQL direto | Públicos (TransfereGov, ComprasGov, Siorg) | Roles PG |
+| Governado | JupyterHub → Trino + Ranger → PostgreSQL | Sensíveis (Siape, Siafi detalhado) | Row-level security, column masking |
+
+## Apache Ranger + Trino (Operacional)
+
+Trino + Ranger estão deployed e operacionais no cluster, fornecendo:
+
+- **Row-level security**: Filtro automático por perfil do usuário
+- **Column masking**: Ocultação de colunas sensíveis (CPF, remuneração individual)
+- **Audit trail**: Log de todas as queries a dados restritos
+- **Políticas centralizadas**: Gerenciadas via Apache Ranger
+
+Repo de referência: [`data-governance-workshop`](https://github.com/GovHub-br/data-governance-workshop)

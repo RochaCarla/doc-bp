@@ -4,7 +4,7 @@ Banco de dados analítico para as camadas Silver e Gold do GovHub BR.
 
 ## Papel na Arquitetura
 
-PostgreSQL armazena os dados transformados pelo dbt e serve como backend para Superset e JupyterHub.
+PostgreSQL armazena os dados transformados pelo dbt e serve como backend para Superset, JupyterHub e Trino (acesso governado a dados sensíveis).
 
 ```mermaid
 graph LR
@@ -18,9 +18,17 @@ graph LR
 
 | Schema | Camada | Conteúdo |
 |--------|--------|----------|
-| `silver` | Silver | Dados limpos e normalizados |
-| `gold` | Gold | Dados agregados, fatos e dimensões |
-| `public` | Staging | Views temporárias do dbt |
+| `silver` | Silver | Dados limpos e normalizados (pipeline principal) |
+| `gold` | Gold | Dados agregados, fatos e dimensões (pipeline principal) |
+| `public` | Staging | Tables de staging carregadas pelo Airflow |
+| `cidades_silver` | Silver | Fork leve — dados municipais |
+| `cidades_gold` | Gold | Fork leve — dados municipais |
+| `minc_silver` | Silver | Fork leve — Ministério da Cultura |
+| `minc_gold` | Gold | Fork leve — Ministério da Cultura |
+
+!!! note "Convenção de schemas por fork"
+    Cada fork leve cria seus próprios schemas no formato `<fork>_silver` e `<fork>_gold`.
+    Isso permite isolamento lógico sem exigir bancos separados.
 
 ## Tabelas Principais
 

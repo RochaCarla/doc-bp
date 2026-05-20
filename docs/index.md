@@ -20,8 +20,11 @@ graph TB
         AF[Apache Airflow]
     end
 
-    subgraph "Armazenamento"
-        MN[MinIO]
+    subgraph "Bronze"
+        MN[MinIO - Raw]
+    end
+
+    subgraph "Silver / Gold"
         PG[(PostgreSQL)]
     end
 
@@ -34,16 +37,24 @@ graph TB
         JH[JupyterHub]
     end
 
+    subgraph "Governança & Acesso"
+        OM[OpenMetadata]
+        TR[Trino + Ranger]
+    end
+
     TG --> AF
     SI --> AF
     SF --> AF
     CG --> AF
     SO --> AF
-    AF --> MN
-    MN --> DBT
-    DBT --> PG
+    AF -->|"1. extract"| MN
+    AF -->|"2. load"| PG
+    PG --> DBT
+    DBT -->|"silver/gold"| PG
     PG --> SS
-    PG --> JH
+    PG -->|"dados sensíveis"| TR
+    TR --> JH
+    PG --> OM
 ```
 
 ## Princípios
@@ -56,14 +67,15 @@ graph TB
 ## Stack
 
 | Componente | Tecnologia |
-|------------|-----------|
+|------------|------------|
 | Orquestração | Apache Airflow |
 | Transformação | dbt |
-| Object Storage | MinIO |
-| Banco Analítico | PostgreSQL |
+| Object Storage | MinIO (Bronze) |
+| Banco Analítico | PostgreSQL (Silver/Gold) |
 | BI | Apache Superset |
 | Notebooks | JupyterHub |
 | Governança | OpenMetadata |
+| Acesso Governado | Trino + Ranger |
 | Deploy | Argo CD / Kubernetes |
 
 ## Fontes de Dados
@@ -82,7 +94,7 @@ graph TB
 - [Pipeline](pipeline/airflow.md) — Airflow, dbt, ingestão
 - [Infraestrutura](infraestrutura/kubernetes.md) — Kubernetes, Argo CD, GitOps
 - [Visualização](visualizacao/superset.md) — Superset, JupyterHub
-- [Forks Temáticos](forks/index.md) — Cidades, Ministério da Cultura, criar novos forks
+- [Governança](governanca/openmetadata.md) — Catálogo, linhagem, controle de acesso
 - [Onboarding](onboarding/roteiro.md) — Guia para novos contribuidores
 
 ---

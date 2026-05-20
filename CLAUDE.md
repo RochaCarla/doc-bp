@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Documentation site for **GovHub**, a government news aggregation platform that centralizes ~160+ Brazilian gov.br portals with AI-powered semantic search. This repo contains only the MkDocs documentation — the actual platform code lives in separate repos (data-platform, portal, scraper, agencies, themes, infra).
+Documentation site for **GovHub BR**, an open source platform that integrates, qualifies, and serves structured government data from Brazilian federal systems (TransfereGov, Siape, Siafi, ComprasGov, Siorg). This repo contains only the MkDocs documentation — the platform code lives in separate repos under the [GovHub-br](https://github.com/GovHub-br) organization.
 
 ## Build & Development Commands
 
@@ -33,16 +33,16 @@ No tests or linter configured in this repo. CI runs `poetry run mkdocs build` on
 
 | Section | Path | Purpose |
 |---------|------|---------|
-| Arquitetura | `docs/arquitetura/` | System design & data flow |
-| Módulos | `docs/modulos/` | Per-module reference (scraper, portal, data-platform, etc.) |
-| Workflows | `docs/workflows/` | CI/CD pipelines & DAGs |
-| Infraestrutura | `docs/infraestrutura/` | GCP/Terraform setup |
-| Onboarding | `docs/onboarding/` | Developer tracks (backend, frontend, data science) |
-| Blog | `docs/blog/` | Dev storytelling posts |
+| Arquitetura | `docs/arquitetura/` | Medallion architecture, stack, data flow |
+| Pipeline | `docs/pipeline/` | Airflow DAGs, dbt models, ingestion, data quality |
+| Infraestrutura | `docs/infraestrutura/` | Kubernetes, Argo CD, MinIO, PostgreSQL, secrets |
+| Visualização | `docs/visualizacao/` | Superset dashboards, JupyterHub notebooks |
+| Governança | `docs/governanca/` | OpenMetadata catalog, access control |
+| Onboarding | `docs/onboarding/` | Setup local, tutorials (Airflow, dbt, Superset), troubleshooting |
+| Comunidade | `docs/comunidade/` | Thematic forks, research (IA, OCR) |
 
 ### MkDocs Plugins & Extensions
 
-- **Blog plugin**: posts go in `docs/blog/posts/`, use `<!-- more -->` for excerpt separator
 - **Mermaid diagrams**: use ` ```mermaid ` fenced blocks
 - **Admonition**: `!!! note`, `!!! warning`, etc.
 - **Tabbed content**: `pymdownx.tabbed` with alternate style
@@ -53,5 +53,4 @@ No tests or linter configured in this repo. CI runs `poetry run mkdocs build` on
 - **Language**: all content is in Brazilian Portuguese (pt-BR)
 - **Commit messages**: Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, etc.)
 - **Navigation**: any new page must be added to the `nav:` section in `mkdocs.yml`
-- **Blog posts**: filename format `YYYY-MM-DD-slug.md` with YAML frontmatter (date, authors, categories, tags)
 - **Diagrams**: prefer Mermaid over static images for architecture/flow diagrams

@@ -30,10 +30,14 @@ graph TB
         DBT[dbt Models]
     end
 
-    subgraph "Consumo"
+    subgraph "Visualização & Análise"
         SS[Apache Superset]
         JH[JupyterHub]
+    end
+
+    subgraph "Governança & Acesso"
         OM[OpenMetadata]
+        TR[Trino + Ranger]
     end
 
     subgraph "Infra (GitOps)"
@@ -46,11 +50,13 @@ graph TB
     SF --> AF
     CG --> AF
     SO --> AF
-    AF -->|raw data| MN
-    MN -->|dbt source| DBT
-    DBT -->|silver/gold| PG
+    AF -->|"1. extract"| MN
+    AF -->|"2. load"| PG
+    PG --> DBT
+    DBT -->|"silver/gold"| PG
     PG --> SS
-    PG --> JH
+    PG -->|"dados sensíveis"| TR
+    TR --> JH
     PG --> OM
     ARGO --> K8S
 ```
@@ -67,13 +73,14 @@ graph TB
 
 | Componente | Tecnologia | Papel |
 |------------|-----------|-------|
-| Orquestração | Apache Airflow | Schedules, DAGs de ingestão |
+| Orquestração | Apache Airflow | DAGs de ingestão (extract → load → trigger dbt) |
 | Transformação | dbt | Models SQL, testes, documentação |
 | Object Storage | MinIO | Camada Bronze (dados brutos) |
-| Banco Analítico | PostgreSQL | Camadas Silver e Gold |
-| BI / Dashboards | Apache Superset | Visualização, exploração |
-| Notebooks | JupyterHub | Análise interativa, POCs |
+| Banco Analítico | PostgreSQL | Camadas Silver e Gold (schemas por fork) |
+| BI / Dashboards | Apache Superset | Visualização (acesso direto ao PG) |
+| Notebooks | JupyterHub | Análise interativa (via Trino para dados sensíveis) |
 | Governança | OpenMetadata | Catálogo, linhagem, ownership |
+| Acesso Governado | Trino + Ranger | Row-level security para dados sensíveis |
 | GitOps | Argo CD | Deploy declarativo em K8s |
 | Containers | Docker / Kubernetes | Runtime de todos os serviços |
 
@@ -93,7 +100,7 @@ graph TB
 - **Medallion Architecture**: Separação clara entre raw (Bronze), limpo (Silver) e agregado (Gold)
 - **GitOps**: Infraestrutura 100% declarativa via Argo CD — nenhum `kubectl apply` manual em produção
 - **App-of-Apps**: Padrão Argo CD para gerenciar múltiplos serviços com sync waves
-- **Forks temáticos**: Arquitetura permite instâncias por contexto (cidades, MinC)
+- **Forks leves**: Mesmo cluster, isolamento por schemas PG (cidades, MinC)
 - **Open source**: Todo código público, comunidade aberta a contribuições
 
 ## Ambientes
