@@ -315,5 +315,33 @@ O GovHub suporta forks para contextos específicos:
 
 ---
 
-**Status**: 📋 Plano documentado, aguardando início da implementação
+## Identidade Visual
+
+Documentação alinhada com o site oficial [gov-hub.io](https://gov-hub.io).
+
+| Propriedade | Valor |
+|-------------|-------|
+| **Paleta** | `primary: purple`, `accent: purple` |
+| **Schemes** | `default` (light), `slate` (dark), auto-detect (system) |
+| **Font texto** | Inter (Google Fonts: 400–800) |
+| **Font código** | JetBrains Mono |
+| **CSS custom** | `docs/stylesheets/custom.css` — header dark, footer `#1a1a2e`, tabelas roxas, admonitions arredondados |
+| **Copyright** | Lab Livre 2025 |
+| **Deploy** | GitHub Action → `gh-pages`, URL: `https://rochacarla.github.io/doc-govhub/` |
+| **Build** | `docker run --rm -v .:/docs squidfunk/mkdocs-material build` |
+
+CSS custom vars:
+
+```css
+--md-primary-fg-color: #7c3aed;
+--md-primary-fg-color--light: #a78bfa;
+--md-primary-fg-color--dark: #5b21b6;
+--md-accent-fg-color: #8b5cf6;
+```
+
+Features habilitadas: `content.code.copy`, `content.code.annotate`, `content.tooltips`, `navigation.footer`, `navigation.indexes`, `navigation.sections`, `navigation.tabs`, `navigation.top`, `navigation.tracking`, `search.highlight`, `search.share`, `search.suggest`, `toc.follow`.
+
+---
+
+**Status**: ✅ Implementação completa
 **Última atualização**: 2026-05-19

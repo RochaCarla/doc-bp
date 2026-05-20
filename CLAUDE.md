@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Documentation site for **DestaquesGovbr**, a government news aggregation platform that centralizes ~160+ Brazilian gov.br portals with AI-powered semantic search. This repo contains only the MkDocs documentation — the actual platform code lives in separate repos (data-platform, portal, scraper, agencies, themes, infra).
+Documentation site for **GovHub**, a government news aggregation platform that centralizes ~160+ Brazilian gov.br portals with AI-powered semantic search. This repo contains only the MkDocs documentation — the actual platform code lives in separate repos (data-platform, portal, scraper, agencies, themes, infra).
 
 ## Build & Development Commands
 

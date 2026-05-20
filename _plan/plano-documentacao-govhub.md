@@ -259,11 +259,130 @@ nav:
 
 ---
 
+## Identidade Visual (`mkdocs.yml`)
+
+Alinhada com o site oficial [gov-hub.io](https://gov-hub.io) e o repositório [`gov-hub`](https://github.com/GovHub-br/gov-hub).
+
+### Paleta de Cores
+
+| Propriedade | Valor | Uso |
+|-------------|-------|-----|
+| `primary` | `purple` | Header, tabs, links, tabelas |
+| `accent` | `purple` | Hover, elementos interativos |
+| Dark mode | `scheme: slate` | Toggle automático (light/dark/system) |
+
+CSS custom vars:
+
+```css
+--md-primary-fg-color: #7c3aed;
+--md-primary-fg-color--light: #a78bfa;
+--md-primary-fg-color--dark: #5b21b6;
+--md-accent-fg-color: #8b5cf6;
+```
+
+### Tipografia
+
+| Tipo | Fonte | Referência |
+|------|-------|-----------|
+| Texto | **Inter** | Google Fonts (400, 500, 600, 700, 800) |
+| Código | **JetBrains Mono** | Built-in Material theme |
+
+### Theme Toggle
+
+Três modos com ícones Material:
+
+| Modo | Ícone | `scheme` |
+|------|-------|----------|
+| System | `material/brightness-4` | Auto-detect |
+| Light | `material/weather-night` | `default` |
+| Dark | `material/weather-sunny` | `slate` |
+
+### Features do Theme
+
+```yaml
+features:
+  - content.code.copy          # Copiar blocos de código
+  - content.code.annotate      # Anotações em código
+  - content.tooltips           # Tooltips em abreviações
+  - navigation.footer          # Links prev/next no footer
+  - navigation.indexes         # Index pages para seções
+  - navigation.sections        # Seções expandidas no sidebar
+  - navigation.tabs            # Tabs no header
+  - navigation.top             # Botão "back to top"
+  - navigation.tracking        # URL tracking no scroll
+  - search.highlight           # Highlight dos termos buscados
+  - search.share               # Compartilhar busca
+  - search.suggest             # Sugestões de busca
+  - toc.follow                 # TOC segue o scroll
+```
+
+### Markdown Extensions
+
+```yaml
+extensions:
+  - abbr                       # Abreviações com tooltip
+  - admonition                 # Callouts (note, warning, tip)
+  - attr_list                  # Atributos HTML em Markdown
+  - def_list                   # Listas de definição
+  - footnotes                  # Notas de rodapé
+  - md_in_html                 # Markdown dentro de HTML
+  - pymdownx.betterem          # Ênfase melhorada
+  - pymdownx.caret             # Superscript (^text^)
+  - pymdownx.details           # Admonitions colapsáveis
+  - pymdownx.emoji             # Emojis twemoji
+  - pymdownx.highlight         # Syntax highlighting
+  - pymdownx.inlinehilite      # Highlight inline
+  - pymdownx.keys              # Teclas (++ctrl+c++)
+  - pymdownx.mark              # Texto marcado (==text==)
+  - pymdownx.smartsymbols      # Símbolos tipográficos
+  - pymdownx.superfences       # Fenced code + Mermaid
+  - pymdownx.tabbed            # Tabs em conteúdo
+  - pymdownx.tasklist          # Checklists
+  - pymdownx.tilde             # Strikethrough (~~text~~)
+```
+
+### CSS Customizado
+
+Arquivo: `docs/stylesheets/custom.css`
+
+- Header com `--md-primary-fg-color--dark`
+- Footer dark (`#1a1a2e`)
+- Tabelas com `th` roxo e bordas arredondadas
+- Admonitions com `border-radius: 8px`
+- Links sem underline (hover underline)
+- Font smoothing (antialiased)
+
+### Extra
+
+```yaml
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/GovHub-br
+
+extra_css:
+  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap
+  - stylesheets/custom.css
+
+copyright: Lab Livre 2025
+```
+
+### Deploy
+
+- **GitHub Action**: `.github/workflows/deploy-docs.yml`
+- **Branch**: `main` → build → `gh-pages`
+- **URL**: `https://rochacarla.github.io/doc-govhub/`
+- **Build**: `docker run --rm -v .:/docs squidfunk/mkdocs-material build`
+
+---
+
 ## Verificação Final
 
-1. `poetry run mkdocs build --strict` — build sem erros
-2. `poetry run mkdocs serve` — preview local
+1. `docker run --rm -v .:/docs squidfunk/mkdocs-material build` — build sem erros
+2. `docker run --rm -p 8000:8000 -v .:/docs squidfunk/mkdocs-material serve -a 0.0.0.0:8000` — preview local
 3. Validar todos os links internos
 4. Testar diagramas Mermaid
-5. Verificar que não há referências ao projeto antigo (DestaquesGovbr, Cogfy, Bedrock, Typesense, HuggingFace)
-6. Confirmar alinhamento com repos reais do GitHub
+5. Verificar toggle dark/light/system
+6. Confirmar paleta purple e fonte Inter
+7. Verificar que não há referências ao projeto antigo (DestaquesGovbr, Cogfy, Bedrock, Typesense, HuggingFace)
+8. Confirmar alinhamento com repos reais do GitHub
