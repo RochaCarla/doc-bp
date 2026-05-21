@@ -1,104 +1,26 @@
-# GovHub BR
+# Brasil Participativo — Documentação Técnica
 
-> Transformando dados públicos em ativos estratégicos para gestão pública.
+Documentação técnica do **Brasil Participativo** — plataforma nacional de participação social digital do governo federal brasileiro, baseada no [Decidim](https://decidim.org/).
 
-## Sobre o Projeto
+O Brasil Participativo é um **fork direto do Decidim** (`decidim-govbr`), com módulos nativos e componentes customizados desenvolvidos pelo LAPPIS/UnB.
 
-O **GovHub BR** é uma iniciativa open source para integrar, qualificar e disponibilizar dados governamentais de forma estruturada. A plataforma reduz a fragmentação de sistemas, otimiza processos internos e oferece informações estratégicas para gestores públicos e sociedade civil.
+## Para quem é esta documentação
 
-```mermaid
-graph TB
-    subgraph "Fontes Governamentais"
-        TG[TransfereGov]
-        SI[Siape]
-        SF[Siafi]
-        CG[ComprasGov]
-        SO[Siorg]
-    end
+- **Desenvolvedores** — setup local, estrutura do código, como contribuir, como criar componentes
+- **Operadores** — deploy em Kubernetes, configuração, administração da plataforma
 
-    subgraph "Ingestão & Orquestração"
-        AF[Apache Airflow]
-    end
+## Seções
 
-    subgraph "Bronze"
-        MN[MinIO - Raw]
-    end
+- [Visão Geral](visao-geral/sobre.md) — sobre a plataforma e sua arquitetura
+- [Guia do Desenvolvedor](dev/setup.md) — para quem vai contribuir com código
+- [Guia do Operador](operador/deploy.md) — para quem vai implantar e operar a plataforma
+- [Módulos](modulos/propostas.md) — módulos nativos do Decidim usados pela plataforma
+- [Componentes Customizados](componentes/homes.md) — gems desenvolvidas pelo LAPPIS/UnB
 
-    subgraph "Silver / Gold"
-        PG[(PostgreSQL)]
-    end
+## Links Úteis
 
-    subgraph "Transformação"
-        DBT[dbt]
-    end
-
-    subgraph "Visualização & Análise"
-        SS[Apache Superset]
-        JH[JupyterHub]
-    end
-
-    subgraph "Governança & Acesso"
-        OM[OpenMetadata]
-        TR[Trino + Ranger]
-    end
-
-    TG --> AF
-    SI --> AF
-    SF --> AF
-    CG --> AF
-    SO --> AF
-    AF -->|"1. extract"| MN
-    AF -->|"2. load"| PG
-    PG --> DBT
-    DBT -->|"silver/gold"| PG
-    PG --> SS
-    PG -->|"dados sensíveis"| TR
-    TR --> JH
-    PG --> OM
-```
-
-## Princípios
-
-- **Transparência** — Cultura de dados abertos
-- **Evidências** — Decisões baseadas em dados
-- **Eficiência** — Redução de redundância e fragmentação
-- **Colaboração** — Open source, forks temáticos
-
-## Stack
-
-| Componente | Tecnologia |
-|------------|------------|
-| Orquestração | Apache Airflow |
-| Transformação | dbt |
-| Object Storage | MinIO (Bronze) |
-| Banco Analítico | PostgreSQL (Silver/Gold) |
-| BI | Apache Superset |
-| Notebooks | JupyterHub |
-| Governança | OpenMetadata |
-| Acesso Governado | Trino + Ranger |
-| Deploy | Argo CD / Kubernetes |
-
-## Fontes de Dados
-
-| Sistema | Domínio |
-|---------|---------|
-| TransfereGov | Transferências voluntárias |
-| Siape | Pessoal civil e militar |
-| Siafi | Administração financeira |
-| ComprasGov | Compras públicas |
-| Siorg | Estrutura organizacional |
-
-## Navegação Rápida
-
-- [Arquitetura](arquitetura/visao-geral.md) — Design do sistema e fluxo de dados
-- [Pipeline](pipeline/airflow.md) — Airflow, dbt, ingestão
-- [Infraestrutura](infraestrutura/kubernetes.md) — Kubernetes, Argo CD, GitOps
-- [Visualização](visualizacao/superset.md) — Superset, JupyterHub
-- [Governança](governanca/openmetadata.md) — Catálogo, linhagem, controle de acesso
-- [Onboarding](onboarding/roteiro.md) — Guia para novos contribuidores
-
----
-
-**Organização**: [github.com/GovHub-br](https://github.com/GovHub-br)
-**Site**: [gov-hub.io](https://gov-hub.io)
-**Apoio**: Lab Livre (UnB) + IPEA/Dides
+- **Core (decidim-govbr)**: [GitLab](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr)
+- **Componentes**: [GitLab](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo)
+- **Brasil Participativo**: [brasilparticipativo.presidencia.gov.br](https://brasilparticipativo.presidencia.gov.br/)
+- **Decidim**: [decidim.org](https://decidim.org/)
+- **LAPPIS/UnB**: [lappis.rocks](https://lappis.rocks/)

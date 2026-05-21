@@ -1,76 +1,95 @@
-# GovHub BR — Documentação
+# Brasil Participativo — Documentação Técnica
 
-Plataforma open source de integração de dados governamentais brasileiros. Este repositório contém a documentação técnica (MkDocs).
+Documentação técnica da plataforma Brasil Participativo, plataforma nacional de participação social digital do governo federal brasileiro, baseada no Decidim. O foco é o core (`decidim-govbr`); componentes customizados são documentados como periféricos.
+
+Repositório core: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
+Repositório de componentes: https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo
 
 ## Language
 
-### Sistemas Fonte
+### Plataforma
 
-**TransfereGov**:
-Sistema do governo federal que gerencia convênios e contratos de repasse entre União e entes subnacionais (estados, municípios, ONGs).
-_Avoid_: Siconv (nome antigo do sistema)
+**Brasil Participativo**:
+Plataforma nacional de participação social digital do governo federal, construída sobre o framework Decidim.
+_Avoid_: BP (ambíguo)
 
-**Siape**:
-Sistema de administração de pessoal civil e militar — cadastro de servidores e folha de pagamento da União.
-_Avoid_: sistema de RH
+**Decidim**:
+Framework open source de democracia participativa escrito em Ruby on Rails. O Brasil Participativo é um fork direto do Decidim com modificações no código upstream.
+_Avoid_: plataforma base (genérico)
 
-**Siafi**:
-Sistema Integrado de Administração Financeira — registra a execução orçamentária e financeira da União.
-_Avoid_: sistema financeiro
+**decidim-govbr**:
+Repositório core do Brasil Participativo. Fork do Decidim com customizações diretas no código-fonte — não é uma instância que apenas consome gems oficiais.
+_Avoid_: instância Decidim, app Decidim
 
-**ComprasGov**:
-Plataforma de compras públicas do governo federal — licitações, contratos, atas de registro de preço.
-_Avoid_: ComprasNet (nome antigo)
+**Módulo Decidim**:
+Componente nativo que já vem com o Decidim upstream (ex: propostas, reuniões, formulários, blog, enquetes, orçamento participativo). O Brasil Participativo usa um subconjunto desses módulos.
+_Avoid_: plugin, componente (ambíguo — confunde com customizado)
 
-**Siorg**:
-Sistema de Informações Organizacionais — estrutura organizacional do governo federal (órgãos, unidades, cargos).
+**Componente customizado**:
+Gem Ruby desenvolvida pelo LAPPIS/UnB que estende o Decidim além dos módulos oficiais. Cada componente é um Rails Engine instalado no core via Gemfile.
+_Avoid_: plugin, módulo (reservado para os nativos do Decidim)
 
-### Arquitetura de Dados
+### Componentes Customizados
 
-**Camada Bronze**:
-Dados brutos ingeridos das fontes governamentais, armazenados como arquivos no MinIO sem transformação.
-_Avoid_: raw layer, landing zone
+**decidim-module-homes**:
+Página inicial customizada da plataforma.
 
-**Camada Silver**:
-Dados limpos, deduplicados e normalizados em schemas PostgreSQL, prontos para modelagem.
-_Avoid_: clean layer, staging
+**decidim-module-enhanced_templates**:
+Templates melhorados para processos participativos.
 
-**Camada Gold**:
-Dados agregados, métricas e views prontos para consumo por BI e análise.
-_Avoid_: consumption layer, mart
+**decidim-module-enhanced_process_groups_and_scopes**:
+Agrupamento e escopos de processos participativos (ex: por região, tema).
 
-**Fork leve**:
-Instância lógica do GovHub para um contexto específico (órgão, tema). Compartilha cluster e infra, isolado por schemas PostgreSQL. Contém apenas novas DAGs e models dbt.
-_Avoid_: fork completo, instância separada
+**decidim-module-common_questions**:
+Perguntas frequentes compartilhadas entre processos.
 
-### Pipeline
+**decidim-module-questionnaires**:
+Customização do módulo de questionários do Decidim.
 
-**DAG de ingestão**:
-Pipeline Airflow com 3 tasks sequenciais: extract (API → MinIO), load (MinIO → PostgreSQL staging), trigger dbt (transformação Silver/Gold).
-_Avoid_: ETL (genérico demais)
+**decidim-participatory_text**:
+Fork/customização do componente oficial de textos participativos do Decidim.
 
-**dbt docs**:
-Documentação auto-gerada pelo dbt com detalhes de colunas, tipos e linhagem. Hospedado em https://dbt.ipea.gov-hub.io/#!/overview. Fonte de verdade para dicionário de dados a nível de coluna.
+**decidim-api-categorization**:
+Extensão de API para categorização de conteúdos.
 
-### Governança
+**decidim-ej**:
+Integração com Empurrando Juntas (EJ) — consome a API do EJ e exibe resultados no Decidim com UI própria. EJ é uma dependência externa.
 
-**Acesso governado**:
-Caminho de consulta via Trino + Ranger para dados sensíveis (ex: Siape/folha). Aplica row-level security e column masking. Não é o caminho padrão — Superset acessa PostgreSQL diretamente.
-_Avoid_: controle de acesso (genérico, não distingue os dois níveis)
+**Empurrando Juntas (EJ)**:
+Plataforma externa de opinião e votação desenvolvida pelo LAPPIS/UnB. O Brasil Participativo se integra via API, não embute nem reimplementa o EJ.
+_Avoid_: EJ interno, módulo EJ
 
-**OpenMetadata**:
-Catálogo de dados e linhagem. Deployed com configuração parcial — catálogo básico funcional, owners e domínios por fork a completar.
+### Conceitos de Participação
+
+**Espaço participativo**:
+Container organizacional no Decidim (processo participativo, assembleia, conferência) que agrupa componentes.
+_Avoid_: espaço (genérico)
+
+**Processo participativo**:
+Tipo de espaço com fases temporais (criação, debate, votação, resultado). Principal mecanismo do Brasil Participativo.
+
+**Proposta**:
+Contribuição de um participante dentro de um componente de propostas. Pode ser votada, comentada e moderada.
+
+### Arquitetura
+
+**Engine Rails**:
+Padrão usado pelo Decidim para modularizar componentes — cada componente é um Rails Engine empacotado como gem.
+
+**Decidim module generator**:
+Ferramenta CLI do Decidim para scaffolding de novos componentes (`decidim-generators`).
+
+### Infraestrutura
+
+**Ambiente de produção**:
+Kubernetes. Demais dependências externas (banco, cache, e-mail, autenticação, etc.) a detalhar.
 
 ## Example Dialogue
 
-> **Dev**: "Quero adicionar dados de um novo órgão ao GovHub."
+> **Dev externo**: "Quero contribuir com o Brasil Participativo. Por onde começo?"
 >
-> **Domain Expert**: "Você vai criar um fork leve. Isso significa um novo repo com DAGs de ingestão para as APIs do órgão e models dbt que escrevem em schemas PG dedicados — tipo `meuorgao_silver`, `meuorgao_gold`. A infra (cluster, MinIO, Airflow, Superset) é compartilhada."
+> **Domain Expert**: "O core é o `decidim-govbr` — um fork direto do Decidim. Clone o repo, siga o setup local e veja a seção de como contribuir. Se quiser criar um componente customizado novo, ele vai no repositório `components-brasil-participativo` como uma gem Ruby separada."
 >
-> **Dev**: "E como controlo quem vê os dados sensíveis?"
+> **Operador**: "Preciso subir uma instância do Brasil Participativo no meu órgão."
 >
-> **Domain Expert**: "Dados públicos vão pro Superset direto via PostgreSQL. Dados sensíveis — tipo folha de pagamento do Siape — passam pelo acesso governado: Trino + Ranger aplicam row-level security antes de chegar no JupyterHub."
->
-> **Dev**: "Onde vejo o schema completo de cada tabela?"
->
-> **Domain Expert**: "No dbt docs. A documentação do MkDocs explica o domínio e as entidades conceituais. Para detalhe de coluna, tipo e linhagem, vai no dbt docs."
+> **Domain Expert**: "A plataforma roda em Kubernetes. O Guia do Operador cobre deploy e configuração. Atenção às dependências externas — o EJ é consumido via API e precisa estar disponível separadamente."

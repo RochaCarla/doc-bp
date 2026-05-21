@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Documentation site for **GovHub BR**, an open source platform that integrates, qualifies, and serves structured government data from Brazilian federal systems (TransfereGov, Siape, Siafi, ComprasGov, Siorg). This repo contains only the MkDocs documentation — the platform code lives in separate repos under the [GovHub-br](https://github.com/GovHub-br) organization.
+Documentation site for **Brasil Participativo** — national participatory democracy platform of the Brazilian federal government, built as a direct fork of Decidim. Focus is on the core (`decidim-govbr`), with custom components documented as peripheral. Two target audiences: external developers (contributing, local setup) and government operators (deploy, configuration, administration).
+
+- **Core repo**: [gitlab.com/lappis-unb/decidimbr/decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr)
+- **Components repo**: [gitlab.com/lappis-unb/decidimbr/components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo)
 
 ## Build & Development Commands
 
@@ -28,18 +31,6 @@ No tests or linter configured in this repo. CI runs `poetry run mkdocs build` on
 - **Content**: all docs live under `docs/` as Markdown files
 - **Output**: built to `site/` (gitignored)
 - **Deploy**: GitHub Actions → GitHub Pages (automatic on main)
-
-### Content Sections
-
-| Section | Path | Purpose |
-|---------|------|---------|
-| Arquitetura | `docs/arquitetura/` | Medallion architecture, stack, data flow |
-| Pipeline | `docs/pipeline/` | Airflow DAGs, dbt models, ingestion, data quality |
-| Infraestrutura | `docs/infraestrutura/` | Kubernetes, Argo CD, MinIO, PostgreSQL, secrets |
-| Visualização | `docs/visualizacao/` | Superset dashboards, JupyterHub notebooks |
-| Governança | `docs/governanca/` | OpenMetadata catalog, access control |
-| Onboarding | `docs/onboarding/` | Setup local, tutorials (Airflow, dbt, Superset), troubleshooting |
-| Comunidade | `docs/comunidade/` | Thematic forks, research (IA, OCR) |
 
 ### MkDocs Plugins & Extensions
 

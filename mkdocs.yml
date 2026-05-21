@@ -1,18 +1,17 @@
-site_name: Gov Hub
-site_url: https://rochacarla.github.io/doc-govhub/
-site_author: Lab Livre
+site_name: Brasil Participativo — Documentação Técnica
+site_url: https://rochacarla.github.io/doc-bp/
+site_author: LAPPIS/UnB
 site_description: >-
-  Gov Hub - plataforma livre de integração de dados e informações governamentais.
-  Explore como a gestão orientada a dados pode transformar a administração pública,
-  integrando e qualificando dados de sistemas estruturantes essenciais.
+  Documentação técnica do Brasil Participativo,
+  plataforma nacional de participação social baseada no Decidim.
 
 # Repository
-repo_name: GovHub-br
-repo_url: https://github.com/GovHub-br
+repo_name: decidim-govbr
+repo_url: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
 docs_dir: docs
 
 # Copyright
-copyright: Lab Livre 2025
+copyright: LAPPIS/UnB 2025
 
 # Configuration
 theme:
@@ -62,8 +61,8 @@ theme:
 # Extra
 extra:
   social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/GovHub-br
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap
@@ -114,50 +113,34 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Arquitetura:
-    - Visão Geral: arquitetura/visao-geral.md
-    - Fluxo de Dados: arquitetura/fluxo-de-dados.md
-    - Arquitetura Medallion: arquitetura/medallion.md
-    - Componentes: arquitetura/componentes.md
-    - Fontes de Dados: arquitetura/fontes-de-dados.md
-  - Onboarding:
-    - Roteiro: onboarding/roteiro.md
-    - Setup Local: onboarding/setup-local.md
-    - Git Workflow: onboarding/git-workflow.md
-    - Tutorial Airflow: onboarding/airflow-tutorial.md
-    - Tutorial dbt: onboarding/dbt-tutorial.md
-    - Tutorial Superset: onboarding/superset-tutorial.md
-    - Troubleshooting: onboarding/troubleshooting.md
-  - Pipeline de Dados:
-    - Apache Airflow: pipeline/airflow.md
-    - dbt: pipeline/dbt.md
-    - Ingestão de Dados: pipeline/ingestao.md
-    - Qualidade de Dados: pipeline/qualidade.md
-  - Dicionário de Dados:
-    - Visão Geral: dados/dicionario.md
-    - TransfereGov: dados/transferegov.md
-    - Siape: dados/siape.md
-    - Siafi: dados/siafi.md
-    - ComprasGov: dados/comprasgov.md
-    - Siorg: dados/siorg.md
-  - Infraestrutura:
-    - Kubernetes: infraestrutura/kubernetes.md
-    - Argo CD (GitOps): infraestrutura/argocd.md
-    - MinIO: infraestrutura/minio.md
-    - PostgreSQL: infraestrutura/postgres.md
-    - Secrets & Segurança: infraestrutura/secrets.md
-  - Adoção:
-    - Requisitos: adocao/requisitos.md
-    - Deploy Inicial: adocao/deploy-inicial.md
-    - Conectar Fontes: adocao/conectar-fontes.md
-    - Fork Temático: adocao/fork-tematico.md
-  - Visualização:
-    - Apache Superset: visualizacao/superset.md
-    - JupyterHub: visualizacao/jupyterhub.md
-  - Governança:
-    - OpenMetadata: governanca/openmetadata.md
-    - Trino + Ranger: governanca/trino-ranger.md
-    - Controle de Acesso: governanca/acesso.md
-  - Comunidade:
-    - Contribuir: CONTRIBUTING.md
-    - Pesquisa: comunidade/pesquisa.md
+  - Visão Geral:
+    - Sobre a Plataforma: visao-geral/sobre.md
+    - Arquitetura: visao-geral/arquitetura.md
+  - Guia do Desenvolvedor:
+    - Setup Local: dev/setup.md
+    - Estrutura do Código: dev/estrutura.md
+    - Como Contribuir: dev/contribuir.md
+    - Criar Componente: dev/criar-componente.md
+  - Guia do Operador:
+    - Deploy: operador/deploy.md
+    - Configuração: operador/configuracao.md
+    - Administração: operador/administracao.md
+  - Módulos:
+    - Propostas: modulos/propostas.md
+    - Reuniões: modulos/reunioes.md
+    - Formulários: modulos/formularios.md
+    - Blog: modulos/blog.md
+    - Orçamento Participativo: modulos/orcamento.md
+    - Debates: modulos/debates.md
+    - Páginas: modulos/paginas.md
+    - Accountability: modulos/accountability.md
+    - Sorteios: modulos/sorteios.md
+  - Componentes Customizados:
+    - decidim-module-homes: componentes/homes.md
+    - decidim-module-enhanced_templates: componentes/enhanced-templates.md
+    - decidim-module-enhanced_process_groups_and_scopes: componentes/enhanced-process-groups.md
+    - decidim-module-common_questions: componentes/common-questions.md
+    - decidim-module-questionnaires: componentes/questionnaires.md
+    - decidim-participatory_text: componentes/participatory-text.md
+    - decidim-api-categorization: componentes/api-categorization.md
+    - decidim-ej: componentes/ej.md
