@@ -1,7 +1,8 @@
 # decidim-module-enhanced_process_groups_and_scopes
 
-**Tipo**: Componente customizado (LAPPIS/UnB)
-**Repositório**: [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo)
+**Tipo**: Componente customizado (LabLivre/UnB)
+**Gem no core**: `decidim-enhanced_process_groups_and_scopes`
+**Repositório**: [decidim-module-enhanced_process_groups_and_scopes](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo/decidim-module-enhanced_process_groups_and_scopes)
 
 Componente que estende o agrupamento e escopos de processos participativos, permitindo organização por região, tema ou órgão.
 

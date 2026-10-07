@@ -7,7 +7,7 @@
 **Core**: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
 **Componentes**: https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo
 **Produção**: https://brasilparticipativo.presidencia.gov.br/
-**Desenvolvimento**: LAPPIS/UnB
+**Desenvolvimento**: LabLivre/UnB
 
 ### Público-Alvo
 
@@ -25,7 +25,7 @@
 ### Escopo
 
 - **Foco**: core da plataforma (`decidim-govbr`)
-- **Periférico**: componentes customizados (gems LAPPIS)
+- **Periférico**: componentes customizados (gems LabLivre)
 - **Fora de escopo**: documentação do Decidim upstream (referenciar docs oficiais)
 
 ---
@@ -46,7 +46,7 @@ O `decidim-govbr` é um **fork direto** do Decidim — não é uma instância qu
 |--------|-----------|-------|
 | Framework | Decidim (Ruby on Rails) | Base da plataforma |
 | Core | decidim-govbr | Fork com customizações brasileiras |
-| Componentes | 8 gems customizadas | Extensões desenvolvidas pelo LAPPIS |
+| Componentes | 8 gems customizadas | Extensões desenvolvidas pelo LabLivre |
 | Infraestrutura | Kubernetes | Ambiente de produção |
 | Integração externa | EJ (Empurrando Juntas) | Opinião/votação via API |
 
@@ -66,7 +66,7 @@ Todos os 9 módulos nativos do Decidim estão ativos:
 | Accountability | `decidim-accountability` | Prestação de contas e acompanhamento |
 | Sorteios | `decidim-sortitions` | Seleção aleatória de propostas |
 
-### Componentes Customizados (LAPPIS/UnB)
+### Componentes Customizados (LabLivre/UnB)
 
 | Componente | Função |
 |------------|--------|
@@ -205,7 +205,7 @@ nav:
 | 2 | Nome: "Brasil Participativo — Documentação Técnica" | Explicita que é doc técnica, não manual de usuário |
 | 3 | Fork direto do Decidim | Não é instância que consome gems — modificações diretas no upstream |
 | 4 | Dois públicos: devs externos + operadores governo | Seções separadas na nav (Guia Dev / Guia Operador) |
-| 5 | "Módulo Decidim" vs "Componente customizado" | Terminologia distinta para nativos vs LAPPIS |
+| 5 | "Módulo Decidim" vs "Componente customizado" | Terminologia distinta para nativos vs LabLivre |
 | 6 | EJ como dependência externa via API | decidim-ej consome API, não embute nem reimplementa |
 | 7 | Infraestrutura: Kubernetes | Demais deps (banco, cache, e-mail, auth) a detalhar |
 | 8 | 9 módulos nativos todos ativos | Propostas, reuniões, formulários, blog, orçamento, debates, páginas, accountability, sorteios |
@@ -221,7 +221,7 @@ nav:
 | **Font texto** | Inter (Google Fonts) |
 | **Font código** | JetBrains Mono |
 | **CSS custom** | `docs/stylesheets/custom.css` |
-| **Copyright** | LAPPIS/UnB 2025 |
+| **Copyright** | LabLivre/UnB 2025 |
 | **Deploy** | GitHub Pages → `https://rochacarla.github.io/doc-bp/` |
 
 ---

@@ -1,9 +1,10 @@
 # decidim-ej
 
-**Tipo**: Componente customizado (LAPPIS/UnB)
-**Repositório**: [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo)
+**Tipo**: Componente customizado (LabLivre/UnB)
+**Gem no core**: `decidim-ej`
+**Repositório**: [decidim-ej](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo/decidim-ej)
 
-Componente que integra o Brasil Participativo com o [Empurrando Juntas (EJ)](https://ejplatform.org/) — plataforma de opinião e votação desenvolvida pelo LAPPIS/UnB.
+Componente que integra o Brasil Participativo com o [Empurrando Juntas (EJ)](https://ejplatform.org/) — plataforma de opinião e votação desenvolvida pelo LabLivre/UnB.
 
 ## Funcionalidades
 
@@ -33,7 +34,10 @@ sequenceDiagram
 
 | Variável | Descrição |
 |----------|-----------|
-| `EJ_API_URL` | URL base da API do EJ |
+| `EJ_JWT_SECRET` | Segredo JWT compartilhado com o EJ |
+| `EJ_SECRET_KEY` | Chave secreta da integração |
+
+As variáveis são lidas em `config/secrets.yml` (`secrets.ej`). O core instala a gem da branch `main`.
 
 No painel admin, ao adicionar o componente EJ a um espaço:
 
@@ -45,7 +49,7 @@ No painel admin, ao adicionar o componente EJ a um espaço:
 
 ## Sobre o Empurrando Juntas
 
-O EJ é uma plataforma de inteligência coletiva que organiza opiniões em clusters usando algoritmos de agrupamento. Desenvolvido pelo LAPPIS/UnB, é usado em diversos contextos de participação social no Brasil.
+O EJ é uma plataforma de inteligência coletiva que organiza opiniões em clusters usando algoritmos de agrupamento. Desenvolvido pelo LabLivre/UnB, é usado em diversos contextos de participação social no Brasil.
 
 - **Site**: [ejplatform.org](https://ejplatform.org/)
 - **Código**: [GitHub](https://github.com/ejplatform)

@@ -2,54 +2,86 @@
 
 Visão geral da organização do repositório `decidim-govbr`.
 
-## Estrutura de Diretórios
-
-O `decidim-govbr` segue a estrutura padrão de uma aplicação Rails/Decidim:
+## Estrutura de diretórios
 
 ```
 decidim-govbr/
 ├── app/
-│   ├── assets/              # Stylesheets, JavaScripts, imagens
-│   ├── cells/               # View components (Decidim cells)
-│   ├── commands/             # Command objects (business logic)
-│   ├── controllers/          # Controllers HTTP
-│   ├── forms/                # Form objects (validação de entrada)
-│   ├── helpers/              # View helpers
-│   ├── mailers/              # E-mail templates
-│   ├── models/               # ActiveRecord models
-│   ├── packs/                # Webpacker/Shakapacker entry points
-│   ├── permissions/          # Authorization e permissões
-│   ├── presenters/           # Presenters (formatação para views)
-│   ├── queries/              # Query objects (consultas complexas)
-│   ├── serializers/          # Serializers (export de dados)
-│   └── views/                # Templates ERB/HTML
+│   ├── cells/decidim/        # Cells sobrescritas ou novas
+│   ├── commands/decidim/     # Commands (lógica de negócio)
+│   ├── controllers/
+│   │   ├── api/              # API JSON própria (home_processes)
+│   │   ├── decidim/          # Controllers sobrescritos do Decidim
+│   │   └── survey_attachments_controller.rb
+│   ├── forms/decidim/        # Form objects
+│   ├── helpers/
+│   ├── jobs/decidim/         # Jobs Sidekiq (identidades, instâncias, troca de fase)
+│   ├── models/decidim/       # Models sobrescritos (proposal, question, assembly…)
+│   ├── packs/                # Entradas e estilos do Webpacker
+│   ├── permissions/decidim/  # Permissões sobrescritas
+│   ├── queries/decidim/      # Query objects
+│   ├── serializers/decidim/  # Exportações (propostas, comentários…)
+│   ├── services/             # ExternalAuthService, serviços de idioma
+│   ├── validators/
+│   └── views/                # Views sobrescritas, layouts, login externo
 ├── config/
-│   ├── environments/         # Config por ambiente (dev/test/prod)
-│   ├── initializers/         # Inicializadores Rails e Decidim
-│   ├── locales/              # Traduções (pt-BR, en, es)
-│   ├── database.yml          # Configuração do banco
-│   └── routes.rb             # Rotas da aplicação
+│   ├── initializers/         # decidim.rb, omniauth_govbr.rb, proposals.rb…
+│   ├── locales/              # pt-BR, en, es
+│   ├── schedule.rb           # Tarefas periódicas (whenever)
+│   ├── secrets.yml           # Mapeia variáveis de ambiente
+│   └── routes.rb
 ├── db/
-│   ├── migrate/              # Migrações do banco de dados
-│   └── seeds.rb              # Dados iniciais para desenvolvimento
-├── lib/                      # Código auxiliar e tasks Rake
-├── spec/                     # Testes RSpec
-├── Gemfile                   # Dependências Ruby (módulos + componentes)
-├── Gemfile.lock              # Lock de versões
-├── package.json              # Dependências Node.js
-└── Procfile                  # Processos (web, worker, etc.)
+│   ├── migrate/
+│   ├── seeds/                # JSONs de seeds (ex.: assembleias de conferências)
+│   └── seeds.rb              # Cria o admin de sistema
+├── lib/
+│   ├── decidim/              # Extensões de libs do Decidim (comments, forms, meetings…)
+│   ├── extends/
+│   └── tasks/                # Rake tasks do Brasil Participativo
+├── spec/                     # RSpec
+├── test/                     # Minitest (rails test)
+├── vendor/                   # Gitlinks de decidim-module-homes e decidim-module-mobile (sem .gitmodules; as gems vêm do Gemfile)
+├── Dockerfile                # Imagem de desenvolvimento
+├── docker-compose.yml
+├── Procfile
+├── start.sh                  # Entrypoint do container de desenvolvimento
+└── .gitlab-ci.yml
 ```
+
+## Como as customizações são feitas
+
+O core sobrescreve arquivos do Decidim mantendo o **mesmo caminho** da gem original. O Rails carrega primeiro o arquivo da aplicação, então a versão em `app/` substitui a do upstream.
+
+| Exemplo de arquivo sobrescrito | O que muda |
+|-------------------------------|-----------|
+| `app/models/decidim/proposals/proposal.rb` | Limite de tempo de edição, regras de votação |
+| `app/models/decidim/forms/question.rb` | `max_files` para perguntas de arquivo |
+| `app/permissions/decidim/comments/permissions.rb` | Edição de comentário em até 5 minutos |
+| `lib/decidim/comments/comment_serializer.rb` | Colunas `deletado_em` e `moderado_em` na exportação |
+| `app/forms/decidim/participatory_processes/admin/participatory_process_form.rb` | Opção de votos mutuamente exclusivos |
+| `app/forms/decidim/assemblies/admin/assembly_form.rb` | Atributo `unlisted` |
+
+!!! warning "Atualização do Decidim"
+    Cada arquivo sobrescrito precisa ser comparado com a nova versão do upstream ao atualizar o Decidim. Antes de alterar um comportamento, procure se o arquivo já existe em `app/` ou `lib/`.
+
+## Código próprio do Brasil Participativo
+
+| Local | Conteúdo |
+|-------|----------|
+| `app/services/external_auth_service.rb` | Vínculo de conta com a API OP-BP via JWT |
+| `app/controllers/api/home_processes_controller.rb` | `GET /api/home_processes` |
+| `app/jobs/decidim/remove_duplicated_govbr_identities_job.rb` | Remove identidades gov.br duplicadas |
+| `app/jobs/decidim/public_bodies_to_instances_job.rb` | Cria instâncias a partir de órgãos públicos |
+| `app/queries/decidim/proposals/govbr/` | Consultas de votação exclusiva |
+| `lib/tasks/` | `remove_duplicated_govbr_identities`, `public_bodies_to_instances`, `change_active_step`, `update_user_proposals_statistics_data`, `sitemap`, `botapi`, `add_authorization_to_govbr_users` |
 
 ## Padrões do Decidim
 
-O Decidim utiliza padrões específicos que diferem de uma aplicação Rails convencional:
-
 ### Commands
 
-Lógica de negócio encapsulada em command objects (padrão Rectify/Wisper). Cada ação do usuário é um command:
+Lógica de negócio encapsulada em command objects:
 
 ```ruby
-# app/commands/decidim/create_proposal.rb
 class Decidim::CreateProposal < Decidim::Command
   def call
     return broadcast(:invalid) if form.invalid?
@@ -61,49 +93,38 @@ end
 
 ### Forms
 
-Validação de dados de entrada separada dos models:
+Validação de entrada separada dos models:
 
 ```ruby
-# app/forms/decidim/proposal_form.rb
-class Decidim::ProposalForm < Decidim::Form
-  attribute :title, String
-  attribute :body, String
-  validates :title, presence: true, length: { maximum: 150 }
+class Decidim::Forms::Admin::QuestionForm < Decidim::Form
+  attribute :max_files, Integer, default: 10
+  validates :max_files, presence: true,
+            numericality: { greater_than: 0, less_than_or_equal_to: 50 },
+            if: :has_attachments?
 end
 ```
 
 ### Cells
 
-View components reutilizáveis (gem `cells`), usados no lugar de partials Rails:
-
-```ruby
-# app/cells/decidim/proposal_cell.rb
-class Decidim::ProposalCell < Decidim::ViewModel
-  def show
-    render
-  end
-end
-```
+View components reutilizáveis (gem `cells`), usados no lugar de partials.
 
 ### Permissions
 
-Sistema de permissões declarativo por componente:
+Permissões declarativas por componente:
 
 ```ruby
-# app/permissions/decidim/proposals/permissions.rb
-class Decidim::Proposals::Permissions < Decidim::DefaultPermissions
-  def permissions
-    return permission_action if permission_action.scope != :public
-    allow! if permission_action.subject == :proposal
-    permission_action
+module Decidim::Comments
+  class Permissions < Decidim::DefaultPermissions
+    COMMENT_EDIT_TIME_LIMIT = 5.minutes.freeze
+    # ...
   end
 end
 ```
 
-## Convenções de Código
+## Convenções de código
 
-- **Namespacing**: todo código do Decidim vive sob o namespace `Decidim::`
-- **Traduções**: todas as strings de interface usam I18n (`t(".title")`)
-- **Locale principal**: `pt-BR` — arquivo em `config/locales/pt-BR.yml`
-- **Testes**: RSpec com FactoryBot, organizados espelhando `app/`
-- **Linting**: RuboCop com configuração do Decidim
+- **Namespacing**: código do Decidim sob `Decidim::`; código específico do Brasil Participativo em `Decidim::Govbr::` quando possível.
+- **Traduções**: strings de interface via I18n. Locale principal em `config/locales/pt-BR.yml` e `config/locales/pt-BR/`.
+- **Testes**: RSpec com FactoryBot, espelhando `app/`, e Minitest em `test/`.
+- **Linting**: RuboCop (`.rubocop.yml`).
+- **Versão no rodapé**: a versão publicada é atualizada manualmente em `app/views/layouts/decidim/_main_footer.html.erb` (commits `chore: atualiza versão no footer`).

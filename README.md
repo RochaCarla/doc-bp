@@ -4,15 +4,16 @@ Documentação técnica da plataforma [Brasil Participativo](https://brasilparti
 
 ## Sobre
 
-O Brasil Participativo é construído como um **fork direto do [Decidim](https://decidim.org/)** (framework open source de democracia participativa em Ruby on Rails), desenvolvido e mantido pelo [LAPPIS/UnB](https://lappis.rocks/).
+O Brasil Participativo é construído como um **fork direto do [Decidim](https://decidim.org/)** (framework open source de democracia participativa em Ruby on Rails), desenvolvido e mantido pelo [LabLivre/UnB](https://lappis.rocks/).
 
-Esta documentação cobre:
+Esta documentação é resultado do trabalho do LabLivre/UnB em um Termo de Execução Descentralizada (TED) com a Secretaria Nacional de Participação Social. Ela cobre:
 
-- **Visão Geral** — arquitetura, relação com o Decidim, repositórios
-- **Guia do Desenvolvedor** — setup local, estrutura do código, contribuição, criação de componentes
-- **Guia do Operador** — deploy em Kubernetes, configuração, administração
-- **Módulos Decidim** — 9 módulos nativos ativos (propostas, reuniões, formulários, etc.)
-- **Componentes Customizados** — 8 gems desenvolvidas pelo LAPPIS/UnB
+- **Documentação**: visão geral, arquitetura, guia do desenvolvedor, guia do operador, banco de dados, módulos e componentes
+- **Manual de Uso**: guias para gestores de processos participativos
+- **Design System**: como o padrão gov.br foi aplicado na plataforma
+- **Inovação**: diferenças em relação ao Decidim, com foco em desempenho
+- **Estatísticas**: commits, merge requests, contribuições e indicadores de qualidade de software livre
+- **Sobre**: origem e manutenção desta documentação
 
 ## Acesso
 
@@ -27,30 +28,39 @@ Esta documentação cobre:
 
 ## Desenvolvimento Local
 
-### Pré-requisitos
-
-- Python 3.11+
-- pip
-
-### Instalação
+### Com Docker (recomendado)
 
 ```bash
-pip install mkdocs mkdocs-material
+docker compose up
 ```
 
-### Servidor de desenvolvimento
+Acesse em [http://localhost:8000/doc-bp/](http://localhost:8000/doc-bp/). As alterações em `docs/` recarregam a página automaticamente.
+
+Build estático, com a mesma verificação do CI:
 
 ```bash
+docker compose run --rm docs build --strict
+```
+
+### Sem Docker
+
+```bash
+pip install "mkdocs>=1.6,<2" "mkdocs-material==9.7.7"
 mkdocs serve
 ```
 
-Acesse em [http://localhost:8000/doc-bp/](http://localhost:8000/doc-bp/).
+> As versões ficam fixas no `docker-compose.yml` e no workflow de deploy. O MkDocs 2.0 não é compatível com o tema e os overrides usados aqui.
 
-### Build
+### Páginas geradas
 
-```bash
-mkdocs build
-```
+Algumas seções são geradas a partir do repositório `decidim-govbr` e da API pública do GitLab. Não edite essas páginas à mão; rode os scripts (Python 3.9+, só biblioteca padrão):
+
+| Script | Gera |
+|--------|------|
+| `python3 scripts/estatisticas.py` | `docs/estatisticas/` (commits, MRs, contribuições, qualidade) |
+| `python3 scripts/banco_de_dados.py` | `docs/banco-de-dados/` (dicionário de dados), exceto `consultas.md` |
+
+Os scripts clonam o repositório em `.cache/` (ignorado pelo git). Defina `GITLAB_TOKEN` para aumentar o limite da API.
 
 ## Deploy
 
@@ -61,7 +71,8 @@ O deploy é feito automaticamente via **GitHub Actions** para o GitHub Pages ao 
 - [MkDocs](https://www.mkdocs.org/) — gerador de sites estáticos
 - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) — tema com features avançadas
 - [Mermaid](https://mermaid.js.org/) — diagramas como código
+- [Design System gov.br](https://www.gov.br/ds/) — identidade visual (`docs/stylesheets/custom.css`, `overrides/`)
 
 ## Licença
 
-Este projeto de documentação é mantido pelo LAPPIS/UnB.
+Este projeto de documentação é mantido pelo LabLivre/UnB.

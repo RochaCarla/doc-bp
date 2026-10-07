@@ -1,9 +1,15 @@
 # decidim-participatory_text
 
-**Tipo**: Componente customizado (LAPPIS/UnB) — fork do componente oficial
-**Repositório**: [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo)
+**Tipo**: Componente customizado (LabLivre/UnB) — fork do componente oficial
+**Repositório**: [decidim-participatory_text](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo/decidim-participatory_text)
+
+!!! warning "Não instalado no core"
+    Este componente existe no grupo de componentes, mas não está no `Gemfile` do `decidim-govbr` (verificado em agosto de 2026). A descrição abaixo é do componente, não de um recurso disponível em produção.
 
 Fork/customização do componente oficial de textos participativos do Decidim (`decidim-participatory_texts`), adaptado para as necessidades do Brasil Participativo.
+
+!!! info "Textos participativos no core"
+    Em produção, os textos participativos usam o recurso nativo do componente de propostas (`decidim-proposals`), com sobrescritas no core (comandos `UpdateParticipatoryText`, `CreateParticipatoryTextFromCopyAndPaste` e configuração automática ao criar o componente). Veja [Propostas](../modulos/propostas.md).
 
 ## Funcionalidades
 

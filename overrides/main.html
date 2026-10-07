@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block announce %}
+  <span class="bp-announce">
+    <strong>Novo:</strong> seções de Banco de Dados, Manual de Uso, Design System gov.br, Inovação e Estatísticas.
+    <a href="{{ 'novidades/' | url }}">Veja as novidades</a>
+  </span>
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+  {% if page and not page.meta.hide_feedback and not page.is_homepage %}
+    {% set issue_title = "Documentação: " ~ page.title %}
+    {% set issue_body = "Página: " ~ page.canonical_url ~ "\n\nO que precisa melhorar?\n" %}
+    <aside class="bp-page-footer" aria-label="Sobre esta página">
+      <p class="bp-page-footer__question">Encontrou algo errado ou desatualizado nesta página?</p>
+      <p class="bp-page-footer__actions">
+        <a class="md-button" href="{{ config.repo_url }}/issues/new?title={{ issue_title | urlencode }}&body={{ issue_body | urlencode }}" target="_blank" rel="noopener">
+          {% include ".icons/material/message-alert-outline.svg" %} Reportar um problema
+        </a>
+        {% if page.edit_url %}
+        <a class="md-button" href="{{ page.edit_url }}" target="_blank" rel="noopener">
+          {% include ".icons/material/file-edit-outline.svg" %} Sugerir uma edição
+        </a>
+        {% endif %}
+      </p>
+      <p class="bp-page-footer__note">
+        Salvo indicação em contrário, esta documentação reflete o <code>decidim-govbr</code> com Decidim 0.27.2 (branches <code>main</code> e <code>develop</code>, 2026).
+      </p>
+    </aside>
+  {% endif %}
+{% endblock %}

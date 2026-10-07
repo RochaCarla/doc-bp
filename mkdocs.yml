@@ -1,80 +1,88 @@
 site_name: Brasil Participativo — Documentação Técnica
 site_url: https://rochacarla.github.io/doc-bp/
-site_author: LAPPIS/UnB
+site_author: LabLivre/UnB
 site_description: >-
   Documentação técnica do Brasil Participativo,
-  plataforma nacional de participação social baseada no Decidim.
+  plataforma de participação digital do governo federal baseada no Decidim.
 
-# Repository
-repo_name: decidim-govbr
-repo_url: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
+# Repositório desta documentação (botões de edição e issues)
+repo_name: RochaCarla/doc-bp
+repo_url: https://github.com/RochaCarla/doc-bp
+edit_uri: edit/main/docs/
 docs_dir: docs
 
-# Copyright
-copyright: LAPPIS/UnB 2025
+copyright: >-
+  Documentação produzida pelo LabLivre/UnB em TED com a Secretaria Nacional de Participação Social ·
+  Brasil Participativo é software livre (AGPLv3)
 
-# Configuration
 theme:
   name: material
+  custom_dir: overrides
   language: pt-BR
+  favicon: assets/favicon.svg
+  icon:
+    logo: material/forum
+    repo: fontawesome/brands/github
+    edit: material/file-edit-outline
+    view: material/file-eye-outline
+  font: false
   palette:
-    - scheme: default
-      primary: indigo
-      accent: cyan
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
   features:
-    - content.code.copy
+    - announce.dismiss
+    - content.action.edit
     - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
     - content.tooltips
     - navigation.footer
     - navigation.indexes
+    - navigation.path
     - navigation.sections
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - search.highlight
     - search.share
     - search.suggest
     - toc.follow
-  palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-4
-        name: Alternar tema
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: purple
-      accent: purple
-      toggle:
-        icon: material/weather-night
-        name: Modo escuro
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: purple
-      accent: purple
-      toggle:
-        icon: material/weather-sunny
-        name: Modo claro
-  font:
-    text: Inter
-    code: JetBrains Mono
 
-# Extra
 extra:
   social:
     - icon: fontawesome/brands/gitlab
-      link: https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo
+      link: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
+      name: Código do decidim-govbr
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/+nm4bkXxYukFlOWZh
+      name: Comunidade Brasil Participativo
+    - icon: material/web
+      link: https://brasilparticipativo.presidencia.gov.br/
+      name: Brasil Participativo
 
 extra_css:
-  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap
+  - https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css
+  - https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap
   - stylesheets/custom.css
 
-# Plugins
 plugins:
   - search:
       lang: pt
       separator: '[\s\u200b\-_,:!=\[\]()"\\`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 
-# Extensions
 markdown_extensions:
   - abbr
   - admonition
@@ -112,35 +120,85 @@ markdown_extensions:
   - tables
 
 nav:
-  - Home: index.md
-  - Visão Geral:
-    - Sobre a Plataforma: visao-geral/sobre.md
-    - Arquitetura: visao-geral/arquitetura.md
-  - Guia do Desenvolvedor:
-    - Setup Local: dev/setup.md
-    - Estrutura do Código: dev/estrutura.md
-    - Como Contribuir: dev/contribuir.md
-    - Criar Componente: dev/criar-componente.md
-  - Guia do Operador:
-    - Deploy: operador/deploy.md
-    - Configuração: operador/configuracao.md
-    - Administração: operador/administracao.md
-  - Módulos:
-    - Propostas: modulos/propostas.md
-    - Reuniões: modulos/reunioes.md
-    - Formulários: modulos/formularios.md
-    - Blog: modulos/blog.md
-    - Orçamento Participativo: modulos/orcamento.md
-    - Debates: modulos/debates.md
-    - Páginas: modulos/paginas.md
-    - Accountability: modulos/accountability.md
-    - Sorteios: modulos/sorteios.md
-  - Componentes Customizados:
-    - decidim-module-homes: componentes/homes.md
-    - decidim-module-enhanced_templates: componentes/enhanced-templates.md
-    - decidim-module-enhanced_process_groups_and_scopes: componentes/enhanced-process-groups.md
-    - decidim-module-common_questions: componentes/common-questions.md
-    - decidim-module-questionnaires: componentes/questionnaires.md
-    - decidim-participatory_text: componentes/participatory-text.md
-    - decidim-api-categorization: componentes/api-categorization.md
-    - decidim-ej: componentes/ej.md
+  - Início:
+    - index.md
+    - Trilhas de aprendizado: visao-geral/trilhas.md
+    - Novidades: novidades.md
+  - Documentação:
+    - Visão Geral:
+      - Sobre a Plataforma: visao-geral/sobre.md
+      - Arquitetura: visao-geral/arquitetura.md
+      - Glossário: visao-geral/glossario.md
+    - Desenvolvimento:
+      - dev/index.md
+      - Setup Local: dev/setup.md
+      - Estrutura do Código: dev/estrutura.md
+      - Como Contribuir: dev/contribuir.md
+      - Criar Componente: dev/criar-componente.md
+    - Operação:
+      - operador/index.md
+      - Deploy: operador/deploy.md
+      - Configuração: operador/configuracao.md
+      - Integração OP-BP: operador/integracao-op-bp.md
+      - Administração: operador/administracao.md
+    - Banco de Dados:
+      - banco-de-dados/index.md
+      - Consultas úteis: banco-de-dados/consultas.md
+      - Organização e usuários: banco-de-dados/organizacao-usuarios.md
+      - Processos e instâncias: banco-de-dados/processos-instancias.md
+      - Conferências, consultas e iniciativas: banco-de-dados/outros-espacos.md
+      - Componentes e conteúdo: banco-de-dados/componentes-conteudo.md
+      - Propostas: banco-de-dados/propostas.md
+      - Reuniões: banco-de-dados/reunioes.md
+      - Formulários: banco-de-dados/formularios.md
+      - Comentários e interação: banco-de-dados/interacao.md
+      - Moderação e auditoria: banco-de-dados/moderacao-auditoria.md
+      - Outros módulos: banco-de-dados/outros-modulos.md
+      - Extensões: banco-de-dados/extensoes.md
+    - Módulos Decidim:
+      - Propostas: modulos/propostas.md
+      - Reuniões: modulos/reunioes.md
+      - Formulários: modulos/formularios.md
+      - Blog: modulos/blog.md
+      - Orçamento Participativo: modulos/orcamento.md
+      - Debates: modulos/debates.md
+      - Páginas: modulos/paginas.md
+      - Accountability: modulos/accountability.md
+      - Sorteios: modulos/sorteios.md
+    - Componentes Customizados:
+      - Instalados no core:
+        - decidim-homes: componentes/homes.md
+        - decidim-enhanced_process_groups_and_scopes: componentes/enhanced-process-groups.md
+        - decidim-ej: componentes/ej.md
+        - decidim-extra_user_fields: componentes/extra-user-fields.md
+        - decidim-mobile: componentes/mobile.md
+      - Não instalados:
+        - decidim-module-enhanced_templates: componentes/enhanced-templates.md
+        - decidim-module-common_questions: componentes/common-questions.md
+        - decidim-module-questionnaires: componentes/questionnaires.md
+        - decidim-participatory_text: componentes/participatory-text.md
+  - Manual de Uso:
+    - manual/index.md
+    - Criar e publicar um processo: manual/informacoes-gerais.md
+    - Página Inicial: manual/pagina-inicial.md
+    - Anexos: manual/anexos.md
+    - Relatórios: manual/relatorios.md
+    - Moderação: manual/moderacao.md
+    - Guias para o cidadão: manual/cidadao.md
+  - Design System:
+    - design-system/index.md
+    - Componentes usados: design-system/componentes.md
+    - Como usar: design-system/guia.md
+  - Inovação:
+    - inovacao/index.md
+    - Texto participativo: inovacao/texto-participativo.md
+    - Desempenho: inovacao/desempenho.md
+    - Funcionalidades: inovacao/funcionalidades.md
+  - Estatísticas:
+    - estatisticas/index.md
+    - Commits: estatisticas/commits.md
+    - Merge Requests: estatisticas/merge-requests.md
+    - Contribuições: estatisticas/contribuicoes.md
+    - Qualidade: estatisticas/qualidade.md
+  - Sobre:
+    - sobre/index.md

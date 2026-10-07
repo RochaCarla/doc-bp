@@ -1,0 +1,845 @@
+{
+  "project": {
+    "star_count": 43,
+    "forks_count": 73,
+    "default_branch": "develop",
+    "created_at": "2023-05-31T19:20:27.629Z"
+  },
+  "languages": {
+    "Ruby": 43.56,
+    "SCSS": 20.01,
+    "HTML+ERB": 14.72,
+    "JavaScript": 13.83,
+    "HTML": 7.57
+  },
+  "commits": {
+    "total": 4730,
+    "non_merge": 3611,
+    "merges": 1119,
+    "first_commit": "2021-09-20T20:44:13-03:00",
+    "recent": 531,
+    "previous": 961,
+    "by_year": {
+      "2021": 8,
+      "2022": 35,
+      "2023": 284,
+      "2024": 1999,
+      "2025": 932,
+      "2026": 353
+    },
+    "by_month": {
+      "2026-08": 12,
+      "2026-07": 14,
+      "2026-06": 47,
+      "2026-05": 65,
+      "2026-04": 78,
+      "2026-03": 39,
+      "2026-02": 29,
+      "2026-01": 69,
+      "2025-12": 64,
+      "2025-11": 47,
+      "2025-10": 73,
+      "2025-09": 60,
+      "2025-08": 109,
+      "2025-07": 119,
+      "2025-06": 100,
+      "2025-05": 71,
+      "2025-04": 130,
+      "2025-03": 82,
+      "2025-02": 45,
+      "2025-01": 32,
+      "2024-12": 29,
+      "2024-11": 99,
+      "2024-10": 106,
+      "2024-09": 140,
+      "2024-08": 224,
+      "2024-07": 169,
+      "2024-06": 135,
+      "2024-05": 273,
+      "2024-04": 405,
+      "2024-03": 178,
+      "2024-02": 173,
+      "2024-01": 68,
+      "2023-12": 24,
+      "2023-11": 41,
+      "2023-10": 69,
+      "2023-09": 49,
+      "2023-08": 33,
+      "2023-07": 14,
+      "2023-06": 2,
+      "2023-05": 26,
+      "2023-04": 15,
+      "2023-03": 6,
+      "2023-02": 5,
+      "2022-11": 1,
+      "2022-10": 10,
+      "2022-09": 11,
+      "2022-08": 3,
+      "2022-04": 1,
+      "2022-03": 1,
+      "2022-02": 8,
+      "2021-11": 3,
+      "2021-09": 5
+    },
+    "cc_by_year": {
+      "2021": 0.0,
+      "2022": 0.0,
+      "2023": 54.225352112676056,
+      "2024": 85.19259629814907,
+      "2025": 94.31330472103004,
+      "2026": 95.46742209631728
+    },
+    "cc_recent": 96.045197740113,
+    "types_recent": {
+      "fora do padrão": 14,
+      "test": 52,
+      "fix": 220,
+      "refactor": 51,
+      "docs": 3,
+      "feat": 142,
+      "revert": 7,
+      "chore": 33,
+      "remove": 2,
+      "style": 3,
+      "funcionalidade": 1,
+      "fea": 1,
+      "lint": 1,
+      "resolve": 1
+    },
+    "reverts_by_year": {
+      "2023": 7,
+      "2024": 11,
+      "2025": 3,
+      "2026": 6
+    },
+    "weekday_recent": {
+      "3": 97,
+      "0": 97,
+      "6": 27,
+      "2": 122,
+      "1": 143,
+      "4": 44,
+      "5": 1
+    },
+    "hotspots": [
+      [
+        "app/views/layouts/decidim/_main_footer.html.erb",
+        31
+      ],
+      [
+        "spec/controllers/assemblies_controller_spec.rb",
+        26
+      ],
+      [
+        "app/controllers/api/home_processes_controller.rb",
+        22
+      ],
+      [
+        "Gemfile.lock",
+        20
+      ],
+      [
+        "app/services/external_auth_service.rb",
+        18
+      ],
+      [
+        "config/locales/all_locales.yml",
+        18
+      ],
+      [
+        "config/locales/pt-BR.yml",
+        17
+      ],
+      [
+        "app/controllers/decidim/external_auth/external_auth_controller.rb",
+        17
+      ],
+      [
+        "lib/decidim/comments/comment_serializer.rb",
+        17
+      ],
+      [
+        "app/views/decidim/assemblies/admin/assemblies/_form.html.erb",
+        16
+      ],
+      [
+        "app/views/decidim/external_auth/external_auth/link_success.html.erb",
+        16
+      ],
+      [
+        "app/views/decidim/forms/questionnaires/_questionnaire_form.html.erb",
+        14
+      ],
+      [
+        "app/views/decidim/devise/sessions/new.html.erb",
+        12
+      ],
+      [
+        "app/views/decidim/admin/components/_form.html.erb",
+        12
+      ],
+      [
+        "spec/lib/decidim/comments/comment_serializer_spec.rb",
+        12
+      ]
+    ]
+  },
+  "contributors": {
+    "total": 44,
+    "recent": 10,
+    "by_year": [
+      {
+        "year": 2021,
+        "active": 1,
+        "new": 1,
+        "retained_pct": null
+      },
+      {
+        "year": 2022,
+        "active": 1,
+        "new": 0,
+        "retained_pct": 100.0
+      },
+      {
+        "year": 2023,
+        "active": 19,
+        "new": 18,
+        "retained_pct": 100.0
+      },
+      {
+        "year": 2024,
+        "active": 28,
+        "new": 20,
+        "retained_pct": 42.10526315789474
+      },
+      {
+        "year": 2025,
+        "active": 15,
+        "new": 5,
+        "retained_pct": 35.714285714285715
+      },
+      {
+        "year": 2026,
+        "active": 9,
+        "new": 0,
+        "retained_pct": 60.0
+      }
+    ],
+    "bus_factor_all": 4,
+    "bus_factor_recent": 3,
+    "top_all": [
+      [
+        "Victor Gonçalves",
+        584,
+        16.17280531708668
+      ],
+      [
+        "Vitor Borges dos Santos",
+        575,
+        15.92356687898089
+      ],
+      [
+        "Gustavo Henrique",
+        481,
+        13.320409858764885
+      ],
+      [
+        "Maicon Mares",
+        384,
+        10.634173359180283
+      ],
+      [
+        "Leonardo Lago Moreno",
+        365,
+        10.108003323179174
+      ],
+      [
+        "Eduardo Nunes",
+        360,
+        9.969537524231514
+      ],
+      [
+        "Geovane Freitas",
+        306,
+        8.474106895596787
+      ],
+      [
+        "Lucca Medeiros",
+        106,
+        2.9354749376903904
+      ],
+      [
+        "Luiz Sanches",
+        92,
+        2.5477707006369426
+      ],
+      [
+        "Gui-fga",
+        48,
+        1.3292716698975353
+      ]
+    ],
+    "top_recent": [
+      [
+        "Vitor Borges dos Santos",
+        103,
+        19.397363465160076
+      ],
+      [
+        "Victor Gonçalves",
+        99,
+        18.64406779661017
+      ],
+      [
+        "Gustavo Henrique",
+        76,
+        14.312617702448211
+      ],
+      [
+        "Eduardo Nunes",
+        69,
+        12.994350282485875
+      ],
+      [
+        "Leonardo Lago Moreno",
+        67,
+        12.617702448210922
+      ],
+      [
+        "Maicon Mares",
+        58,
+        10.922787193973635
+      ],
+      [
+        "Lucca Medeiros",
+        51,
+        9.6045197740113
+      ],
+      [
+        "Geovane Freitas",
+        4,
+        0.7532956685499058
+      ],
+      [
+        "Miguel Arthur",
+        2,
+        0.3766478342749529
+      ],
+      [
+        "chaydson",
+        2,
+        0.3766478342749529
+      ]
+    ],
+    "new_recent": 1
+  },
+  "mrs": {
+    "total": 835,
+    "states": {
+      "opened": 5,
+      "merged": 726,
+      "closed": 104
+    },
+    "years": [
+      {
+        "year": 2023,
+        "created": 69,
+        "merged": 47,
+        "closed": 22,
+        "acceptance": 68.1159420289855,
+        "ttm_median": 0.9568560648148148,
+        "ttm_p90": 20.536898372685183,
+        "commented": 31.884057971014492,
+        "self_merged": 40.42553191489362,
+        "authors": 15,
+        "targets": {
+          "main": 68,
+          "v1.0.3-branch": 1
+        }
+      },
+      {
+        "year": 2024,
+        "created": 451,
+        "merged": 404,
+        "closed": 47,
+        "acceptance": 89.57871396895787,
+        "ttm_median": 0.7156552604166666,
+        "ttm_p90": 14.026766597222213,
+        "commented": 24.390243902439025,
+        "self_merged": 21.782178217821784,
+        "authors": 30,
+        "targets": {
+          "main": 398,
+          "participatory-text-release": 15,
+          "feat/add-enhanced-process-groups-and-scopes": 1,
+          "first-release-meetings": 9,
+          "develop": 9,
+          "devel": 16,
+          "homolog-ej": 1,
+          "homolog": 1,
+          "dev": 1
+        }
+      },
+      {
+        "year": 2025,
+        "created": 232,
+        "merged": 207,
+        "closed": 25,
+        "acceptance": 89.22413793103448,
+        "ttm_median": 0.9852849537037036,
+        "ttm_p90": 26.089564303240746,
+        "commented": 27.155172413793103,
+        "self_merged": 3.864734299516908,
+        "authors": 15,
+        "targets": {
+          "main": 227,
+          "develop": 2,
+          "consulta-publica-release": 2,
+          "participatory-text-release": 1
+        }
+      },
+      {
+        "year": 2026,
+        "created": 83,
+        "merged": 68,
+        "closed": 10,
+        "acceptance": 87.17948717948718,
+        "ttm_median": 18.36020462384259,
+        "ttm_p90": 63.26363590856483,
+        "commented": 57.83132530120482,
+        "self_merged": 20.58823529411765,
+        "authors": 9,
+        "targets": {
+          "develop": 42,
+          "main": 41
+        }
+      }
+    ],
+    "recent": {
+      "created": 135,
+      "merged": 112,
+      "acceptance": 86.15384615384616,
+      "ttm_median": 5.913273431712963,
+      "ttm_p90": 61.78773623148148,
+      "commented": 45.925925925925924,
+      "self_merged": 15.178571428571429,
+      "authors": 10,
+      "targets": {
+        "develop": 44,
+        "main": 91
+      }
+    },
+    "created_month": {
+      "2026-09": 2,
+      "2026-08": 8,
+      "2026-07": 3,
+      "2026-06": 7,
+      "2026-05": 10,
+      "2026-04": 18,
+      "2026-03": 11,
+      "2026-02": 9,
+      "2026-01": 15,
+      "2025-12": 15,
+      "2025-11": 14,
+      "2025-10": 24,
+      "2025-09": 19,
+      "2025-08": 30,
+      "2025-07": 12,
+      "2025-06": 19,
+      "2025-05": 21,
+      "2025-04": 35,
+      "2025-03": 21,
+      "2025-02": 12,
+      "2025-01": 10,
+      "2024-12": 8,
+      "2024-11": 29,
+      "2024-10": 24,
+      "2024-09": 35,
+      "2024-08": 49,
+      "2024-07": 35,
+      "2024-06": 25,
+      "2024-05": 48,
+      "2024-04": 91,
+      "2024-03": 46,
+      "2024-02": 38,
+      "2024-01": 23,
+      "2023-12": 9,
+      "2023-11": 19,
+      "2023-10": 24,
+      "2023-09": 8,
+      "2023-08": 4,
+      "2023-07": 4,
+      "2023-06": 1
+    },
+    "merged_month": {
+      "2026-08": 7,
+      "2026-07": 8,
+      "2026-06": 18,
+      "2026-05": 2,
+      "2026-04": 3,
+      "2026-03": 18,
+      "2026-02": 4,
+      "2026-01": 15,
+      "2025-12": 16,
+      "2025-11": 10,
+      "2025-10": 21,
+      "2025-09": 14,
+      "2025-08": 26,
+      "2025-07": 12,
+      "2025-06": 18,
+      "2025-05": 20,
+      "2025-04": 34,
+      "2025-03": 17,
+      "2025-02": 8,
+      "2025-01": 9,
+      "2024-12": 9,
+      "2024-11": 23,
+      "2024-10": 16,
+      "2024-09": 38,
+      "2024-08": 43,
+      "2024-07": 29,
+      "2024-06": 32,
+      "2024-05": 33,
+      "2024-04": 80,
+      "2024-03": 43,
+      "2024-02": 37,
+      "2024-01": 18,
+      "2023-12": 4,
+      "2023-11": 17,
+      "2023-10": 12,
+      "2023-09": 7,
+      "2023-08": 2,
+      "2023-07": 3
+    },
+    "open": [
+      {
+        "iid": 829,
+        "title": "722 - Estilização da Página de Erro com Alvo em Develop (Not Found e Internal Error)",
+        "age": 56,
+        "target": "develop",
+        "draft": false
+      },
+      {
+        "iid": 830,
+        "title": "Corrige duplicação da lista de arquivos em seleções por etapas",
+        "age": 56,
+        "target": "develop",
+        "draft": false
+      },
+      {
+        "iid": 831,
+        "title": "Restaura select de instância pai no formulário de assembleias",
+        "age": 56,
+        "target": "develop",
+        "draft": false
+      },
+      {
+        "iid": 835,
+        "title": "Corrige visualização de respostas em perguntas do tipo matriz de múltipla e única escolha",
+        "age": 35,
+        "target": "develop",
+        "draft": false
+      },
+      {
+        "iid": 836,
+        "title": "Otimiza exportação de contribuições",
+        "age": 28,
+        "target": "develop",
+        "draft": false
+      }
+    ]
+  },
+  "issues": {
+    "total": 740,
+    "open": 221,
+    "closed": 519,
+    "years": [
+      {
+        "year": 2023,
+        "opened": 111,
+        "closed": 98,
+        "ttc_median": 14.728310399305556
+      },
+      {
+        "year": 2024,
+        "opened": 443,
+        "closed": 307,
+        "ttc_median": 18.98184070601852
+      },
+      {
+        "year": 2025,
+        "opened": 151,
+        "closed": 92,
+        "ttc_median": 4.800397476851852
+      },
+      {
+        "year": 2026,
+        "opened": 35,
+        "closed": 22,
+        "ttc_median": 27.7840596875
+      }
+    ],
+    "recent_opened": 77,
+    "recent_closed": 49,
+    "recent_ttc_median": 13.868027407407407,
+    "open_age_buckets": {
+      "até 30 dias": 0,
+      "31 a 90 dias": 4,
+      "91 dias a 1 ano": 29,
+      "mais de 1 ano": 188
+    },
+    "open_over_year_pct": 85.06787330316742,
+    "open_labels": [
+      [
+        "Desenvolvimento",
+        122
+      ],
+      [
+        "Bug",
+        62
+      ],
+      [
+        "Notion",
+        59
+      ],
+      [
+        "Produção",
+        32
+      ],
+      [
+        "WORKFLOW::Backlog",
+        28
+      ],
+      [
+        "Brasil-Participativo",
+        27
+      ],
+      [
+        "3 dias",
+        27
+      ],
+      [
+        "Outros erros (resultados ou ações inesperadas).",
+        23
+      ],
+      [
+        "7 dias",
+        15
+      ],
+      [
+        "Erros em chatbots ou mapas (openstreetmap) ou ferramentas de dados;",
+        13
+      ]
+    ],
+    "authors_recent": 9
+  },
+  "pipelines": {
+    "develop": {
+      "total": 37,
+      "success": 36,
+      "failed": 1,
+      "canceled": 0,
+      "other": 0,
+      "success_rate": 97.29729729729729
+    },
+    "main": {
+      "total": 123,
+      "success": 111,
+      "failed": 12,
+      "canceled": 0,
+      "other": 0,
+      "success_rate": 90.2439024390244
+    },
+    "todas": {
+      "total": 775,
+      "success": 547,
+      "failed": 228,
+      "canceled": 0,
+      "other": 0,
+      "success_rate": 70.58064516129032
+    }
+  },
+  "tags": {
+    "total": 123,
+    "stable": 120,
+    "latest": {
+      "name": "v1.10.0-rc.1",
+      "date": "2026-07-13T16:59:38-03:00",
+      "stable": false
+    },
+    "latest_stable": {
+      "name": "v1.9.2",
+      "date": "2026-06-11T12:12:52-03:00",
+      "stable": true
+    },
+    "recent_stable": 29,
+    "stable_by_year": {
+      "2023": 4,
+      "2024": 51,
+      "2025": 51,
+      "2026": 14
+    }
+  },
+  "quality": {
+    "license": [
+      "LICENSE-AGPLv3.txt"
+    ],
+    "readme": [
+      "README.md"
+    ],
+    "contributing": [
+      "CONTRIBUTING.md"
+    ],
+    "code_of_conduct": [
+      "CODE-OF-CONDUCT.md"
+    ],
+    "security": [],
+    "changelog": [],
+    "mr_templates": [
+      ".gitlab/merge_request_templates/Default.md",
+      ".gitlab/merge_request_templates/MR-DEV.md"
+    ],
+    "issue_templates": [],
+    "contributing_issue_link_ok": false,
+    "committed_reports": [
+      "brakeman_report.html"
+    ],
+    "gemfile_lock": true,
+    "js_lock": [
+      "yarn.lock"
+    ],
+    "ci_jobs": {
+      "Lint": {
+        "stage": "lint",
+        "allow_failure": false
+      },
+      "SAST": {
+        "stage": "test",
+        "allow_failure": true
+      },
+      "SCA": {
+        "stage": "test",
+        "allow_failure": true
+      },
+      "Testing": {
+        "stage": "test",
+        "allow_failure": false
+      },
+      "Build": {
+        "stage": "build",
+        "allow_failure": false
+      }
+    },
+    "git_deps": [
+      {
+        "gem": "decidim-apiauth",
+        "branch": null,
+        "pinned": false
+      },
+      {
+        "gem": "decidim-extra_user_fields",
+        "branch": "develop",
+        "pinned": false
+      },
+      {
+        "gem": "decidim-ej",
+        "branch": "main",
+        "pinned": false
+      },
+      {
+        "gem": "decidim-homes",
+        "branch": null,
+        "pinned": false
+      },
+      {
+        "gem": "decidim-enhanced_process_groups_and_scopes",
+        "branch": "main",
+        "pinned": false
+      },
+      {
+        "gem": "decidim-mobile",
+        "branch": "main",
+        "pinned": false
+      }
+    ],
+    "rubocop_todo_cops": 76,
+    "rubocop_todo_offenses": 2581,
+    "app_rb": 315,
+    "specs": 135,
+    "minitests": 1,
+    "test_ratio": 0.43174603174603177,
+    "simplecov": true,
+    "ruby": {
+      "version": "3.0.4",
+      "cycle": "3.0",
+      "eol": "23/04/2024",
+      "latest_cycle": "4.0",
+      "supported": false
+    },
+    "rails": {
+      "version": "6.1.7.2",
+      "cycle": "6.1",
+      "eol": "01/10/2024",
+      "latest_cycle": "8.1",
+      "supported": false
+    },
+    "decidim": {
+      "version": "0.27.2",
+      "latest": "0.32.1",
+      "minors_behind": 5
+    }
+  },
+  "ecosystem": [
+    {
+      "gem": "decidim-homes",
+      "path": "lappis-unb/decidimbr/components-brasil-participativo/decidim-module-homes",
+      "commits_recent": 56,
+      "authors_recent": 12,
+      "merged_mrs": 66,
+      "last_activity": "2026-09-03T18:38:14.851000+00:00",
+      "stars": 0,
+      "forks": 12
+    },
+    {
+      "gem": "decidim-enhanced_process_groups_and_scopes",
+      "path": "lappis-unb/decidimbr/components-brasil-participativo/decidim-module-enhanced_process_groups_and_scopes",
+      "commits_recent": 4,
+      "authors_recent": 3,
+      "merged_mrs": 8,
+      "last_activity": "2026-04-08T21:24:09.737000+00:00",
+      "stars": 0,
+      "forks": 3
+    },
+    {
+      "gem": "decidim-ej",
+      "path": "lappis-unb/decidimbr/components-brasil-participativo/decidim-ej",
+      "commits_recent": 2,
+      "authors_recent": 2,
+      "merged_mrs": 19,
+      "last_activity": "2025-11-30T00:31:38.226000+00:00",
+      "stars": 0,
+      "forks": 3
+    },
+    {
+      "gem": "decidim-extra_user_fields",
+      "path": "lappis-unb/decidimbr/decidim-extra_user_fields",
+      "commits_recent": 7,
+      "authors_recent": 4,
+      "merged_mrs": 13,
+      "last_activity": "2026-05-06T13:58:31.686000+00:00",
+      "stars": 0,
+      "forks": 1
+    },
+    {
+      "gem": "decidim-mobile",
+      "path": "lappis-unb/decidimbr/bp-mobile/decidim-module-mobile",
+      "commits_recent": 38,
+      "authors_recent": 3,
+      "merged_mrs": 3,
+      "last_activity": "2026-06-03T14:52:12.440000+00:00",
+      "stars": 0,
+      "forks": 0
+    }
+  ],
+  "generated": "2026-10-07T11:56:25+00:00"
+}

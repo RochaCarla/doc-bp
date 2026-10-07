@@ -1,7 +1,10 @@
 # decidim-module-enhanced_templates
 
-**Tipo**: Componente customizado (LAPPIS/UnB)
-**Repositório**: [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo)
+**Tipo**: Componente customizado (LabLivre/UnB)
+**Repositório**: [decidim-module-enhanced_templates](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo/decidim-module-enhanced_templates)
+
+!!! warning "Não instalado no core"
+    Este componente existe no grupo de componentes, mas não está no `Gemfile` do `decidim-govbr` (verificado em agosto de 2026). A descrição abaixo é do componente, não de um recurso disponível em produção.
 
 Componente que oferece templates melhorados para criação de processos participativos, facilitando a padronização e agilizando a configuração de novos espaços.
 

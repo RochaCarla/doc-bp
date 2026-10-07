@@ -6,7 +6,10 @@ Guia para criar um novo componente customizado para o Brasil Participativo.
 
 No Decidim, um **componente customizado** é um Rails Engine empacotado como gem Ruby. Ele se registra no Decidim via manifest e pode adicionar models, controllers, views, APIs e permissões próprias.
 
-Os componentes customizados vivem no repositório [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo).
+Cada componente customizado tem seu próprio repositório dentro do grupo [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo) (por exemplo, `components-brasil-participativo/decidim-ej`).
+
+!!! note "Versão do Decidim"
+    O core usa o Decidim **0.27.2**. Gere e teste o componente contra essa versão (`decidim-generators` 0.27.2).
 
 ## Pré-requisitos
 
@@ -104,9 +107,9 @@ Após criar o componente, adicione-o ao `Gemfile` do `decidim-govbr`:
 
 ```ruby
 # Gemfile
-gem "decidim-module-meu_componente",
-    git: "https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo.git",
-    glob: "decidim-module-meu_componente/*.gemspec"
+gem 'decidim-meu_componente',
+    git: 'https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo/decidim-module-meu_componente.git',
+    branch: 'main'
 ```
 
 Depois:

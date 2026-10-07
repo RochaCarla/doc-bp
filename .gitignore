@@ -15,3 +15,6 @@ docs/relatorios/output/
 
 # Claude Code configurações locais
 .claude/settings.local.json
+
+# Cache do gerador de estatísticas
+.cache/

@@ -1,88 +1,94 @@
 # Como Contribuir
 
-Guia para contribuir com o Brasil Participativo.
+Guia para contribuir com o `decidim-govbr`.
 
-## Antes de Começar
+## Antes de começar
 
-1. Faça o [setup local](setup.md) do ambiente de desenvolvimento
-2. Familiarize-se com a [estrutura do código](estrutura.md)
-3. Verifique as [issues abertas](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr/-/issues) no GitLab
+1. Faça o [setup local](setup.md).
+2. Leia a [estrutura do código](estrutura.md), em especial como as sobrescritas do Decidim funcionam.
+3. Veja as [issues abertas](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr/-/issues) e o [código de conduta](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr/-/blob/main/CODE-OF-CONDUCT.md).
 
-## Fluxo de Contribuição
+## Fluxo de contribuição
 
 ```mermaid
 graph LR
-    A[Fork / Branch] --> B[Desenvolver]
-    B --> C[Testes]
-    C --> D[Merge Request]
-    D --> E[Code Review]
-    E --> F[Merge]
+    A[Issue] --> B[Branch a partir de develop]
+    B --> C[Desenvolver + testes]
+    C --> D[MR para develop]
+    D --> E[Code review + CI]
+    E --> F[Merge em develop]
+    F --> G[Promoção develop → main]
 ```
 
-### 1. Criar branch
-
-Crie uma branch a partir de `develop`:
+### 1. Crie a branch
 
 ```bash
 git checkout develop
 git pull origin develop
-git checkout -b feature/minha-feature
+git checkout -b 123-descricao-curta
 ```
 
-### 2. Convenção de branches
+Os nomes de branch usados no projeto seguem dois padrões: número da issue com descrição (`740-melhoria-da-pagina-de-eventos`) ou prefixo de tipo (`feat/`, `fix/`, `refactor/`, `chore/`).
 
-| Prefixo | Uso |
-|---------|-----|
-| `feature/` | Nova funcionalidade |
-| `fix/` | Correção de bug |
-| `docs/` | Documentação |
-| `refactor/` | Refatoração sem mudança de comportamento |
-| `chore/` | Tarefas de manutenção (CI, deps, etc.) |
+### 2. Commits
 
-### 3. Commits
-
-Use [Conventional Commits](https://www.conventionalcommits.org/):
+Use [Conventional Commits](https://www.conventionalcommits.org/), com escopo quando fizer sentido:
 
 ```
-feat: adiciona filtro por região nas propostas
-fix: corrige exibição de data em pt-BR no módulo reuniões
-docs: atualiza guia de setup local
-refactor: extrai validação de CPF para concern
+feat(external_auth): botão Voltar para o WhatsApp na tela de erro
+fix: corrige bug de pergunta com condicional não salvar
+test: adiciona spec de request para GET /api/home_processes
+refactor: filtra tipos de processos sem processos associados da listagem da home
 ```
 
-### 4. Testes
-
-Antes de abrir o MR, garanta que os testes passam:
+### 3. Testes e lint
 
 ```bash
+bundle exec rubocop
+bundle exec rails test
 bundle exec rspec
 ```
 
-Se sua mudança adiciona funcionalidade nova, inclua testes correspondentes.
+Inclua testes para toda funcionalidade nova ou correção de bug.
 
-### 5. Merge Request
+### 4. Merge Request
 
-Abra um MR no GitLab apontando para `develop`:
+Abra o MR no GitLab apontando para `develop`. O template padrão (`.gitlab/merge_request_templates/Default.md`) pede:
 
-- **Título**: seguindo Conventional Commits
-- **Descrição**: explique o que mudou e por quê
-- **Issues relacionadas**: referencie com `Closes #123` ou `Relates to #456`
+- descrição do problema ou história de usuário;
+- alterações realizadas (trechos de código ou capturas de tela);
+- issues relacionadas;
+- checklist: diretrizes de código, documentação atualizada e testes.
 
-### 6. Code Review
+Ao abrir o MR, mude o label da issue para `DEV::MR`. Quando o MR for aceito, o revisor (ou você) muda para `DEV::Homolog`.
 
-- Pelo menos 1 aprovação é necessária antes do merge
-- Responda aos comentários e faça os ajustes solicitados
-- O CI precisa estar verde (testes + linting)
+### 5. CI
 
-## Contribuindo com Componentes Customizados
+O pipeline (`.gitlab-ci.yml`) tem três estágios:
 
-Se sua contribuição é um **componente customizado novo**, ele deve ir no repositório [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo). Consulte o guia [Criar Componente](criar-componente.md).
+| Estágio | Job | O que faz | Bloqueia? |
+|---------|-----|-----------|-----------|
+| `lint` | `Lint` | `bundle exec rubocop` | Sim |
+| `test` | `SAST` | Brakeman; envia o relatório por e-mail | Não (`allow_failure`) |
+| `test` | `SCA` | Trivy 0.69.3 no filesystem (MEDIUM, HIGH, CRITICAL) | Não (`allow_failure`) |
+| `test` | `Testing` | `rails test` e `rspec` com PostgreSQL 13.2 e Redis 6 | Sim |
+| `build` | `Build` | Build da imagem Docker | Sim |
 
-## Reportando Bugs
+## Componentes customizados
 
-Ao abrir uma issue de bug, inclua:
+Um componente novo vai num repositório próprio dentro do grupo [components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo). Veja [Criar Componente](criar-componente.md).
 
-- **Passos para reproduzir** o problema
-- **Comportamento esperado** vs **comportamento observado**
-- **Ambiente** (versão do Ruby, SO, browser)
-- **Screenshots** se aplicável
+## Reportando bugs
+
+Abra uma issue com:
+
+- passos para reproduzir;
+- comportamento esperado e observado;
+- ambiente (navegador, sistema, URL do espaço);
+- capturas de tela, se ajudarem.
+
+Contato da equipe: decidim@unb.br. Comunidade: [grupo no Telegram](https://t.me/+nm4bkXxYukFlOWZh).
+
+## Licença
+
+As contribuições são licenciadas sob a [AGPLv3](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr/-/blob/main/LICENSE-AGPLv3.txt).
