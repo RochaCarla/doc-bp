@@ -6,8 +6,9 @@ authors = ["DestaquesGovbr <destaquesgovbr@gestao.gov.br>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-mkdocs = "^1.6.0"
-mkdocs-material = "^9.6.0"
+mkdocs = ">=1.6,<2"
+mkdocs-material = "9.7.7"
+mkdocs-print-site-plugin = "2.9"
 
 [build-system]
 requires = ["poetry-core"]
