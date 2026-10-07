@@ -11,9 +11,7 @@ repo_url: https://github.com/RochaCarla/doc-bp
 edit_uri: edit/main/docs/
 docs_dir: docs
 
-copyright: >-
-  Documentação produzida pelo LabLivre/UnB em TED com a Secretaria Nacional de Participação Social ·
-  Brasil Participativo é software livre (AGPLv3)
+copyright: © 2026 LabLivre/UnB · Brasil Participativo é software livre (AGPLv3)
 
 theme:
   name: material
@@ -62,6 +60,42 @@ theme:
     - toc.follow
 
 extra:
+  # Rodapé institucional (overrides/partials/bp-institucional.html).
+  # Item sem "image" aparece como assinatura em texto. Para usar o logo oficial,
+  # coloque o arquivo em docs/assets/logos/ e informe image (e invert: true se for escuro).
+  institucional:
+    grupos:
+      - titulo: Realização
+        itens:
+          - name: LabLivre — Laboratório de Competência em Software Livre
+            image: assets/logos/lab-livre-white.png
+            url: https://lablivre.unb.br
+            height: 48
+          - name: Universidade de Brasília
+            image: assets/logos/unb-logo.png
+            url: https://www.unb.br
+            height: 42
+            invert: true
+      - titulo: Parceria
+        itens:
+          - name: Secretaria Nacional de Participação Social
+            sub: Secretaria-Geral da Presidência da República
+            url: https://www.gov.br/secretariageral/
+    texto: >-
+      Documentação produzida pelo LabLivre/UnB no âmbito do Termo de Execução Descentralizada
+      com a Secretaria Nacional de Participação Social.
+    contatos:
+      - decidim@unb.br
+      - brasilparticipativo@presidencia.gov.br
+    links:
+      - nome: LabLivre
+        url: https://lablivre.unb.br
+      - nome: Brasil Participativo
+        url: https://brasilparticipativo.presidencia.gov.br/
+      - nome: Código no GitLab
+        url: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
+      - nome: Baixar PDF
+        url: https://rochacarla.github.io/doc-bp/documentacao-brasil-participativo.pdf
   social:
     - icon: fontawesome/brands/gitlab
       link: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr

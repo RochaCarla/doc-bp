@@ -161,6 +161,25 @@
   font-size: 9.5pt;
   color: #d4e5ff;
 }
+.bp-contracapa__logos {
+  display: flex;
+  align-items: center;
+  gap: 10mm;
+  margin-bottom: 8mm;
+}
+.bp-contracapa__logo--invert {
+  filter: brightness(0) invert(1);
+}
+.bp-contracapa__parceria {
+  font-size: 9pt;
+  line-height: 1.35;
+  padding-left: 4mm;
+  border-left: 3px solid #ffcd07;
+  color: #d4e5ff;
+}
+.bp-contracapa__parceria strong {
+  color: #ffffff;
+}
 .bp-contracapa__motto {
   font-size: 13pt;
   font-weight: 700;

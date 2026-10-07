@@ -479,3 +479,89 @@ body {
   color: #ffffff;
   text-decoration: underline;
 }
+
+/* ------------------------------------------------------------------ Rodapé institucional
+   Inspirado no rodapé do LabLivre (lablivre.unb.br): logos em branco sobre fundo escuro */
+.bp-inst {
+  background-color: var(--blue-warm-vivid-90);
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.bp-inst__inner {
+  padding: 2.2rem 0.8rem 1.6rem;
+}
+.bp-inst__grupos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem 3rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.bp-inst__rotulo {
+  margin: 0 0 0.7rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-warm-vivid-20);
+}
+.bp-inst__marcas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.4rem 2rem;
+}
+.bp-inst__marca {
+  display: inline-flex;
+  align-items: center;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+}
+.bp-inst__marca:hover {
+  opacity: 0.75;
+  color: #ffffff;
+}
+.bp-inst__logo {
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+.bp-inst__logo--invert {
+  filter: brightness(0) invert(1);
+}
+.bp-inst__assinatura {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.8rem;
+  border-left: 3px solid var(--yellow-vivid-20);
+  line-height: 1.3;
+}
+.bp-inst__assinatura strong {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.bp-inst__assinatura span {
+  font-size: 0.64rem;
+  color: var(--blue-warm-vivid-10);
+}
+.bp-inst__info {
+  padding-top: 1.1rem;
+  font-size: 0.66rem;
+  color: var(--blue-warm-vivid-10);
+}
+.bp-inst__info p {
+  margin: 0.25rem 0;
+}
+.bp-inst__info a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.bp-inst__info a:hover {
+  color: var(--blue-warm-vivid-20);
+}
+@media print {
+  .bp-inst {
+    display: none;
+  }
+}
