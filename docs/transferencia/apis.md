@@ -67,8 +67,8 @@ A API OP-BP age em nome do participante já vinculado enviando:
 | `X-API-KEY` | `OP_BP_API_KEY` |
 | `X-USER-ID` | ID do usuário no Brasil Participativo |
 
-!!! danger "Risco"
-    A chave dá acesso como qualquer usuário, em qualquer rota. Veja [Segurança e LGPD › risco 1](seguranca.md#riscos-conhecidos).
+!!! info "Segurança"
+    Restrições pendentes sobre o uso desta chave estão registradas em canal restrito. Veja [Segurança e LGPD](seguranca.md#riscos-conhecidos). Guarde a chave em cofre e troque-a periodicamente.
 
 A tarefa `bundle exec rake botapi:test` simula o fluxo completo (vínculo e chamada à API) em ambiente local.
 

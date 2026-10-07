@@ -49,5 +49,5 @@ Detalhes em [Deploy › Checklist](deploy.md#checklist).
 !!! danger "Plataforma sem suporte de segurança"
     Ruby 3.0 e Rails 6.1 já não recebem correções de segurança, e o Decidim está 5 versões menores atrás da mais recente. Veja [Estatísticas › Qualidade](../estatisticas/qualidade.md#dependencias-e-plataforma).
 
-!!! warning "Callback OP-BP sem checagem de host"
-    A allowlist de host do callback está desligada provisoriamente. Veja [Integração OP-BP](integracao-op-bp.md#variaveis-de-ambiente).
+!!! warning "Vulnerabilidades em acompanhamento"
+    Há vulnerabilidades conhecidas registradas em canal restrito. Veja [Segurança e LGPD](../transferencia/seguranca.md#riscos-conhecidos).

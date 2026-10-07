@@ -90,8 +90,9 @@ Para evitar interpretações erradas sobre commits com "performance" na mensagem
     - roda dentro da requisição GET e pode estourar o tempo limite;
     - não limpa o diretório temporário entre ZIPs, então os ZIPs seguintes acumulam os arquivos dos anteriores;
     - não apaga os arquivos gerados;
-    - verifica anexos resposta a resposta (N+1);
-    - em `download_zip`, busca o arquivo pelo `blob_id` sem verificar o formulário (risco de acesso indevido).
+    - verifica anexos resposta a resposta (N+1).
+
+    Pendências de segurança deste serviço estão em canal restrito ([Segurança e LGPD](../transferencia/seguranca.md#riscos-conhecidos)).
 
 !!! warning "Cache do filtro de categorias (inferido)"
     O HTML em cache inclui o estado marcado das caixas de seleção e um id de objeto, que não fazem parte da chave do cache. Um usuário pode receber o filtro com marcações de outro.

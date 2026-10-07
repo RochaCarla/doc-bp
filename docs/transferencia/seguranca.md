@@ -4,28 +4,24 @@ Controles de segurança existentes, riscos conhecidos no código e inventário d
 
 ## Riscos conhecidos
 
-!!! danger "1. Chave de API que permite agir como qualquer usuário"
-    A estratégia `ApiImpersonationStrategy` (`lib/decidim/strategies/api_impersonation_strategy.rb`) é registrada como **estratégia padrão do Devise para todas as requisições**, não só para `/api`. Quem enviar os cabeçalhos `X-API-KEY` (igual a `OP_BP_API_KEY`, ou `N8N_SECRET_KEY` como alternativa) e `X-USER-ID` passa a agir como o usuário daquele ID na organização, **inclusive administradores**.
+!!! info "Vulnerabilidades em canal restrito"
+    Vulnerabilidades ainda não corrigidas **não são detalhadas** nesta documentação pública nem no e-book. Elas estão registradas numa **issue confidencial** no GitLab do `decidim-govbr`, acessível à SNPS, ao LabLivre e à equipe receptora. Depois de corrigidas e implantadas, entram nesta página como riscos resolvidos, com a versão que os corrigiu.
 
-    **Recomendações:** restringir a estratégia às rotas da API usadas pela OP-BP; recusar usuários administradores; registrar cada uso em log de auditoria; guardar a chave em cofre e trocá-la periodicamente.
+    A [transferência de tecnologia](index.md) inclui dar à equipe receptora acesso às issues confidenciais.
 
-!!! danger "2. Callback do login externo sem checagem de host"
-    `ExternalAuthService::PROVISIONAL_SKIP_CALLBACK_HOST_CHECK = true` desliga a allowlist de hosts do `callback_url`. Quem tiver o `OP_BP_JWT_SECRET` pode mandar CPF, nome e e-mail do usuário para qualquer endereço. **Recomendação:** mudar para `false` e configurar `OP_BP_CALLBACK_ALLOWED_HOSTS`. Veja [Integração OP-BP](../operador/integracao-op-bp.md#variaveis-de-ambiente).
+Riscos estruturais, que não são vulnerabilidades exploráveis:
 
-!!! danger "3. Plataforma sem correções de segurança"
+!!! danger "Plataforma sem correções de segurança"
     Ruby 3.0 (fim do suporte em 04/2024), Rails 6.1 (10/2024) e Node 16 na imagem base (09/2023) não recebem mais correções. O Decidim 0.27 está 5 versões menores atrás. Veja o [Plano de atualização tecnológica](atualizacao.md).
 
-!!! warning "4. HTML e JavaScript editáveis pelo painel"
-    Os exemplos de ambiente (`.env.dev`, `setup/env`) ligam `DECIDIM_ENABLE_HTML_HEADER_SNIPPETS`, que permite a administradores inserir código no `<head>` das páginas. A página inicial também depende de um bloco HTML com JavaScript editado no painel e **não versionado**. Uma conta de administrador comprometida pode injetar script em todas as páginas. **Recomendação:** versionar o bloco da home, revisar quem tem papel de administrador e avaliar desligar os snippets.
+!!! warning "HTML e JavaScript editáveis pelo painel"
+    Os exemplos de ambiente ligam os *snippets* de HTML no cabeçalho das páginas, e a página inicial depende de um bloco HTML com JavaScript editado no painel e **não versionado**. **Recomendação:** versionar o bloco da home, revisar quem tem papel de administrador e avaliar desligar os *snippets*.
 
-!!! warning "5. Download de anexos de formulários"
-    O `download_zip` busca o arquivo pelo `blob_id` sem verificar o formulário, e os ZIPs gerados não são apagados. Veja [Inovação › Desempenho](../inovacao/desempenho.md#riscos-e-regressoes).
+!!! warning "Análises de segurança não bloqueiam o CI"
+    Os jobs de Brakeman (SAST) e Trivy (SCA) não bloqueiam o pipeline, e um relatório gerado (`brakeman_report.html`) está versionado. **Recomendação:** tornar os jobs bloqueantes para vulnerabilidades altas e remover o relatório do repositório.
 
-!!! warning "6. Análises de segurança não bloqueiam o CI"
-    Os jobs de Brakeman (SAST) e Trivy (SCA) têm `allow_failure: true`, e um relatório gerado (`brakeman_report.html`) está versionado. **Recomendação:** tornar os jobs bloqueantes para vulnerabilidades altas e remover o relatório do repositório.
-
-!!! warning "7. Acesso ao painel `/system` sem restrição de IP"
-    `DECIDIM_SYSTEM_ACCESSLIST_IPS` vem vazia por padrão. **Recomendação:** restringir o `/system` à rede administrativa.
+!!! warning "Acesso ao painel `/system`"
+    Por padrão, o Decidim não restringe o `/system` por IP (`DECIDIM_SYSTEM_ACCESSLIST_IPS`). **Recomendação:** restringir o `/system` à rede administrativa.
 
 ## Controles existentes
 

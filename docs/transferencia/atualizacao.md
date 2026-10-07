@@ -51,7 +51,7 @@ flowchart TB
 
 | Etapa | O que fazer | Resultado |
 |-------|-------------|-----------|
-| **0. Preparação** | Remover as 26 sobrescritas idênticas ao original; cobrir com testes as sobrescritas mais alteradas; corrigir os riscos 1 e 2 de [Segurança](seguranca.md); fixar as gems de git em tags; reconciliar `main` e `develop` ([Release](release.md)) | Base segura para mudar |
+| **0. Preparação** | Remover as 26 sobrescritas idênticas ao original; cobrir com testes as sobrescritas mais alteradas; corrigir as vulnerabilidades registradas em canal restrito ([Segurança](seguranca.md)); fixar as gems de git em tags; reconciliar `main` e `develop` ([Release](release.md)) | Base segura para mudar |
 | **1. Decidim 0.27.10** | Atualizar dentro da série 0.27, sem mudar Ruby | Correções do Decidim aplicadas |
 | **2. Decidim 0.28** | Ruby 3.1; refazer views e cells sobre a nova interface; reavaliar quais sobrescritas ainda são necessárias; reaplicar o Design System gov.br | Interface nova; muitas sobrescritas eliminadas |
 | **3. Decidim 0.29** | Ruby 3.2, Rails 7.0 | Rails com suporte |

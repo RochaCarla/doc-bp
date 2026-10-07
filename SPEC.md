@@ -2,7 +2,7 @@
 
 Site estático de documentação, com versão em e-book (PDF), que reúne o conhecimento técnico, operacional e de uso do Brasil Participativo, para que equipes de desenvolvimento, operação e gestão consigam entender, operar, usar e assumir a plataforma.
 
-Os termos em **negrito** estão definidos em [CONTEXT.md](./CONTEXT.md). As decisões estruturais estão na § 10. Este documento descreve o que está construído (*as-built*, outubro de 2026) e serve de referência para mudanças futuras.
+Os termos em **negrito** estão definidos em [CONTEXT.md](./CONTEXT.md). As decisões estruturais estão na § 10 e, quando exigem registro próprio, em [docs/adr/](./docs/adr/). Este documento descreve o que está construído (*as-built*, outubro de 2026) e serve de referência para mudanças futuras.
 
 ---
 
@@ -25,6 +25,7 @@ Os termos em **negrito** estão definidos em [CONTEXT.md](./CONTEXT.md). As deci
 - Documentação do Decidim *upstream*: só se referencia a documentação oficial.
 - Alterações no código do `decidim-govbr` ou dos componentes. A documentação descreve; não corrige.
 - Valores de segredos, dados pessoais de usuários da plataforma e cópias de documentos internos do projeto.
+- Detalhes de vulnerabilidades ainda não corrigidas, que ficam em issue confidencial no GitLab do core ([ADR 0001](./docs/adr/0001-vulnerabilidades-nao-corrigidas-fora-da-documentacao-publica.md)).
 - Marca oficial da Secretaria sem o arquivo autorizado (ver § 13).
 - Tradução para outros idiomas.
 - Qualquer backend: o site é estático (RNF08).
@@ -159,6 +160,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 | RNF06 | As versões de ferramentas DEVEM ser fixas e iguais no Docker e no CI. |
 | RNF07 | Textos e logos DEVEM ter contraste suficiente sobre o fundo (logos escuros invertidos para branco no rodapé escuro); toda imagem DEVE ter texto alternativo. |
 | RNF08 | O site DEVE ser servido inteiramente pelo GitHub Pages, sem servidor próprio. |
+| RNF09 | O site e o e-book NÃO PODEM detalhar vulnerabilidades ainda não corrigidas; exibem só um aviso neutro que aponta para o canal restrito. |
 
 **Critérios de aceitação**
 
@@ -179,6 +181,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 | RNF03 | `python3 scripts/medir_diagramas.py` (Mermaid 11, coluna de 690 px) termina com código 0: todos os diagramas com escala ≥ 0,85. |
 | RNF05 | `grep -rE "@(gmail|hotmail|protonmail)\.com" docs` não retorna nada. |
 | RNF06 | As versões no `Dockerfile`, no `docker-compose.yml` e no `deploy.yml` coincidem. |
+| RNF09 | A página Segurança e LGPD tem o aviso de canal restrito, e nenhuma página descreve como explorar uma falha aberta (revisão a cada mudança em `docs/transferencia/`, `docs/operador/` e `docs/inovacao/`). |
 
 ## 10. Decisões
 
@@ -193,6 +196,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 | Secretaria como assinatura em texto | Falta o arquivo oficial da marca e há regras próprias no período eleitoral |
 | Um único workflow de deploy | Três workflows publicavam no mesmo destino e podiam apagar o e-book |
 | Manual reescrito, com link para o original | As capturas da plataforma estão em links temporários |
+| Vulnerabilidades abertas só em issue confidencial | Detalhar falha antes da correção entrega o caminho do ataque; ver [ADR 0001](./docs/adr/0001-vulnerabilidades-nao-corrigidas-fora-da-documentacao-publica.md) |
 
 ## 11. Regras editoriais
 

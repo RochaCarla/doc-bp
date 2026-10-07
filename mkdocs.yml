@@ -10,6 +10,9 @@ repo_name: RochaCarla/doc-bp
 repo_url: https://github.com/RochaCarla/doc-bp
 edit_uri: edit/main/docs/
 docs_dir: docs
+# Decisões de arquitetura da documentação: versionadas no repositório, fora do site
+exclude_docs: |
+  adr/
 
 copyright: © 2026 LabLivre/UnB · Brasil Participativo é software livre (AGPLv3)
 

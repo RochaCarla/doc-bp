@@ -71,8 +71,8 @@ O callback também é enviado quando a conta já estava vinculada ao mesmo `sour
 
 Quando o fallback legado é usado, o log registra um aviso de depreciação. Migre para as variáveis `OP_BP_*`.
 
-!!! danger "Checagem de host do callback desligada"
-    Hoje a constante `ExternalAuthService::PROVISIONAL_SKIP_CALLBACK_HOST_CHECK` é `true`: a allowlist de host do `callback_url` não é aplicada e a segurança depende só da assinatura do JWT. A medida é provisória, enquanto a API OP-BP roda atrás de um túnel com subdomínio rotativo. Para reativar, mude a constante para `false` e configure `OP_BP_CALLBACK_ALLOWED_HOSTS`. Proteja o `OP_BP_JWT_SECRET`: quem tiver o segredo pode direcionar o callback, com CPF, nome e e-mail, para qualquer host.
+!!! warning "Proteja o segredo do JWT"
+    Quem tiver o `OP_BP_JWT_SECRET` consegue gerar links de vínculo válidos. Guarde-o em cofre, troque-o periodicamente e configure `OP_BP_CALLBACK_ALLOWED_HOSTS` com os hosts da API OP-BP. Pendências de segurança desta integração estão em canal restrito ([Segurança e LGPD](../transferencia/seguranca.md#riscos-conhecidos)).
 
 ## Detalhes de implementação
 

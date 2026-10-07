@@ -8,8 +8,8 @@ Registro das principais decisões técnicas do Brasil Participativo (ADR, *Archi
 | 2 | [Customizar por sobrescrita de arquivos](#adr-2-customizar-por-sobrescrita-de-arquivos) | Aceita, com custo alto |
 | 3 | [Componentes em gems separadas](#adr-3-componentes-em-gems-separadas) | Aceita |
 | 4 | [Login gov.br por OpenID Connect](#adr-4-login-govbr-por-openid-connect) | Aceita |
-| 5 | [Vínculo de canais por JWT com segredo compartilhado](#adr-5-vinculo-de-canais-por-jwt) | Aceita; checagem de host provisoriamente desligada |
-| 6 | [Impersonação por chave de API](#adr-6-impersonacao-por-chave-de-api) | Aceita; requer revisão de segurança |
+| 5 | [Vínculo de canais por JWT com segredo compartilhado](#adr-5-vinculo-de-canais-por-jwt) | Aceita; pendência de segurança em canal restrito |
+| 6 | [Impersonação por chave de API](#adr-6-impersonacao-por-chave-de-api) | Aceita; pendência de segurança em canal restrito |
 | 7 | [Design System gov.br copiado para o core](#adr-7-design-system-govbr-copiado-para-o-core) | Aceita, com custo de atualização |
 | 8 | [Renderização leve do texto participativo](#adr-8-renderizacao-leve-do-texto-participativo) | Aceita |
 | 9 | [API JSON com cache para a home](#adr-9-api-json-com-cache-para-a-home) | Aceita; depende de ação manual |
@@ -50,15 +50,15 @@ Registro das principais decisões técnicas do Brasil Participativo (ADR, *Archi
 
 - **Contexto:** a participação por WhatsApp e Telegram precisa ligar o número do participante à conta gov.br.
 - **Decisão:** a API OP-BP envia um link com JWT HS256 assinado por segredo compartilhado; o core valida, grava o vínculo em `extended_data` e avisa a API por callback.
-- **Consequências:** integração simples e sem estado no core. O segredo compartilhado é ponto único de falha, e a checagem de host do callback está **desligada provisoriamente** (ngrok com subdomínio rotativo).
+- **Consequências:** integração simples e sem estado no core. O segredo compartilhado é ponto único de falha e precisa de rotação. Há pendência de segurança registrada em canal restrito ([Segurança e LGPD](seguranca.md#riscos-conhecidos)).
 - **Evidência:** `app/services/external_auth_service.rb`; [Integração OP-BP](../operador/integracao-op-bp.md).
 
 ## ADR 6 · Impersonação por chave de API
 
 - **Contexto:** depois do vínculo, a API OP-BP precisa registrar votos e propostas em nome do participante.
 - **Decisão:** uma estratégia Warden aceita `X-API-KEY` e `X-USER-ID` e autentica como o usuário indicado.
-- **Consequências:** permite a participação por mensageria sem senha. Mas a estratégia vale para **todas as rotas e todos os usuários**, inclusive administradores. Ver [Segurança › risco 1](seguranca.md#riscos-conhecidos).
-- **Evidência:** `lib/decidim/strategies/api_impersonation_strategy.rb`; `config/initializers/api_impersonation.rb`.
+- **Consequências:** permite a participação por mensageria sem senha, mas exige controles rigorosos sobre a chave. Há pendência de segurança registrada em canal restrito ([Segurança e LGPD](seguranca.md#riscos-conhecidos)).
+- **Evidência:** estratégia de autenticação em `lib/decidim/strategies/`.
 
 ## ADR 7 · Design System gov.br copiado para o core
 
