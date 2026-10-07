@@ -18,6 +18,9 @@
         <a class="md-button" href="{{ config.repo_url }}/issues/new?title={{ issue_title | urlencode }}&body={{ issue_body | urlencode }}" target="_blank" rel="noopener">
           {% include ".icons/material/message-alert-outline.svg" %} Reportar um problema
         </a>
+        <a class="md-button" href="{{ config.site_url }}documentacao-brasil-participativo.pdf">
+          {% include ".icons/material/file-pdf-box.svg" %} Baixar tudo em PDF
+        </a>
         {% if page.edit_url %}
         <a class="md-button" href="{{ page.edit_url }}" target="_blank" rel="noopener">
           {% include ".icons/material/file-edit-outline.svg" %} Sugerir uma edição

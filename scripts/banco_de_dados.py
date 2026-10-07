@@ -532,7 +532,7 @@ def relationship_diagrams(tables: list[str], refs: dict) -> list[tuple[str, str]
 def render_domain(domain: tuple, tables: list[str], schema: dict, refs: dict, page_of: dict,
                   table_origin: dict, col_origin: dict, meta: dict) -> str:
     slug, title, icon, desc, _ = domain
-    out = [f"---\nicon: {icon}\n---\n",
+    out = [f"---\ntitle: {title}\nicon: {icon}\n---\n",
            f"<!-- Gerado por scripts/banco_de_dados.py em {meta['generated']}. Não edite à mão. -->\n",
            f"# {title}\n", desc + "\n"]
     out.append(f"**{len(tables)} tabelas.** Schema versão `{meta['version']}`. "
@@ -589,7 +589,7 @@ def render_index(schema: dict, groups: dict, refs: dict, page_of: dict, table_or
     n_conv = sum(1 for v in refs.values() if v[1] == "conv")
     n_poly = sum(1 for v in refs.values() if v[1] == "poly")
     types = Counter(c["type"] for t in tables.values() for c in t["columns"])
-    out = ["---\nicon: material/database\n---\n",
+    out = ["---\ntitle: Banco de Dados\nicon: material/database\n---\n",
            f"<!-- Gerado por scripts/banco_de_dados.py em {meta['generated']}. Não edite à mão. -->\n",
            "# Banco de Dados\n",
            "Dicionário de dados do PostgreSQL do Brasil Participativo, gerado a partir do `db/schema.rb` e das "

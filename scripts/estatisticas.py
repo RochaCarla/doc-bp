@@ -671,7 +671,8 @@ def table(headers: list[str], rows: list[list], align: str | None = None) -> str
 
 
 def header(title: str, meta: dict) -> str:
-    return (f"<!-- Gerado por scripts/estatisticas.py em {meta['generated']}. Não edite à mão. -->\n\n"
+    return (f"---\ntitle: {title}\n---\n\n"
+            f"<!-- Gerado por scripts/estatisticas.py em {meta['generated']}. Não edite à mão. -->\n\n"
             f"# {title}\n\n"
             f'!!! info "Coleta de {meta["generated_date"]}"\n'
             f"    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/{PROJECT_PATH}) e API pública do GitLab. "

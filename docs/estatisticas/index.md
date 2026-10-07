@@ -1,4 +1,8 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
+---
+title: Estatísticas do Projeto
+---
+
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:48:32+00:00. Não edite à mão. -->
 
 # Estatísticas do Projeto
 
@@ -64,7 +68,7 @@ Indicadores de atividade, colaboração e qualidade do `decidim-govbr`, organiza
 | Issues (abertas / fechadas) | 221 / 519 |
 | Versões (tags estáveis / total de tags) | 120 / 123 |
 | Última versão estável | `v1.9.2` em 11/06/2026 |
-| Pipelines nos últimos 12 meses | 774 |
+| Pipelines nos últimos 12 meses | 772 |
 | Estrelas / forks no GitLab | 43 / 73 |
 | Linguagens (GitLab) | Ruby 44%, SCSS 20%, HTML+ERB 15%, JavaScript 14%, HTML 8% |
 

@@ -553,7 +553,7 @@
         "ttc_median": 27.7840596875
       }
     ],
-    "recent_opened": 77,
+    "recent_opened": 76,
     "recent_closed": 49,
     "recent_ttc_median": 13.868027407407407,
     "open_age_buckets": {
@@ -625,12 +625,12 @@
       "success_rate": 90.2439024390244
     },
     "todas": {
-      "total": 774,
-      "success": 546,
-      "failed": 228,
+      "total": 772,
+      "success": 545,
+      "failed": 227,
       "canceled": 0,
       "other": 0,
-      "success_rate": 70.54263565891473
+      "success_rate": 70.5958549222798
     }
   },
   "tags": {
@@ -815,5 +815,5 @@
       "forks": 0
     }
   ],
-  "generated": "2026-10-07T13:21:12+00:00"
+  "generated": "2026-10-07T13:48:32+00:00"
 }

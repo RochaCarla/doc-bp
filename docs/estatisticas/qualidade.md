@@ -1,4 +1,8 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
+---
+title: Qualidade e Boas Práticas
+---
+
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:48:32+00:00. Não edite à mão. -->
 
 # Qualidade e Boas Práticas
 
@@ -61,7 +65,7 @@ As faixas abaixo são referências adotadas nesta documentação para orientar a
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `develop` | 37 | 36 | 1 | 0 | 0 | 97% |
 | `main` | 123 | 111 | 12 | 0 | 0 | 90% |
-| todas as branches | 774 | 546 | 228 | 0 | 0 | 71% |
+| todas as branches | 772 | 545 | 227 | 0 | 0 | 71% |
 
 Taxa de sucesso = sucesso ÷ (sucesso + falha). Jobs com `allow_failure` não derrubam o pipeline.
 

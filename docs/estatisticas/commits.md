@@ -1,4 +1,8 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
+---
+title: Commits
+---
+
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:48:32+00:00. Não edite à mão. -->
 
 # Commits
 

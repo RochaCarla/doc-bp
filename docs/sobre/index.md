@@ -38,6 +38,14 @@ O **Termo de Execução Descentralizada** é o instrumento pelo qual um órgão 
 
 As informações refletem o código na data da última atualização de cada página. Mudanças recentes estão em [Novidades](../novidades.md).
 
+## Versão em PDF
+
+Todo o conteúdo deste site também está disponível como e-book, com capa, folha de rosto, ficha técnica, sumário e contracapa. O PDF é gerado automaticamente a cada atualização da documentação.
+
+[:material-file-pdf-box: Baixar a documentação completa em PDF](https://rochacarla.github.io/doc-bp/documentacao-brasil-participativo.pdf){ .md-button .md-button--primary }
+
+Para gerar localmente: `./scripts/pdf.sh` (resultado em `dist/`).
+
 ## Licença do software
 
 O Brasil Participativo é software livre, distribuído sob a licença **GNU Affero General Public License v3 (AGPLv3)**, a mesma do Decidim.

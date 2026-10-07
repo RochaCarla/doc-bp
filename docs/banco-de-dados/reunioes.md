@@ -1,8 +1,9 @@
 ---
+title: Reuniões e eventos
 icon: material/calendar
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:48:25+00:00. Não edite à mão. -->
 
 # Reuniões e eventos
 

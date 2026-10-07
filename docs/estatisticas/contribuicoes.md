@@ -1,4 +1,8 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
+---
+title: Contribuições
+---
+
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:48:32+00:00. Não edite à mão. -->
 
 # Contribuições
 
@@ -89,7 +93,7 @@ Só issues públicas aparecem na API sem autenticação.
 
 | Abertas | Fechadas | Abertas em 12 meses | Fechadas em 12 meses | Mediana para fechar (12 meses) | Autores (12 meses) |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 221 | 519 | 77 | 49 | 13,9 dias | 9 |
+| 221 | 519 | 76 | 49 | 13,9 dias | 9 |
 
 ### Por ano
 

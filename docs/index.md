@@ -14,6 +14,7 @@ Tudo para desenvolver, operar e usar a plataforma de participação digital do g
 [Comece por aqui](visao-geral/trilhas.md){ .md-button .md-button--primary }
 [Manual de Uso](manual/index.md){ .md-button }
 [Arquitetura](visao-geral/arquitetura.md){ .md-button }
+[:material-file-pdf-box: Baixar PDF](https://rochacarla.github.io/doc-bp/documentacao-brasil-participativo.pdf){ .md-button }
 
 </div>
 

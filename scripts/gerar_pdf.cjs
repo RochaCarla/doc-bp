@@ -52,14 +52,16 @@ function serve(dir) {
   return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve(server)));
 }
 
-const pageRule = (margin) => `@page { size: A4; margin: ${margin}; }`;
-const FOOTER =
-  '<div style="width:100%;font-size:7.5px;color:#636363;padding:0 16mm;' +
-  'display:flex;justify-content:space-between;font-family:Raleway,Arial,sans-serif;">' +
-  "<span>Brasil Participativo — Documentação técnica e manual de uso</span>" +
-  '<span><span class="pageNumber"></span></span></div>';
+const NO_BOXES = ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"]
+  .map((b) => `@${b} { content: none; }`).join(" ");
+const BOX_STYLE = "font-family: Raleway, Arial, sans-serif; font-size: 8pt; color: #636363;";
+const pageRule = (margin, numbered) => numbered
+  ? `@page { size: A4; margin: ${margin}; ${NO_BOXES}
+       @bottom-left { content: "Brasil Participativo — Documentação técnica e manual de uso"; ${BOX_STYLE} }
+       @bottom-right { content: counter(page); ${BOX_STYLE} } }`
+  : `@page { size: A4; margin: ${margin}; ${NO_BOXES} }`;
 
-async function renderPart(page, part, { margin, footer = false, outline = false }) {
+async function renderPart(page, part, { margin, numbered = false, outline = false }) {
   await page.evaluate((part, rule) => {
     document.body.classList.remove("bp-part-capa", "bp-part-rosto", "bp-part-miolo", "bp-part-contracapa");
     document.body.classList.add(`bp-part-${part}`);
@@ -70,14 +72,12 @@ async function renderPart(page, part, { margin, footer = false, outline = false 
       document.head.appendChild(style);
     }
     style.textContent = rule;
-  }, part, pageRule(margin));
+  }, part, pageRule(margin, numbered));
   return page.pdf({
     format: "A4",
     printBackground: true,
     preferCSSPageSize: true,
-    displayHeaderFooter: footer,
-    headerTemplate: "<span></span>",
-    footerTemplate: footer ? FOOTER : "<span></span>",
+    displayHeaderFooter: false,
     outline,
     tagged: true,
     timeout: 600000,
@@ -151,7 +151,7 @@ async function renderPart(page, part, { margin, footer = false, outline = false 
 
     const capa = await renderPart(page, "capa", { margin: "0" });
     const rosto = await renderPart(page, "rosto", { margin: "22mm 20mm 22mm 20mm" });
-    const miolo = await renderPart(page, "miolo", { margin: "18mm 16mm 20mm 16mm", footer: true, outline: true });
+    const miolo = await renderPart(page, "miolo", { margin: "18mm 16mm 20mm 16mm", numbered: true, outline: true });
     const verso = await renderPart(page, "contracapa", { margin: "0" });
 
     // O miolo é a base: mantém links internos e marcadores; as demais partes são inseridas.

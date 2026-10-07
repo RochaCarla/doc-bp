@@ -62,10 +62,19 @@
 }
 
 /* ---------------------------------------------------------------- Folha de rosto e apresentação */
+#print-site-cover-page .bp-front,
+#print-site-cover-page .bp-capa {
+  text-align: left;
+}
 .bp-front--rosto,
 .bp-front--apresentacao {
-  font-size: 10pt;
+  font-size: 9.5pt;
+  line-height: 1.45;
   color: #1b1b1b;
+}
+.bp-front--apresentacao p,
+.bp-front--apresentacao li {
+  margin: 0 0 2mm;
 }
 .bp-front--rosto {
   text-align: left;
@@ -78,7 +87,7 @@
 .md-typeset h1.bp-apresentacao__title {
   font-size: 26pt;
   color: #071d41;
-  margin: 10mm 0 2mm;
+  margin: 4mm 0 2mm;
   border: 0;
 }
 .bp-rosto__subtitle {
@@ -89,7 +98,7 @@
 .md-typeset h2.bp-rosto__heading {
   font-size: 12pt;
   color: #0c326f;
-  margin: 8mm 0 3mm;
+  margin: 6mm 0 2.5mm;
   border-bottom: 2px solid #1351b4;
   padding-bottom: 1mm;
 }
@@ -102,7 +111,7 @@
 .md-typeset table.bp-ficha th,
 .md-typeset table.bp-ficha td {
   border-bottom: 1px solid #e6e6e6;
-  padding: 1.6mm 2mm;
+  padding: 1.3mm 2mm;
   vertical-align: top;
   text-align: left;
   background: none;
@@ -210,6 +219,23 @@
   #print-site-cover-page {
     margin: 0 !important;
     padding: 0 !important;
+  }
+
+  /* Capa e contracapa ocupam exatamente uma folha A4 */
+  body.bp-part-capa .bp-capa,
+  body.bp-part-contracapa .bp-contracapa {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    height: 297mm;
+    min-height: 0;
+  }
+
+  /* O sumário abre o miolo sem página em branco antes (a capa está oculta nesta parte) */
+  body.bp-part-miolo #print-site-page > section.print-page:nth-of-type(2) {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
   }
 
   /* Tipografia de livro */

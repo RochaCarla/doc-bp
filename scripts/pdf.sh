@@ -14,9 +14,12 @@ OUT="dist/documentacao-brasil-participativo.pdf"
 
 docker compose run --rm docs build --strict -d dist/site
 
-if [ "$(uname -m)" = "arm64" ] && command -v node >/dev/null 2>&1 && [ -x "$CHROME" ]; then
+# Usa o Chrome local só com um Node nativo arm64 (um Node x64 roda sob Rosetta e trava o Chrome).
+NODE_ARCH="$(node -p process.arch 2>/dev/null || echo none)"
+if [ "$(uname -m)" = "arm64" ] && [ "$NODE_ARCH" = "arm64" ] && [ -x "$CHROME" ]; then
   PUPPETEER_SKIP_DOWNLOAD=1 npm install --silent --no-save --prefix .pdf puppeteer@25.12.0 pdf-lib@1.17.1
   NODE_PATH=.pdf/node_modules PUPPETEER_EXECUTABLE_PATH="$CHROME" node scripts/gerar_pdf.cjs dist/site "$OUT"
 else
+  [ "$(uname -m)" = "arm64" ] && echo "Aviso: Node $NODE_ARCH em Mac arm64; usando o container emulado (lento). Instale um Node arm64 para gerar em segundos."
   docker compose --profile pdf run --rm pdf
 fi
