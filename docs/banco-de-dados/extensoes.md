@@ -2,7 +2,7 @@
 icon: material/flag
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Extensões do Brasil Participativo
 
@@ -12,14 +12,22 @@ Tabelas criadas pelo Brasil Participativo e pelas gems instaladas no core (decid
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
 
 ```mermaid
-erDiagram
-    decidim_awesome_config ||--o{ decidim_awesome_config_constraints : ""
-    decidim_govbr_media_links_collections ||--o{ decidim_govbr_media_links : ""
-    decidim_govbr_user_proposals_statistic_settings ||--o{ decidim_govbr_user_proposals_statistics : ""
-    decidim_homes_homes ||--o{ decidim_homes_elements : ""
+flowchart LR
+    decidim_awesome_config["awesome_<br/>config"]
+    decidim_awesome_config_constraints["awesome_<br/>config_<br/>constraints"]
+    decidim_govbr_media_links["govbr_media_<br/>links"]
+    decidim_govbr_media_links_collections["govbr_media_<br/>links_<br/>collections"]
+    decidim_govbr_user_proposals_statistic_settings["govbr_user_<br/>proposals_<br/>statistic_<br/>settings"]
+    decidim_govbr_user_proposals_statistics["govbr_user_<br/>proposals_<br/>statistics"]
+    decidim_homes_elements["homes_<br/>elements"]
+    decidim_homes_homes["homes_homes"]
+    decidim_awesome_config --> decidim_awesome_config_constraints
+    decidim_govbr_media_links_collections --> decidim_govbr_media_links
+    decidim_govbr_user_proposals_statistic_settings --> decidim_govbr_user_proposals_statistics
+    decidim_homes_homes --> decidim_homes_elements
 ```
 
 ## Tabelas

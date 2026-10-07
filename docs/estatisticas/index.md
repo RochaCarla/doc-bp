@@ -1,9 +1,9 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T11:56:25+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
 
 # Estatísticas do Projeto
 
 !!! info "Coleta de 07/10/2026"
-    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
+    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. Série a partir de 01/04/2023. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
 
 
 Indicadores de atividade, colaboração e qualidade do `decidim-govbr`, organizados segundo métricas da comunidade [CHAOSS](https://chaoss.community/) e critérios do selo de boas práticas da [OpenSSF](https://www.bestpractices.dev/).
@@ -14,9 +14,9 @@ Indicadores de atividade, colaboração e qualidade do `decidim-govbr`, organiza
 
     ---
 
-    **4.730** no total
+    **4.675** desde abril de 2023
 
-    531 nos últimos 12 meses (-45% vs. 12 meses anteriores)
+    530 nos últimos 12 meses (-45% vs. 12 meses anteriores)
 
     [:octicons-arrow-right-24: Detalhes](commits.md)
 
@@ -56,14 +56,15 @@ Indicadores de atividade, colaboração e qualidade do `decidim-govbr`, organiza
 
 | Indicador | Valor |
 | --- | --- |
-| Primeiro commit | 20/09/2021 |
-| Commits (total / últimos 12 meses) | 4.730 / 531 |
-| Contribuidores (total / ativos em 12 meses) | 44 / 10 |
+| Início da série analisada | 01/04/2023 |
+| Primeiro commit do repositório (fora da série) | 20/09/2021 |
+| Commits (desde abr/2023 / últimos 12 meses) | 4.675 / 530 |
+| Contribuidores (desde abr/2023 / ativos em 12 meses) | 44 / 10 |
 | Merge requests (integrados / fechados sem merge / abertos) | 726 / 104 / 5 |
 | Issues (abertas / fechadas) | 221 / 519 |
 | Versões (tags estáveis / total de tags) | 120 / 123 |
 | Última versão estável | `v1.9.2` em 11/06/2026 |
-| Pipelines nos últimos 12 meses | 775 |
+| Pipelines nos últimos 12 meses | 774 |
 | Estrelas / forks no GitLab | 43 / 73 |
 | Linguagens (GitLab) | Ruby 44%, SCSS 20%, HTML+ERB 15%, JavaScript 14%, HTML 8% |
 

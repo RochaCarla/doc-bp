@@ -2,7 +2,7 @@
 icon: material/puzzle
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Componentes, taxonomia, conteúdo e arquivos
 
@@ -12,19 +12,49 @@ Componentes de cada espaço, escopos, áreas, categorias, anexos, blocos de cont
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
+
+**A partir de `active_storage_blobs`**
 
 ```mermaid
-erDiagram
-    active_storage_blobs ||--o{ active_storage_attachments : ""
-    active_storage_blobs ||--o{ active_storage_variant_records : ""
-    decidim_area_types ||--o{ decidim_areas : ""
-    decidim_attachment_collections ||--o{ decidim_attachments : ""
-    decidim_categories ||--o{ decidim_categorizations : ""
-    decidim_content_blocks ||--o{ decidim_content_block_attachments : ""
-    decidim_scope_types ||--o{ decidim_scopes : ""
-    decidim_scopes ||--o{ decidim_searchable_resources : ""
-    decidim_static_page_topics ||--o{ decidim_static_pages : ""
+flowchart TB
+    active_storage_attachments["active_<br/>storage_<br/>attachments"]
+    active_storage_blobs["active_<br/>storage_blobs"]
+    active_storage_variant_records["active_<br/>storage_<br/>variant_<br/>records"]
+    active_storage_blobs --> active_storage_attachments
+    active_storage_blobs --> active_storage_variant_records
+```
+
+**A partir de `decidim_scope_types`**
+
+```mermaid
+flowchart TB
+    decidim_scope_types["scope_types"]
+    decidim_scopes["scopes"]
+    decidim_searchable_resources["searchable_<br/>resources"]
+    decidim_scope_types --> decidim_scopes
+    decidim_scopes --> decidim_searchable_resources
+```
+
+**Outras relações**
+
+```mermaid
+flowchart LR
+    decidim_area_types["area_types"]
+    decidim_areas["areas"]
+    decidim_attachment_collections["attachment_<br/>collections"]
+    decidim_attachments["attachments"]
+    decidim_categories["categories"]
+    decidim_categorizations["categorizations"]
+    decidim_content_block_attachments["content_block_<br/>attachments"]
+    decidim_content_blocks["content_<br/>blocks"]
+    decidim_static_page_topics["static_page_<br/>topics"]
+    decidim_static_pages["static_pages"]
+    decidim_area_types --> decidim_areas
+    decidim_attachment_collections --> decidim_attachments
+    decidim_categories --> decidim_categorizations
+    decidim_content_blocks --> decidim_content_block_attachments
+    decidim_static_page_topics --> decidim_static_pages
 ```
 
 ## Tabelas

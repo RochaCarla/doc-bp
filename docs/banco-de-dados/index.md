@@ -2,7 +2,7 @@
 icon: material/database
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Banco de Dados
 
@@ -124,17 +124,17 @@ Cada seta indica que tabelas de um domínio referenciam tabelas de outro. O núm
 
 ```mermaid
 flowchart LR
-    D0["Organização, usuários e autenticação"]
-    D1["Processos participativos e instâncias"]
-    D2["Conferências, consultas e iniciativas"]
-    D3["Componentes, taxonomia, conteúdo e arquivos"]
-    D4["Propostas e texto participativo"]
-    D5["Reuniões e eventos"]
+    D0["Organização<br/>e usuários"]
+    D1["Processos<br/>e instâncias"]
+    D2["Conferências,<br/>consultas, iniciativas"]
+    D3["Componentes<br/>e conteúdo"]
+    D4["Propostas"]
+    D5["Reuniões"]
     D6["Formulários"]
-    D7["Comentários e interação"]
-    D8["Moderação, auditoria e métricas"]
-    D9["Orçamentos, debates, blog e outros módulos"]
-    D10["Extensões do Brasil Participativo"]
+    D7["Interação"]
+    D8["Moderação<br/>e auditoria"]
+    D9["Outros<br/>módulos"]
+    D10["Extensões"]
     D3 -->|17| D0
     D2 -->|12| D0
     D1 -->|11| D0
@@ -148,15 +148,38 @@ flowchart LR
     D10 -->|4| D0
     D8 -->|4| D3
     D2 -->|4| D3
-    D4 -->|3| D0
-    D9 -->|3| D0
-    D6 -->|2| D5
-    D10 -->|2| D4
-    D10 -->|2| D3
-    D5 -->|2| D3
 ```
 
-Referências isoladas (uma só coluna) foram omitidas do mapa.
+O diagrama mostra só as ligações com 4 ou mais referências. A tabela abaixo traz todas.
+
+??? note "Todas as referências entre domínios"
+
+    | De | Para | Referências |
+    |---|---|---:|
+    | Componentes, taxonomia, conteúdo e arquivos | Organização, usuários e autenticação | 17 |
+    | Conferências, consultas e iniciativas | Organização, usuários e autenticação | 12 |
+    | Processos participativos e instâncias | Organização, usuários e autenticação | 11 |
+    | Orçamentos, debates, blog e outros módulos | Componentes, taxonomia, conteúdo e arquivos | 11 |
+    | Processos participativos e instâncias | Componentes, taxonomia, conteúdo e arquivos | 8 |
+    | Moderação, auditoria e métricas | Organização, usuários e autenticação | 8 |
+    | Reuniões e eventos | Organização, usuários e autenticação | 6 |
+    | Reuniões e eventos | Formulários | 6 |
+    | Comentários e interação | Organização, usuários e autenticação | 5 |
+    | Propostas e texto participativo | Componentes, taxonomia, conteúdo e arquivos | 5 |
+    | Extensões do Brasil Participativo | Organização, usuários e autenticação | 4 |
+    | Moderação, auditoria e métricas | Componentes, taxonomia, conteúdo e arquivos | 4 |
+    | Conferências, consultas e iniciativas | Componentes, taxonomia, conteúdo e arquivos | 4 |
+    | Propostas e texto participativo | Organização, usuários e autenticação | 3 |
+    | Orçamentos, debates, blog e outros módulos | Organização, usuários e autenticação | 3 |
+    | Formulários | Reuniões e eventos | 2 |
+    | Extensões do Brasil Participativo | Propostas e texto participativo | 2 |
+    | Extensões do Brasil Participativo | Componentes, taxonomia, conteúdo e arquivos | 2 |
+    | Reuniões e eventos | Componentes, taxonomia, conteúdo e arquivos | 2 |
+    | Comentários e interação | Componentes, taxonomia, conteúdo e arquivos | 1 |
+    | Extensões do Brasil Participativo | Comentários e interação | 1 |
+    | Formulários | Organização, usuários e autenticação | 1 |
+    | Formulários | Componentes, taxonomia, conteúdo e arquivos | 1 |
+    | Organização, usuários e autenticação | Processos participativos e instâncias | 1 |
 
 ## Convenções do Decidim
 

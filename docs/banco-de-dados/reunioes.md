@@ -2,7 +2,7 @@
 icon: material/calendar
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Reuniões e eventos
 
@@ -12,16 +12,23 @@ Reuniões, inscrições, convites, pautas, enquetes ao vivo e eventos externos d
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
 
 ```mermaid
-erDiagram
-    decidim_meetings_agendas ||--o{ decidim_meetings_agenda_items : ""
-    decidim_meetings_meetings ||--o{ decidim_meetings_agendas : ""
-    decidim_meetings_meetings ||--o{ decidim_meetings_invites : ""
-    decidim_meetings_meetings ||--o{ decidim_meetings_polls : ""
-    decidim_meetings_meetings ||--o{ decidim_meetings_registrations : ""
-    decidim_meetings_meetings ||--o{ decidim_meetings_services : ""
+flowchart LR
+    decidim_meetings_agenda_items["meetings_<br/>agenda_items"]
+    decidim_meetings_agendas["meetings_<br/>agendas"]
+    decidim_meetings_invites["meetings_<br/>invites"]
+    decidim_meetings_meetings["meetings_<br/>meetings"]
+    decidim_meetings_polls["meetings_<br/>polls"]
+    decidim_meetings_registrations["meetings_<br/>registrations"]
+    decidim_meetings_services["meetings_<br/>services"]
+    decidim_meetings_agendas --> decidim_meetings_agenda_items
+    decidim_meetings_meetings --> decidim_meetings_agendas
+    decidim_meetings_meetings --> decidim_meetings_invites
+    decidim_meetings_meetings --> decidim_meetings_polls
+    decidim_meetings_meetings --> decidim_meetings_registrations
+    decidim_meetings_meetings --> decidim_meetings_services
 ```
 
 ## Tabelas

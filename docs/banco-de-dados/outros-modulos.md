@@ -2,7 +2,7 @@
 icon: material/view-grid-plus
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Orçamentos, debates, blog e outros módulos
 
@@ -12,16 +12,31 @@ Demais módulos nativos do Decidim: orçamentos, accountability, debates, blog, 
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
+
+**A partir de `decidim_budgets_budgets`**
 
 ```mermaid
-erDiagram
-    decidim_accountability_results ||--o{ decidim_accountability_timeline_entries : ""
-    decidim_accountability_statuses ||--o{ decidim_accountability_results : ""
-    decidim_budgets_budgets ||--o{ decidim_budgets_orders : ""
-    decidim_budgets_budgets ||--o{ decidim_budgets_projects : ""
-    decidim_budgets_orders ||--o{ decidim_budgets_line_items : ""
-    decidim_budgets_projects ||--o{ decidim_budgets_line_items : ""
+flowchart TB
+    decidim_budgets_budgets["budgets_<br/>budgets"]
+    decidim_budgets_line_items["budgets_line_<br/>items"]
+    decidim_budgets_orders["budgets_<br/>orders"]
+    decidim_budgets_projects["budgets_<br/>projects"]
+    decidim_budgets_budgets --> decidim_budgets_orders
+    decidim_budgets_budgets --> decidim_budgets_projects
+    decidim_budgets_orders --> decidim_budgets_line_items
+    decidim_budgets_projects --> decidim_budgets_line_items
+```
+
+**A partir de `decidim_accountability_statuses`**
+
+```mermaid
+flowchart TB
+    decidim_accountability_results["accountability_<br/>results"]
+    decidim_accountability_statuses["accountability_<br/>statuses"]
+    decidim_accountability_timeline_entries["accountability_<br/>timeline_<br/>entries"]
+    decidim_accountability_results --> decidim_accountability_timeline_entries
+    decidim_accountability_statuses --> decidim_accountability_results
 ```
 
 ## Tabelas

@@ -77,11 +77,29 @@ extra_css:
   - https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css
   - https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap
   - stylesheets/custom.css
+  - stylesheets/print.css
 
 plugins:
   - search:
       lang: pt
       separator: '[\s\u200b\-_,:!=\[\]()"\\`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  # Página única /print_page/ usada para gerar o PDF (deve ser o último plugin)
+  - print-site:
+      print_page_title: Brasil Participativo — Documentação completa
+      add_to_navigation: false
+      add_cover_page: true
+      cover_page_template: overrides/print/capa.tpl
+      add_table_of_contents: true
+      toc_title: Sumário
+      toc_depth: 2
+      enumerate_headings: true
+      enumerate_headings_depth: 2
+      enumerate_figures: false
+      add_full_urls: false
+      add_print_site_banner: false
+      path_to_pdf: https://rochacarla.github.io/doc-bp/documentacao-brasil-participativo.pdf
+      exclude:
+        - index.md
 
 markdown_extensions:
   - abbr
@@ -194,6 +212,9 @@ nav:
     - Texto participativo: inovacao/texto-participativo.md
     - Desempenho: inovacao/desempenho.md
     - Funcionalidades: inovacao/funcionalidades.md
+  - Estudos:
+    - estudos/index.md
+    - Orçamento do Povo: estudos/orcamento-do-povo.md
   - Estatísticas:
     - estatisticas/index.md
     - Commits: estatisticas/commits.md

@@ -58,13 +58,13 @@ O Brasil Participativo é construído sobre o [Decidim](https://decidim.org/), f
 ## Organização dos repositórios
 
 ```mermaid
-graph TD
-    UP[Decidim 0.27.2] -->|base sobrescrita| CORE[decidim-govbr<br/>Core da plataforma]
-    COMP[components-brasil-participativo<br/>Componentes LabLivre] -->|gems via Gemfile| CORE
-    MOB[bp-mobile<br/>decidim-module-mobile] -->|gem via Gemfile| CORE
-    EJ[Empurrando Juntas<br/>API externa] -->|integração via API| CORE
-    OPBP[API OP-BP<br/>WhatsApp/Telegram] -->|vínculo de conta via JWT| CORE
-    CORE -->|deploy Dataprev| PROD[brasilparticipativo.presidencia.gov.br]
+flowchart LR
+    UP[Decidim 0.27.2] --> CORE
+    COMP[Componentes<br/>LabLivre] --> CORE
+    MOB[decidim-mobile] --> CORE
+    EJ[Empurrando<br/>Juntas] -.->|API| CORE
+    OPBP[API OP-BP] -.->|JWT| CORE
+    CORE[decidim-govbr] --> PROD[Produção<br/>Dataprev]
 ```
 
 | Repositório | Descrição | Link |

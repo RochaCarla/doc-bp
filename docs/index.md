@@ -105,7 +105,7 @@ Entenda [o que é a plataforma](visao-geral/sobre.md), [suba o ambiente local](d
 <div><strong>1,94 mi</strong><span>usuários</span></div>
 <div><strong>12,4 mi</strong><span>acessos</span></div>
 <div><strong>463</strong><span>processos</span></div>
-<div><strong>4.730</strong><span>commits no core</span></div>
+<div><strong>4.675</strong><span>commits no core desde abril de 2023</span></div>
 <div><strong>44</strong><span>pessoas contribuidoras</span></div>
 </div>
 

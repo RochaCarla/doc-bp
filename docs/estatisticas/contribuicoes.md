@@ -1,9 +1,9 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T11:56:25+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
 
 # Contribuições
 
 !!! info "Coleta de 07/10/2026"
-    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
+    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. Série a partir de 01/04/2023. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
 
 
 !!! note "Identidades"
@@ -12,21 +12,28 @@
 ## Pessoas contribuindo
 
 ```mermaid
+---
+config:
+  xyChart:
+    width: 680
+    height: 400
+  themeVariables:
+    xyChart:
+      plotColorPalette: "#1351b4, #ff8c00"
+---
 xychart-beta
     title "Contribuidores ativos por ano"
-    x-axis ["2021", "2022", "2023", "2024", "2025", "2026"]
+    x-axis ["2023", "2024", "2025", "2026"]
     y-axis "Pessoas" 0 --> 31
-    bar [1, 1, 19, 28, 15, 9]
-    line [1, 0, 18, 20, 5, 0]
+    bar [19, 28, 15, 9]
+    line [19, 20, 5, 0]
 ```
 
-Barras: pessoas com ao menos um commit no ano. Linha: pessoas que fizeram o primeiro commit no ano.
+Barras azuis: pessoas com ao menos um commit no ano. Linha laranja: pessoas que fizeram o primeiro commit no ano.
 
 | Ano | Ativas | Novas | Retenção |
 | --- | ---: | ---: | ---: |
-| 2021 | 1 | 1 | — |
-| 2022 | 1 | 0 | 100% |
-| 2023 | 19 | 18 | 100% |
+| 2023 | 19 | 19 | — |
 | 2024 | 28 | 20 | 42% |
 | 2025 | 15 | 5 | 36% |
 | 2026 | 9 | 0 | 60% |
@@ -39,7 +46,7 @@ O **fator de ausência** (*Contributor Absence Factor*, CHAOSS) é o menor núme
 
 | Período | Fator de ausência | Contribuidores |
 | --- | ---: | ---: |
-| Todo o histórico | 4 | 44 |
+| Desde abril de 2023 | 4 | 44 |
 | Últimos 12 meses | 3 | 10 |
 
 === "Últimos 12 meses"
@@ -51,7 +58,7 @@ O **fator de ausência** (*Contributor Absence Factor*, CHAOSS) é o menor núme
     | 2 | Victor Gonçalves | 99 | 19% |
     | 3 | Gustavo Henrique | 76 | 14% |
     | 4 | Eduardo Nunes | 69 | 13% |
-    | 5 | Leonardo Lago Moreno | 67 | 13% |
+    | 5 | Leonardo Lago Moreno | 66 | 12% |
     | 6 | Maicon Mares | 58 | 11% |
     | 7 | Lucca Medeiros | 51 | 10% |
     | 8 | Geovane Freitas | 4 | 1% |
@@ -59,21 +66,21 @@ O **fator de ausência** (*Contributor Absence Factor*, CHAOSS) é o menor núme
     | 10 | chaydson | 2 | 0% |
 
 
-=== "Todo o histórico"
+=== "Desde abril de 2023"
 
 
     | # | Pessoa | Commits | Participação |
     | ---: | --- | ---: | ---: |
     | 1 | Victor Gonçalves | 584 | 16% |
     | 2 | Vitor Borges dos Santos | 575 | 16% |
-    | 3 | Gustavo Henrique | 481 | 13% |
+    | 3 | Gustavo Henrique | 481 | 14% |
     | 4 | Maicon Mares | 384 | 11% |
     | 5 | Leonardo Lago Moreno | 365 | 10% |
     | 6 | Eduardo Nunes | 360 | 10% |
-    | 7 | Geovane Freitas | 306 | 8% |
+    | 7 | Geovane Freitas | 306 | 9% |
     | 8 | Lucca Medeiros | 106 | 3% |
-    | 9 | Luiz Sanches | 92 | 3% |
-    | 10 | Gui-fga | 48 | 1% |
+    | 9 | Gui-fga | 48 | 1% |
+    | 10 | Guilherme Fernandes | 47 | 1% |
 
 
 ## Issues
@@ -87,6 +94,15 @@ Só issues públicas aparecem na API sem autenticação.
 ### Por ano
 
 ```mermaid
+---
+config:
+  xyChart:
+    width: 680
+    height: 400
+  themeVariables:
+    xyChart:
+      plotColorPalette: "#1351b4, #ff8c00"
+---
 xychart-beta
     title "Issues abertas e fechadas por ano"
     x-axis ["2023", "2024", "2025", "2026"]
@@ -95,7 +111,7 @@ xychart-beta
     line [98, 307, 92, 22]
 ```
 
-Barras: issues abertas no ano. Linha: issues fechadas no ano.
+Barras azuis: issues abertas no ano. Linha laranja: issues fechadas no ano.
 
 | Ano | Abertas | Fechadas | Mediana para fechar |
 | --- | ---: | ---: | ---: |
@@ -107,10 +123,20 @@ Barras: issues abertas no ano. Linha: issues fechadas no ano.
 ### Idade das issues abertas
 
 ```mermaid
-pie showData title Issues abertas por idade
-    "31 a 90 dias" : 4
-    "91 dias a 1 ano" : 29
-    "mais de 1 ano" : 188
+---
+config:
+  xyChart:
+    width: 680
+    height: 320
+  themeVariables:
+    xyChart:
+      plotColorPalette: "#1351b4, #ff8c00"
+---
+xychart-beta horizontal
+    title "Issues abertas por idade"
+    x-axis ["31 a 90 dias", "91 dias a 1 ano", "mais de 1 ano"]
+    y-axis "Issues" 0 --> 207
+    bar [4, 29, 188]
 ```
 
 ### Rótulos mais comuns nas issues abertas

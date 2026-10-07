@@ -2,7 +2,7 @@
 icon: material/comment-multiple
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Comentários e interação
 
@@ -12,16 +12,39 @@ Comentários, apoios, seguidores, notificações, mensagens privadas, lembretes 
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
+
+**A partir de `decidim_messaging_conversations`**
 
 ```mermaid
-erDiagram
-    decidim_comments_comments ||--o{ decidim_comments_comment_votes : ""
-    decidim_messaging_conversations ||--o{ decidim_messaging_messages : ""
-    decidim_messaging_conversations ||--o{ decidim_messaging_participations : ""
-    decidim_messaging_messages ||--o{ decidim_messaging_receipts : ""
-    decidim_reminders ||--o{ decidim_reminder_deliveries : ""
-    decidim_reminders ||--o{ decidim_reminder_records : ""
+flowchart TB
+    decidim_messaging_conversations["messaging_<br/>conversations"]
+    decidim_messaging_messages["messaging_<br/>messages"]
+    decidim_messaging_participations["messaging_<br/>participations"]
+    decidim_messaging_receipts["messaging_<br/>receipts"]
+    decidim_messaging_conversations --> decidim_messaging_messages
+    decidim_messaging_conversations --> decidim_messaging_participations
+    decidim_messaging_messages --> decidim_messaging_receipts
+```
+
+**A partir de `decidim_reminders`**
+
+```mermaid
+flowchart TB
+    decidim_reminder_deliveries["reminder_<br/>deliveries"]
+    decidim_reminder_records["reminder_<br/>records"]
+    decidim_reminders["reminders"]
+    decidim_reminders --> decidim_reminder_deliveries
+    decidim_reminders --> decidim_reminder_records
+```
+
+**Outras relações**
+
+```mermaid
+flowchart LR
+    decidim_comments_comment_votes["comments_<br/>comment_votes"]
+    decidim_comments_comments["comments_<br/>comments"]
+    decidim_comments_comments --> decidim_comments_comment_votes
 ```
 
 ## Tabelas

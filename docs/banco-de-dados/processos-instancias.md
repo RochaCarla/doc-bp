@@ -2,7 +2,7 @@
 icon: material/sitemap
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Processos participativos e instâncias
 
@@ -12,17 +12,34 @@ Espaços participativos usados em produção: processos (consultas, conferência
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
+
+**A partir de `decidim_participatory_process_groups`, `decidim_participatory_process_types`**
 
 ```mermaid
-erDiagram
-    decidim_assemblies ||--o{ decidim_assembly_members : ""
-    decidim_assemblies ||--o{ decidim_assembly_user_roles : ""
-    decidim_assemblies_types ||--o{ decidim_assemblies : ""
-    decidim_participatory_process_groups ||--o{ decidim_participatory_processes : ""
-    decidim_participatory_process_types ||--o{ decidim_participatory_processes : ""
-    decidim_participatory_processes ||--o{ decidim_participatory_process_steps : ""
-    decidim_participatory_processes ||--o{ decidim_participatory_process_user_roles : ""
+flowchart TB
+    decidim_participatory_process_groups["participatory_<br/>process_<br/>groups"]
+    decidim_participatory_process_steps["participatory_<br/>process_steps"]
+    decidim_participatory_process_types["participatory_<br/>process_types"]
+    decidim_participatory_process_user_roles["participatory_<br/>process_user_<br/>roles"]
+    decidim_participatory_processes["participatory_<br/>processes"]
+    decidim_participatory_process_groups --> decidim_participatory_processes
+    decidim_participatory_process_types --> decidim_participatory_processes
+    decidim_participatory_processes --> decidim_participatory_process_steps
+    decidim_participatory_processes --> decidim_participatory_process_user_roles
+```
+
+**A partir de `decidim_assemblies_types`**
+
+```mermaid
+flowchart TB
+    decidim_assemblies["assemblies"]
+    decidim_assemblies_types["assemblies_<br/>types"]
+    decidim_assembly_members["assembly_<br/>members"]
+    decidim_assembly_user_roles["assembly_user_<br/>roles"]
+    decidim_assemblies --> decidim_assembly_members
+    decidim_assemblies --> decidim_assembly_user_roles
+    decidim_assemblies_types --> decidim_assemblies
 ```
 
 ## Tabelas

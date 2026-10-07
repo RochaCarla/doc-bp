@@ -15,7 +15,7 @@ O módulo de accountability (prestação de contas) permite acompanhar a execuç
 ## Fluxo
 
 ```mermaid
-graph LR
+flowchart TB
     A[Proposta aceita] --> B[Resultado criado]
     B --> C[Atualização de progresso]
     C --> D[Conclusão]

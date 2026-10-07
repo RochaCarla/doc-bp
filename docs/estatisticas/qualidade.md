@@ -1,9 +1,9 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T11:56:25+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
 
 # Qualidade e Boas Práticas
 
 !!! info "Coleta de 07/10/2026"
-    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
+    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. Série a partir de 01/04/2023. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
 
 
 Indicadores de saúde de projeto de software livre, inspirados nas métricas da [CHAOSS](https://chaoss.community/) e nos critérios do [selo de boas práticas da OpenSSF](https://www.bestpractices.dev/pt-BR/criteria/0).
@@ -61,7 +61,7 @@ As faixas abaixo são referências adotadas nesta documentação para orientar a
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `develop` | 37 | 36 | 1 | 0 | 0 | 97% |
 | `main` | 123 | 111 | 12 | 0 | 0 | 90% |
-| todas as branches | 775 | 547 | 228 | 0 | 0 | 71% |
+| todas as branches | 774 | 546 | 228 | 0 | 0 | 71% |
 
 Taxa de sucesso = sucesso ÷ (sucesso + falha). Jobs com `allow_failure` não derrubam o pipeline.
 

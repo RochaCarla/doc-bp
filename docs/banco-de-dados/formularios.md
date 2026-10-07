@@ -2,7 +2,7 @@
 icon: material/form-select
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Formulários
 
@@ -12,20 +12,27 @@ Questionários, perguntas, condições de exibição e respostas dos componentes
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
 
 ```mermaid
-erDiagram
-    decidim_forms_answer_options ||--o{ decidim_forms_answer_choices : ""
-    decidim_forms_answer_options ||--o{ decidim_forms_display_conditions : ""
-    decidim_forms_answers ||--o{ decidim_forms_answer_choices : ""
-    decidim_forms_question_matrix_rows ||--o{ decidim_forms_answer_choices : ""
-    decidim_forms_questionnaires ||--o{ decidim_forms_answers : ""
-    decidim_forms_questionnaires ||--o{ decidim_forms_questions : ""
-    decidim_forms_questions ||--o{ decidim_forms_answer_options : ""
-    decidim_forms_questions ||--o{ decidim_forms_answers : ""
-    decidim_forms_questions ||--o{ decidim_forms_display_conditions : ""
-    decidim_forms_questions ||--o{ decidim_forms_question_matrix_rows : ""
+flowchart TB
+    decidim_forms_answer_choices["forms_answer_<br/>choices"]
+    decidim_forms_answer_options["forms_answer_<br/>options"]
+    decidim_forms_answers["forms_answers"]
+    decidim_forms_display_conditions["forms_display_<br/>conditions"]
+    decidim_forms_question_matrix_rows["forms_<br/>question_<br/>matrix_rows"]
+    decidim_forms_questionnaires["forms_<br/>questionnaires"]
+    decidim_forms_questions["forms_<br/>questions"]
+    decidim_forms_answer_options --> decidim_forms_answer_choices
+    decidim_forms_answer_options --> decidim_forms_display_conditions
+    decidim_forms_answers --> decidim_forms_answer_choices
+    decidim_forms_question_matrix_rows --> decidim_forms_answer_choices
+    decidim_forms_questionnaires --> decidim_forms_answers
+    decidim_forms_questionnaires --> decidim_forms_questions
+    decidim_forms_questions --> decidim_forms_answer_options
+    decidim_forms_questions --> decidim_forms_answers
+    decidim_forms_questions --> decidim_forms_display_conditions
+    decidim_forms_questions --> decidim_forms_question_matrix_rows
 ```
 
 ## Tabelas

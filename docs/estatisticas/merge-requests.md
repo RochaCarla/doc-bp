@@ -1,12 +1,12 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T11:56:25+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
 
 # Merge Requests
 
 !!! info "Coleta de 07/10/2026"
-    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
+    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. Série a partir de 01/04/2023. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
 
 
-| Total | Integrados | Fechados sem merge | Abertos |
+| Desde abr/2023 | Integrados | Fechados sem merge | Abertos |
 | ---: | ---: | ---: | ---: |
 | 835 | 726 | 104 | 5 |
 
@@ -25,10 +25,19 @@
 
 ## Por mês
 
-Barras: MRs abertos no mês. Linha: MRs integrados no mês.
+Barras azuis: MRs abertos no mês. Linha laranja: MRs integrados no mês.
 
 ```mermaid
-xychart-beta
+---
+config:
+  xyChart:
+    width: 680
+    height: 830
+  themeVariables:
+    xyChart:
+      plotColorPalette: "#1351b4, #ff8c00"
+---
+xychart-beta horizontal
     title "Merge requests por mês"
     x-axis ["nov/24", "dez/24", "jan/25", "fev/25", "mar/25", "abr/25", "mai/25", "jun/25", "jul/25", "ago/25", "set/25", "out/25", "nov/25", "dez/25", "jan/26", "fev/26", "mar/26", "abr/26", "mai/26", "jun/26", "jul/26", "ago/26", "set/26", "out/26"]
     y-axis "MRs" 0 --> 39

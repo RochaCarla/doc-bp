@@ -78,6 +78,13 @@ DOMAINS = [
      "decidim_awesome).",
      [r"^decidim_govbr_", r"^decidim_homes_", r"^decidim_awesome_", r"^decidim_ej_"]),
 ]
+MAP_MIN_REFS = 4
+MAP_LABELS = {
+    "organizacao-usuarios": "Organização<br/>e usuários", "processos-instancias": "Processos<br/>e instâncias",
+    "outros-espacos": "Conferências,<br/>consultas, iniciativas", "componentes-conteudo": "Componentes<br/>e conteúdo",
+    "propostas": "Propostas", "reunioes": "Reuniões", "formularios": "Formulários", "interacao": "Interação",
+    "moderacao-auditoria": "Moderação<br/>e auditoria", "outros-modulos": "Outros<br/>módulos", "extensoes": "Extensões",
+}
 OTHER_DOMAIN = ("outras", "Outras tabelas", "material/table", "Tabelas que não se encaixam nos demais domínios.", [])
 
 TABLE_DOCS = {
@@ -424,19 +431,102 @@ def note_for(table: str, c: dict, refs: dict, page_of: dict) -> str:
     return "; ".join(notes)
 
 
-def mermaid_er(tables: list[str], refs: dict) -> str | None:
+def wrap_label(name: str, width: int = 13) -> str:
+    """Quebra o nome da tabela em linhas curtas, nos sublinhados."""
+    lines, cur = [], ""
+    for part in name.split("_"):
+        cand = f"{cur}_{part}" if cur else part
+        if len(cand) > width and cur:
+            lines.append(cur + "_")
+            cur = part
+        else:
+            cur = cand
+    lines.append(cur)
+    return "<br/>".join(lines)
+
+
+def node_label(table: str) -> str:
+    return wrap_label(re.sub(r"^decidim_", "", table))
+
+
+def components_of(edges: set) -> list[set]:
+    adj = defaultdict(set)
+    for a, b in edges:
+        adj[a].add(b)
+        adj[b].add(a)
+    seen, comps = set(), []
+    for n in sorted(adj):
+        if n in seen:
+            continue
+        stack, comp = [n], set()
+        while stack:
+            x = stack.pop()
+            if x not in comp:
+                comp.add(x)
+                stack.extend(adj[x])
+        seen |= comp
+        comps.append(comp)
+    return comps
+
+
+def pick_direction(nodes: set, edges: set) -> str:
+    """Escolhe LR ou TB pela menor largura estimada (o diagrama cresce na vertical)."""
+    children = defaultdict(set)
+    parents = defaultdict(set)
+    for a, b in edges:
+        children[a].add(b)
+        parents[b].add(a)
+    level = {n: 0 for n in nodes if not parents[n]} or {min(nodes): 0}
+    frontier = list(level)
+    for _ in range(len(nodes)):
+        nxt = []
+        for n in frontier:
+            for c in children[n]:
+                if level.get(c, -1) < level[n] + 1 and level[n] + 1 < len(nodes):
+                    level[c] = level[n] + 1
+                    nxt.append(c)
+        frontier = nxt
+    for n in nodes:
+        level.setdefault(n, 0)
+    per_level = Counter(level.values())
+    longest = max(len(line) for n in nodes for line in node_label(n).split("<br/>"))
+    node_w = longest * 7.5 + 50
+    width_lr = (max(level.values()) + 1) * (node_w + 40)
+    width_tb = max(per_level.values()) * (node_w + 20)
+    return "LR" if width_lr <= width_tb else "TB"
+
+
+def relationship_diagrams(tables: list[str], refs: dict) -> list[tuple[str, str]]:
+    """Um diagrama por grupo de tabelas conectadas; pares soltos vão juntos num diagrama empilhado."""
     tset = set(tables)
     edges = set()
     for (src, _), (dst, kind) in refs.items():
         if kind != "poly" and src in tset and dst in tset and src != dst:
             edges.add((dst, src))
     if not edges:
-        return None
-    lines = ["```mermaid", "erDiagram"]
-    for parent, child in sorted(edges):
-        lines.append(f"    {parent} ||--o{{ {child} : \"\"")
-    lines.append("```")
-    return "\n".join(lines)
+        return []
+    diagrams, pairs = [], []
+    comps = sorted(components_of(edges), key=lambda c: (-len(c), min(c)))
+    for comp in comps:
+        comp_edges = sorted((a, b) for a, b in edges if a in comp)
+        if len(comp) <= 2:
+            pairs.extend(comp_edges)
+            continue
+        roots = sorted({a for a, _ in comp_edges} - {b for _, b in comp_edges}) or [min(comp)]
+        title = ", ".join(f"`{r}`" for r in roots)
+        lines = ["```mermaid", f"flowchart {pick_direction(comp, set(comp_edges))}"]
+        lines += [f'    {n}["{node_label(n)}"]' for n in sorted(comp)]
+        lines += [f"    {a} --> {b}" for a, b in comp_edges]
+        lines.append("```")
+        diagrams.append((f"A partir de {title}", "\n".join(lines)))
+    if pairs:
+        nodes = sorted({n for e in pairs for n in e})
+        lines = ["```mermaid", "flowchart LR"]
+        lines += [f'    {n}["{node_label(n)}"]' for n in nodes]
+        lines += [f"    {a} --> {b}" for a, b in pairs]
+        lines.append("```")
+        diagrams.append(("Outras relações", "\n".join(lines)))
+    return diagrams
 
 
 def render_domain(domain: tuple, tables: list[str], schema: dict, refs: dict, page_of: dict,
@@ -448,11 +538,15 @@ def render_domain(domain: tuple, tables: list[str], schema: dict, refs: dict, pa
     out.append(f"**{len(tables)} tabelas.** Schema versão `{meta['version']}`. "
                "Legenda da coluna **Referência**: *FK* = chave estrangeira declarada no banco; "
                "*→* = referência por convenção de nome (sem restrição no banco).\n")
-    er = mermaid_er(tables, refs)
-    if er:
+    diagrams = relationship_diagrams(tables, refs)
+    if diagrams:
         out.append("## Relacionamentos\n")
-        out.append("Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.\n")
-        out.append(er + "\n")
+        out.append("Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para "
+                   "outros domínios aparecem na coluna **Referência** das tabelas abaixo.\n")
+        for title, diagram in diagrams:
+            if len(diagrams) > 1:
+                out.append(f"**{title}**\n")
+            out.append(diagram + "\n")
     out.append("## Tabelas\n")
     out.append("| Tabela | Descrição | Colunas | Origem |\n|---|---|---:|---|")
     for t in tables:
@@ -529,17 +623,19 @@ def render_index(schema: dict, groups: dict, refs: dict, page_of: dict, table_or
         if a != b:
             flows[(a, b)] += 1
     titles = {d[0]: d[1] for d in DOMAINS + [OTHER_DOMAIN]}
-    short = {d[0]: f"D{i}" for i, d in enumerate(DOMAINS + [OTHER_DOMAIN])}
+    ids = {d[0]: f"D{i}" for i, d in enumerate(DOMAINS + [OTHER_DOMAIN])}
+    strong = {k: n for k, n in flows.items() if n >= MAP_MIN_REFS}
+    used = sorted({x for k in strong for x in k}, key=lambda d: [x[0] for x in DOMAINS + [OTHER_DOMAIN]].index(d))
     lines = ["```mermaid", "flowchart LR"]
-    for d in DOMAINS + [OTHER_DOMAIN]:
-        if d[0] in groups:
-            lines.append(f'    {short[d[0]]}["{titles[d[0]]}"]')
-    for (a, b), n in sorted(flows.items(), key=lambda x: -x[1]):
-        if n >= 2:
-            lines.append(f"    {short[a]} -->|{n}| {short[b]}")
+    lines += [f'    {ids[d]}["{MAP_LABELS.get(d, titles[d])}"]' for d in used]
+    lines += [f"    {ids[a]} -->|{n}| {ids[b]}" for (a, b), n in sorted(strong.items(), key=lambda x: -x[1])]
     lines.append("```")
     out.append("\n".join(lines) + "\n")
-    out.append("Referências isoladas (uma só coluna) foram omitidas do mapa.\n")
+    out.append(f"O diagrama mostra só as ligações com {MAP_MIN_REFS} ou mais referências. A tabela abaixo traz todas.\n")
+    out.append('??? note "Todas as referências entre domínios"\n')
+    out.append("    | De | Para | Referências |\n    |---|---|---:|")
+    out += [f"    | {titles[a]} | {titles[b]} | {n} |" for (a, b), n in sorted(flows.items(), key=lambda x: -x[1])]
+    out.append("")
 
     out.append("## Convenções do Decidim\n")
     out.append(

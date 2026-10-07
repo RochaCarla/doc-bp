@@ -2,7 +2,7 @@
 icon: material/account-key
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Organização, usuários e autenticação
 
@@ -12,24 +12,36 @@ Organizações (tenants), usuários, administradores de sistema, identidades de 
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
 
 ```mermaid
-erDiagram
-    decidim_organizations ||--o{ decidim_identities : ""
-    decidim_organizations ||--o{ decidim_users : ""
-    decidim_organizations ||--o{ decidim_verifications_csv_data : ""
-    decidim_organizations ||--o{ oauth_applications : ""
-    decidim_system_admins ||--o{ decidim_impersonation_logs : ""
-    decidim_users ||--o{ decidim_authorizations : ""
-    decidim_users ||--o{ decidim_identities : ""
-    decidim_users ||--o{ decidim_impersonation_logs : ""
-    decidim_users ||--o{ decidim_user_group_memberships : ""
-    decidim_users ||--o{ decidim_verifications_conflicts : ""
-    decidim_users ||--o{ oauth_access_grants : ""
-    decidim_users ||--o{ oauth_access_tokens : ""
-    oauth_applications ||--o{ oauth_access_grants : ""
-    oauth_applications ||--o{ oauth_access_tokens : ""
+flowchart LR
+    decidim_authorizations["authorizations"]
+    decidim_identities["identities"]
+    decidim_impersonation_logs["impersonation_<br/>logs"]
+    decidim_organizations["organizations"]
+    decidim_system_admins["system_admins"]
+    decidim_user_group_memberships["user_group_<br/>memberships"]
+    decidim_users["users"]
+    decidim_verifications_conflicts["verifications_<br/>conflicts"]
+    decidim_verifications_csv_data["verifications_<br/>csv_data"]
+    oauth_access_grants["oauth_access_<br/>grants"]
+    oauth_access_tokens["oauth_access_<br/>tokens"]
+    oauth_applications["oauth_<br/>applications"]
+    decidim_organizations --> decidim_identities
+    decidim_organizations --> decidim_users
+    decidim_organizations --> decidim_verifications_csv_data
+    decidim_organizations --> oauth_applications
+    decidim_system_admins --> decidim_impersonation_logs
+    decidim_users --> decidim_authorizations
+    decidim_users --> decidim_identities
+    decidim_users --> decidim_impersonation_logs
+    decidim_users --> decidim_user_group_memberships
+    decidim_users --> decidim_verifications_conflicts
+    decidim_users --> oauth_access_grants
+    decidim_users --> oauth_access_tokens
+    oauth_applications --> oauth_access_grants
+    oauth_applications --> oauth_access_tokens
 ```
 
 ## Tabelas

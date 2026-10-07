@@ -49,6 +49,8 @@ CC_RE = re.compile(r"^(?P<type>[A-Za-z]+)(\([^)]*\))?!?:\s*\S")
 TYPE_ALIASES = {"tests": "test", "refact": "refactor", "feature": "feat", "fixes": "fix", "docs": "docs"}
 PLACEHOLDER_EMAIL = re.compile(r"(@(exemplo|example)\.(com|org)$)|(\.local(domain)?$)|(^root@)")
 STABLE_TAG = re.compile(r"^v?\d+\.\d+\.\d+$")
+# Início da série analisada. O histórico anterior vem do fork original (Nomade) e da fase de implantação.
+SERIES_START = datetime(2023, 4, 1, tzinfo=timezone.utc)
 
 
 # --------------------------------------------------------------------------- utilitários
@@ -188,13 +190,14 @@ def sync_repo(cache: Path) -> Path:
 
 def collect_git(repo: Path, since: datetime) -> dict:
     sep = "\x1f"
-    raw = git(repo, "log", *BRANCHES, "--no-merges", f"--format=%H{sep}%an{sep}%ae{sep}%aI{sep}%s")
+    raw = git(repo, "log", *BRANCHES, "--no-merges", f"--since={SERIES_START.isoformat()}",
+              f"--format=%H{sep}%an{sep}%ae{sep}%aI{sep}%s")
     commits = []
     for line in raw.splitlines():
         sha, name, email, date, subject = line.split(sep, 4)
         commits.append({"sha": sha, "name": name, "email": email.lower(), "date": parse_dt(date), "subject": subject})
 
-    merges = int(git(repo, "rev-list", "--count", "--merges", *BRANCHES).strip())
+    merges = int(git(repo, "rev-list", "--count", "--merges", f"--since={SERIES_START.isoformat()}", *BRANCHES).strip())
     first = git(repo, "log", *BRANCHES, "--reverse", "--format=%aI", "--max-parents=0").splitlines()
 
     hotspots = Counter()
@@ -218,6 +221,7 @@ def collect_git(repo: Path, since: datetime) -> dict:
         "commits": commits,
         "merges": merges,
         "first_commit": parse_dt(first[0]) if first else None,
+        "series_first": min((c["date"] for c in commits), default=None),
         "hotspots": hotspots,
         "files": files,
         "show": show,
@@ -303,6 +307,7 @@ def commit_metrics(g: dict, now: datetime, since: datetime) -> dict:
         "non_merge": len(commits),
         "merges": g["merges"],
         "first_commit": g["first_commit"],
+        "series_first": g["series_first"],
         "recent": len(recent),
         "previous": len(previous),
         "by_year": dict(sorted(by_year.items())),
@@ -616,6 +621,7 @@ def ecosystem_metrics(http: Http, since: datetime) -> list[dict]:
 
 # --------------------------------------------------------------------------- avaliação
 
+BAR_COLOR, LINE_COLOR = "#1351b4", "#ff8c00"  # tokens blue-warm-vivid-70 e orange-vivid-30 do DS gov.br
 GREEN, YELLOW, RED, GRAY = ":green_circle:", ":yellow_circle:", ":red_circle:", ":white_circle:"
 
 
@@ -633,10 +639,15 @@ def yes(flag) -> str:
 
 # --------------------------------------------------------------------------- renderização
 
-def xychart(title: str, labels: list[str], series: list[tuple[str, list[float]]], y_label: str) -> str:
+def xychart(title: str, labels: list[str], series: list[tuple[str, list[float]]], y_label: str,
+            horizontal: bool = False) -> str:
+    """Gráfico de barras/linhas. Na horizontal, cada rótulo ocupa uma linha e o gráfico cresce para baixo."""
     top = max([max(vals) for _, vals in series if vals] + [1])
     top = int(math.ceil(top * 1.1))
-    lines = ["```mermaid", "xychart-beta", f'    title "{title}"',
+    height = max(320, 30 * len(labels) + 110) if horizontal else 400
+    lines = ["```mermaid", "---", "config:", "  xyChart:", "    width: 680", f"    height: {height}",
+             "  themeVariables:", "    xyChart:", f'      plotColorPalette: "{BAR_COLOR}, {LINE_COLOR}"', "---",
+             "xychart-beta" + (" horizontal" if horizontal else ""), f'    title "{title}"',
              "    x-axis [" + ", ".join(f'"{l}"' for l in labels) + "]",
              f'    y-axis "{y_label}" 0 --> {top}']
     for kind, vals in series:
@@ -645,11 +656,10 @@ def xychart(title: str, labels: list[str], series: list[tuple[str, list[float]]]
     return "\n".join(lines)
 
 
-def pie(title: str, items: list[tuple[str, float]]) -> str:
-    lines = ["```mermaid", f'pie showData title {title}']
-    lines += [f'    "{k}" : {v}' for k, v in items if v]
-    lines.append("```")
-    return "\n".join(lines)
+def hbar(title: str, items: list[tuple[str, float]], y_label: str) -> str:
+    """Distribuição por categoria em barras horizontais (substitui gráficos de pizza)."""
+    items = [(k, v) for k, v in items if v]
+    return xychart(title, [k for k, _ in items], [("bar", [v for _, v in items])], y_label, horizontal=True)
 
 
 def table(headers: list[str], rows: list[list], align: str | None = None) -> str:
@@ -665,6 +675,7 @@ def header(title: str, meta: dict) -> str:
             f"# {title}\n\n"
             f'!!! info "Coleta de {meta["generated_date"]}"\n'
             f"    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/{PROJECT_PATH}) e API pública do GitLab. "
+            f"Série a partir de {fmt_date(SERIES_START)}. "
             f"\"Últimos 12 meses\" = {meta['since_date']} a {meta['generated_date']}. "
             "Para atualizar, rode `python3 scripts/estatisticas.py`.\n\n")
 
@@ -681,7 +692,7 @@ def render_index(d: dict, meta: dict) -> str:
         "[OpenSSF](https://www.bestpractices.dev/).\n")
     out.append('<div class="grid cards" markdown>\n')
     cards = [
-        (":material-source-commit:", "Commits", f"**{fmt_int(c['total'])}** no total",
+        (":material-source-commit:", "Commits", f"**{fmt_int(c['total'])}** desde abril de 2023",
          f"{fmt_int(c['recent'])} nos últimos 12 meses ({trend_txt})", "commits.md"),
         (":material-source-pull:", "Merge requests", f"**{fmt_int(mr['states'].get('merged'))}** integrados",
          f"Mediana de {fmt_days(mr['recent']['ttm_median'])} até o merge (12 meses)", "merge-requests.md"),
@@ -697,9 +708,10 @@ def render_index(d: dict, meta: dict) -> str:
 
     out.append("## Resumo\n")
     out.append(table(["Indicador", "Valor"], [
-        ["Primeiro commit", fmt_date(c["first_commit"])],
-        ["Commits (total / últimos 12 meses)", f"{fmt_int(c['total'])} / {fmt_int(c['recent'])}"],
-        ["Contribuidores (total / ativos em 12 meses)", f"{fmt_int(ct['total'])} / {fmt_int(ct['recent'])}"],
+        ["Início da série analisada", fmt_date(SERIES_START)],
+        ["Primeiro commit do repositório (fora da série)", fmt_date(c["first_commit"])],
+        ["Commits (desde abr/2023 / últimos 12 meses)", f"{fmt_int(c['total'])} / {fmt_int(c['recent'])}"],
+        ["Contribuidores (desde abr/2023 / ativos em 12 meses)", f"{fmt_int(ct['total'])} / {fmt_int(ct['recent'])}"],
         ["Merge requests (integrados / fechados sem merge / abertos)",
          f"{fmt_int(mr['states'].get('merged'))} / {fmt_int(mr['states'].get('closed'))} / {fmt_int(mr['states'].get('opened'))}"],
         ["Issues (abertas / fechadas)", f"{fmt_int(iss['open'])} / {fmt_int(iss['closed'])}"],
@@ -758,7 +770,7 @@ def render_commits(d: dict, meta: dict) -> str:
     out = [header("Commits", meta)]
     out.append("Commits das branches `main` e `develop`, sem duplicar os que estão nas duas. "
                "Commits de merge são contados à parte.\n")
-    out.append(table(["Total", "Sem merge", "Merges", "Últimos 12 meses", "12 meses anteriores"],
+    out.append(table(["Desde abr/2023", "Sem merge", "Merges", "Últimos 12 meses", "12 meses anteriores"],
                      [[fmt_int(c["total"]), fmt_int(c["non_merge"]), fmt_int(c["merges"]),
                        fmt_int(c["recent"]), fmt_int(c["previous"])]], "rrrrr"))
     out.append("\n## Por ano\n")
@@ -767,7 +779,7 @@ def render_commits(d: dict, meta: dict) -> str:
                        [("bar", [c["by_year"][y] for y in years])], "Commits"))
     out.append("\n## Últimos 24 meses\n")
     out.append(xychart("Commits por mês (sem merge)", [month_label(m) for m in months],
-                       [("bar", [c["by_month"].get(m, 0) for m in months])], "Commits"))
+                       [("bar", [c["by_month"].get(m, 0) for m in months])], "Commits", horizontal=True))
     out.append('\n??? note "Dados mensais"\n')
     out.append("    " + table(["Mês", "Commits"], [[month_label(m), c["by_month"].get(m, 0)] for m in months], "lr")
                .replace("\n", "\n    ") + "\n")
@@ -781,7 +793,7 @@ def render_commits(d: dict, meta: dict) -> str:
     others = sum(c["types_recent"].values()) - sum(v for _, v in types)
     if others:
         types.append(("outros", others))
-    out.append(pie("Tipos de commit (12 meses)", types))
+    out.append(hbar("Tipos de commit (12 meses)", types, "Commits"))
     out.append("\n## Arquivos mais alterados (12 meses)\n")
     out.append("Arquivos que mais aparecem em commits. Muitas alterações no mesmo arquivo indicam pontos de "
                "concentração de mudanças (*hotspots*), candidatos a refatoração ou a mais testes.\n")
@@ -796,7 +808,7 @@ def render_mrs(d: dict, meta: dict) -> str:
     months = last_months(now, 24)
     r = mr["recent"]
     out = [header("Merge Requests", meta)]
-    out.append(table(["Total", "Integrados", "Fechados sem merge", "Abertos"],
+    out.append(table(["Desde abr/2023", "Integrados", "Fechados sem merge", "Abertos"],
                      [[fmt_int(mr["total"]), fmt_int(mr["states"].get("merged")),
                        fmt_int(mr["states"].get("closed")), fmt_int(mr["states"].get("opened"))]], "rrrr"))
     out.append("\n## Últimos 12 meses\n")
@@ -811,10 +823,10 @@ def render_mrs(d: dict, meta: dict) -> str:
         ["Autores distintos", fmt_int(r["authors"]), "Quantas pessoas propuseram mudanças"],
     ], "lrl"))
     out.append("\n## Por mês\n")
-    out.append("Barras: MRs abertos no mês. Linha: MRs integrados no mês.\n")
+    out.append("Barras azuis: MRs abertos no mês. Linha laranja: MRs integrados no mês.\n")
     out.append(xychart("Merge requests por mês", [month_label(m) for m in months],
                        [("bar", [mr["created_month"].get(m, 0) for m in months]),
-                        ("line", [mr["merged_month"].get(m, 0) for m in months])], "MRs"))
+                        ("line", [mr["merged_month"].get(m, 0) for m in months])], "MRs", horizontal=True))
     out.append("\n## Por ano\n")
     out.append(table(["Ano", "Abertos", "Integrados", "Aceitação", "Mediana até merge", "P90 até merge",
                       "Com comentário", "Auto-merge", "Autores"],
@@ -850,7 +862,7 @@ def render_contrib(d: dict, meta: dict) -> str:
     years = ct["by_year"]
     out.append(xychart("Contribuidores ativos por ano", [str(y["year"]) for y in years],
                        [("bar", [y["active"] for y in years]), ("line", [y["new"] for y in years])], "Pessoas"))
-    out.append("\nBarras: pessoas com ao menos um commit no ano. Linha: pessoas que fizeram o primeiro commit no ano.\n")
+    out.append("\nBarras azuis: pessoas com ao menos um commit no ano. Linha laranja: pessoas que fizeram o primeiro commit no ano.\n")
     out.append(table(["Ano", "Ativas", "Novas", "Retenção"],
                      [[y["year"], y["active"], y["new"], fmt_pct(y["retained_pct"])] for y in years], "lrrr"))
     out.append("\n*Retenção*: parcela das pessoas ativas no ano anterior que continuaram contribuindo.\n")
@@ -858,13 +870,13 @@ def render_contrib(d: dict, meta: dict) -> str:
     out.append(f"O **fator de ausência** (*Contributor Absence Factor*, CHAOSS) é o menor número de pessoas que "
                f"somam metade dos commits. Quanto menor, maior o risco de o projeto parar se essas pessoas saírem.\n")
     out.append(table(["Período", "Fator de ausência", "Contribuidores"],
-                     [["Todo o histórico", ct["bus_factor_all"], ct["total"]],
+                     [["Desde abril de 2023", ct["bus_factor_all"], ct["total"]],
                       ["Últimos 12 meses", ct["bus_factor_recent"], ct["recent"]]], "lrr"))
     out.append("\n=== \"Últimos 12 meses\"\n\n")
     out.append("    " + table(["#", "Pessoa", "Commits", "Participação"],
                               [[i, n, c, fmt_pct(p)] for i, (n, c, p) in enumerate(ct["top_recent"], 1)], "rlrr")
                .replace("\n", "\n    "))
-    out.append("\n\n=== \"Todo o histórico\"\n\n")
+    out.append("\n\n=== \"Desde abril de 2023\"\n\n")
     out.append("    " + table(["#", "Pessoa", "Commits", "Participação"],
                               [[i, n, c, fmt_pct(p)] for i, (n, c, p) in enumerate(ct["top_all"], 1)], "rlrr")
                .replace("\n", "\n    "))
@@ -879,11 +891,11 @@ def render_contrib(d: dict, meta: dict) -> str:
     out.append(xychart("Issues abertas e fechadas por ano", [str(y["year"]) for y in iss["years"]],
                        [("bar", [y["opened"] for y in iss["years"]]), ("line", [y["closed"] for y in iss["years"]])],
                        "Issues"))
-    out.append("\nBarras: issues abertas no ano. Linha: issues fechadas no ano.\n")
+    out.append("\nBarras azuis: issues abertas no ano. Linha laranja: issues fechadas no ano.\n")
     out.append(table(["Ano", "Abertas", "Fechadas", "Mediana para fechar"],
                      [[y["year"], y["opened"], y["closed"], fmt_days(y["ttc_median"])] for y in iss["years"]], "lrrr"))
     out.append("\n### Idade das issues abertas\n")
-    out.append(pie("Issues abertas por idade", list(iss["open_age_buckets"].items())))
+    out.append(hbar("Issues abertas por idade", list(iss["open_age_buckets"].items()), "Issues"))
     if iss["open_labels"]:
         out.append("\n### Rótulos mais comuns nas issues abertas\n")
         out.append(table(["Rótulo", "Issues"], [[f"`{l}`", n] for l, n in iss["open_labels"]], "lr"))
@@ -1020,10 +1032,13 @@ def main() -> int:
     print("GitLab: projeto, MRs, issues, pipelines e tags…", file=sys.stderr)
     project, _ = http.get(f"{API}{base}")
     languages, _ = http.get(f"{API}{base}/languages")
-    mrs = http.paginate(f"{base}/merge_requests", {"state": "all", "scope": "all"})
-    issues = http.paginate(f"{base}/issues", {"state": "all", "scope": "all"})
+    mrs = http.paginate(f"{base}/merge_requests", {"state": "all", "scope": "all",
+                                                  "created_after": SERIES_START.isoformat()})
+    issues = http.paginate(f"{base}/issues", {"state": "all", "scope": "all",
+                                              "created_after": SERIES_START.isoformat()})
     pipelines = http.paginate(f"{base}/pipelines", {"updated_after": since.isoformat()})
-    tags = http.paginate(f"{base}/repository/tags", {})
+    tags = [t for t in http.paginate(f"{base}/repository/tags", {})
+            if (parse_dt((t.get("commit") or {}).get("committed_date")) or SERIES_START) >= SERIES_START]
     print("GitLab: componentes…", file=sys.stderr)
     ecosystem = ecosystem_metrics(http, since)
 

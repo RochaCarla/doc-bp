@@ -46,7 +46,7 @@ flowchart LR
 A mesma base de código roda em três papéis. O navegador recebe HTML pronto; não há uma aplicação de front-end separada.
 
 ```mermaid
-flowchart LR
+flowchart TB
     NAV[Navegador<br/>HTML + JS + CSS]
     WEB[web<br/>Puma + Rails]
     WRK[worker<br/>Sidekiq]
@@ -118,26 +118,18 @@ flowchart TB
 Exemplo: um participante envia uma proposta.
 
 ```mermaid
-sequenceDiagram
-    participant N as Navegador
-    participant MW as Middleware
-    participant CT as Controller
-    participant PM as Permissions
-    participant FM as Form
-    participant CM as Command
-    participant DB as PostgreSQL
-    participant SQ as Sidekiq
-
-    N->>MW: POST /processes/:slug/f/:id/proposals
-    MW->>MW: Identifica a organização pelo host
-    MW->>CT: ProposalsController#create
-    CT->>PM: Pode criar proposta?
-    CT->>FM: Monta e valida o ProposalForm
-    CT->>CM: CreateProposal.call(form)
-    CM->>DB: INSERT (transação)
-    CM->>SQ: Enfileira notificações
-    CM-->>CT: broadcast(:ok)
-    CT-->>N: Redireciona e renderiza HTML
+flowchart TB
+    S1["1 · Navegador<br/>POST /processes/:slug/f/:id/proposals"]
+    S2["2 · Middleware<br/>identifica a organização pelo host"]
+    S3["3 · ProposalsController#create"]
+    S4["4 · Permissions<br/>o usuário pode criar?"]
+    S5["5 · ProposalForm<br/>valida os dados"]
+    S6["6 · CreateProposal<br/>executa a regra de negócio"]
+    S7[("7 · PostgreSQL<br/>INSERT em transação")]
+    S8[["8 · Sidekiq<br/>notificações em segundo plano"]]
+    S9["9 · Resposta<br/>redireciona e renderiza o HTML"]
+    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7 --> S9
+    S6 -.-> S8
 ```
 
 **Multi-organização**: um middleware do Decidim lê o host da requisição e carrega a organização correspondente (`decidim_organizations.host`). Todas as consultas são filtradas por essa organização.
@@ -175,7 +167,7 @@ Quando o core tem um arquivo com o mesmo caminho de um arquivo da gem, o Rails c
 O front-end é **renderizado no servidor**: o Rails monta o HTML com ERB e Cells, e o navegador carrega CSS e JavaScript compilados pelo Webpacker.
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph Servidor
         ERB[Views ERB] --> HTML
         CELL[Cells] --> HTML

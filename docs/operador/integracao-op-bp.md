@@ -5,24 +5,19 @@ A integração OP-BP permite que um participante que interage com a plataforma p
 ## Fluxo
 
 ```mermaid
-sequenceDiagram
-    participant U as Participante
-    participant C as Canal (WhatsApp/Telegram)
-    participant API as API OP-BP
-    participant BP as Brasil Participativo
-    participant G as gov.br
-
-    API->>C: Envia link /external_auth/link?token=JWT
-    U->>BP: Abre o link
-    alt sem sessão
-        BP->>U: Redireciona para /users/sign_in?external=true
-        U->>G: Login gov.br (tela simplificada, auto-submit)
-        G-->>BP: Retorno OIDC
-    end
-    BP->>BP: Valida JWT (HS256, exige exp)
-    BP->>BP: Grava extended_data.external_source_id
-    BP->>API: POST callback_url (Bearer) com source_id, external_id, cpf, name, email
-    BP-->>U: Tela de sucesso + botão "Voltar para o WhatsApp"
+flowchart TB
+    A["1 · A API OP-BP envia o link pelo canal<br/>/external_auth/link?token=JWT"]
+    B["2 · O participante abre o link"]
+    C{"Já está logado no<br/>Brasil Participativo?"}
+    D["3 · Login gov.br<br/>tela simplificada, com envio automático"]
+    E["4 · O core valida o JWT<br/>HS256, com exp obrigatório"]
+    F["5 · Grava external_source_id<br/>em extended_data do usuário"]
+    G["6 · Callback para a API OP-BP<br/>Bearer + source_id, external_id,<br/>cpf, name, email"]
+    H["7 · Tela de sucesso<br/>botão Voltar para o WhatsApp"]
+    A --> B --> C
+    C -->|não| D --> E
+    C -->|sim| E
+    E --> F --> G --> H
 ```
 
 ## Conteúdo do JWT

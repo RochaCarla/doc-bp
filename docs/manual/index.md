@@ -68,7 +68,7 @@ Guias passo a passo para quem administra processos participativos no Brasil Part
 ## Ordem recomendada
 
 ```mermaid
-flowchart LR
+flowchart TB
     A[Criar o processo] --> B[Configurar etapas]
     B --> C[Criar componentes]
     C --> D[Montar a Página Inicial]

@@ -18,3 +18,7 @@ docs/relatorios/output/
 
 # Cache do gerador de estatísticas
 .cache/
+
+# PDF gerado localmente
+dist/
+.pdf/

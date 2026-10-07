@@ -11,7 +11,7 @@ Guia para contribuir com o `decidim-govbr`.
 ## Fluxo de contribuição
 
 ```mermaid
-graph LR
+flowchart TB
     A[Issue] --> B[Branch a partir de develop]
     B --> C[Desenvolver + testes]
     C --> D[MR para develop]

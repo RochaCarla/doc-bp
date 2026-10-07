@@ -2,7 +2,7 @@
 icon: material/shield-search
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Moderação, auditoria e métricas
 
@@ -12,12 +12,16 @@ Denúncias, moderações, bloqueios de usuários, log de ações administrativas
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
 
 ```mermaid
-erDiagram
-    decidim_moderations ||--o{ decidim_reports : ""
-    decidim_user_moderations ||--o{ decidim_user_reports : ""
+flowchart LR
+    decidim_moderations["moderations"]
+    decidim_reports["reports"]
+    decidim_user_moderations["user_<br/>moderations"]
+    decidim_user_reports["user_reports"]
+    decidim_moderations --> decidim_reports
+    decidim_user_moderations --> decidim_user_reports
 ```
 
 ## Tabelas

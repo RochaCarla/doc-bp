@@ -16,18 +16,13 @@ Componente que integra o Brasil Participativo com o [Empurrando Juntas (EJ)](htt
 ## Arquitetura de Integração
 
 ```mermaid
-sequenceDiagram
-    participant U as Participante
-    participant D as Decidim (decidim-ej)
-    participant E as EJ (API)
-
-    U->>D: Acessa componente EJ no espaço
-    D->>E: GET /api/conversations/{id}
-    E-->>D: Dados da conversa + votos
-    D-->>U: Renderiza UI com conversa
-    U->>D: Vota (concordo/discordo)
-    D->>E: POST /api/votes
-    E-->>D: Voto registrado
+flowchart TB
+    A["1 · O participante abre o componente EJ<br/>dentro do espaço participativo"]
+    B["2 · O decidim-ej busca a conversa<br/>na API do EJ"]
+    C["3 · A conversa é exibida<br/>com a interface do Decidim"]
+    D["4 · O participante vota<br/>concorda, discorda ou passa"]
+    E["5 · O decidim-ej envia o voto<br/>para a API do EJ"]
+    A --> B --> C --> D --> E
 ```
 
 ## Configuração

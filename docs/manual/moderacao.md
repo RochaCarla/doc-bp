@@ -11,7 +11,7 @@ Como moderar propostas, comentários e reuniões publicados pela sociedade no Br
 ## Como funciona
 
 ```mermaid
-flowchart LR
+flowchart TB
     A[Nova proposta<br/>ou comentário] --> B[Bot avisa no<br/>grupo do Telegram]
     B --> C{Moderador<br/>verifica}
     C -->|OK| D[Reage com 👍]

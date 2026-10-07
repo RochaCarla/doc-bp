@@ -19,7 +19,10 @@ docker compose up
 docker compose run --rm docs build --strict
 
 # Without Docker
-pip install "mkdocs>=1.6,<2" "mkdocs-material==9.7.7" && mkdocs serve
+pip install "mkdocs>=1.6,<2" "mkdocs-material==9.7.7" "mkdocs-print-site-plugin==2.9" && mkdocs serve
+
+# E-book PDF (print_page + Puppeteer) → dist/
+./scripts/pdf.sh
 
 # Regenerate generated sections (stdlib-only Python; clones decidim-govbr into .cache/)
 python3 scripts/estatisticas.py      # docs/estatisticas/

@@ -15,7 +15,7 @@ O módulo de orçamento participativo permite que cidadãos votem em projetos de
 ## Fluxo de Votação
 
 ```mermaid
-graph LR
+flowchart TB
     A[Participante acessa] --> B[Seleciona projetos]
     B --> C{Dentro do limite?}
     C -->|Sim| D[Confirma voto]

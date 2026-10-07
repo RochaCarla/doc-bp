@@ -1,31 +1,49 @@
-<!-- Gerado por scripts/estatisticas.py em 2026-10-07T11:56:25+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/estatisticas.py em 2026-10-07T13:21:12+00:00. Não edite à mão. -->
 
 # Commits
 
 !!! info "Coleta de 07/10/2026"
-    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
+    Branches `main` e `develop` do [decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) e API pública do GitLab. Série a partir de 01/04/2023. "Últimos 12 meses" = 07/10/2025 a 07/10/2026. Para atualizar, rode `python3 scripts/estatisticas.py`.
 
 
 Commits das branches `main` e `develop`, sem duplicar os que estão nas duas. Commits de merge são contados à parte.
 
-| Total | Sem merge | Merges | Últimos 12 meses | 12 meses anteriores |
+| Desde abr/2023 | Sem merge | Merges | Últimos 12 meses | 12 meses anteriores |
 | ---: | ---: | ---: | ---: | ---: |
-| 4.730 | 3.611 | 1.119 | 531 | 961 |
+| 4.675 | 3.557 | 1.118 | 530 | 962 |
 
 ## Por ano
 
 ```mermaid
+---
+config:
+  xyChart:
+    width: 680
+    height: 400
+  themeVariables:
+    xyChart:
+      plotColorPalette: "#1351b4, #ff8c00"
+---
 xychart-beta
     title "Commits por ano (sem merge)"
-    x-axis ["2021", "2022", "2023", "2024", "2025", "2026"]
+    x-axis ["2023", "2024", "2025", "2026"]
     y-axis "Commits" 0 --> 2199
-    bar [8, 35, 284, 1999, 932, 353]
+    bar [273, 1999, 932, 353]
 ```
 
 ## Últimos 24 meses
 
 ```mermaid
-xychart-beta
+---
+config:
+  xyChart:
+    width: 680
+    height: 830
+  themeVariables:
+    xyChart:
+      plotColorPalette: "#1351b4, #ff8c00"
+---
+xychart-beta horizontal
     title "Commits por mês (sem merge)"
     x-axis ["nov/24", "dez/24", "jan/25", "fev/25", "mar/25", "abr/25", "mai/25", "jun/25", "jul/25", "ago/25", "set/25", "out/25", "nov/25", "dez/25", "jan/26", "fev/26", "mar/26", "abr/26", "mai/26", "jun/26", "jul/26", "ago/26", "set/26", "out/26"]
     y-axis "Commits" 0 --> 143
@@ -67,9 +85,7 @@ Percentual de commits cujo título segue o formato [Conventional Commits](https:
 
 | Ano | Conventional Commits | Reverts |
 | --- | ---: | ---: |
-| 2021 | 0% | 0 |
-| 2022 | 0% | 0 |
-| 2023 | 54% | 7 |
+| 2023 | 56% | 7 |
 | 2024 | 85% | 11 |
 | 2025 | 94% | 3 |
 | 2026 | 95% | 6 |
@@ -77,16 +93,20 @@ Percentual de commits cujo título segue o formato [Conventional Commits](https:
 ### Tipos de commit nos últimos 12 meses
 
 ```mermaid
-pie showData title Tipos de commit (12 meses)
-    "fix" : 220
-    "feat" : 142
-    "test" : 52
-    "refactor" : 51
-    "chore" : 33
-    "fora do padrão" : 14
-    "revert" : 7
-    "docs" : 3
-    "outros" : 9
+---
+config:
+  xyChart:
+    width: 680
+    height: 380
+  themeVariables:
+    xyChart:
+      plotColorPalette: "#1351b4, #ff8c00"
+---
+xychart-beta horizontal
+    title "Tipos de commit (12 meses)"
+    x-axis ["fix", "feat", "test", "refactor", "chore", "fora do padrão", "revert", "docs", "outros"]
+    y-axis "Commits" 0 --> 241
+    bar [219, 142, 52, 51, 33, 14, 7, 3, 9]
 ```
 
 ## Arquivos mais alterados (12 meses)
@@ -96,7 +116,7 @@ Arquivos que mais aparecem em commits. Muitas alterações no mesmo arquivo indi
 | Arquivo | Commits |
 | --- | ---: |
 | `app/views/layouts/decidim/_main_footer.html.erb` | 31 |
-| `spec/controllers/assemblies_controller_spec.rb` | 26 |
+| `spec/controllers/assemblies_controller_spec.rb` | 25 |
 | `app/controllers/api/home_processes_controller.rb` | 22 |
 | `Gemfile.lock` | 20 |
 | `app/services/external_auth_service.rb` | 18 |

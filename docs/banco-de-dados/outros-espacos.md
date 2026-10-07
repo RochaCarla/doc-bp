@@ -2,7 +2,7 @@
 icon: material/account-group
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Conferências, consultas e iniciativas
 
@@ -12,25 +12,56 @@ Espaços participativos do Decidim instalados no core. Em produção, as modalid
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
+
+**A partir de `decidim_conferences`**
 
 ```mermaid
-erDiagram
-    decidim_conference_speaker_conference_meetings ||--o{ decidim_conferences_conference_meeting_registration_types : ""
-    decidim_conference_speakers ||--o{ decidim_conference_speaker_conference_meetings : ""
-    decidim_conferences ||--o{ decidim_conference_speakers : ""
-    decidim_conferences ||--o{ decidim_conference_user_roles : ""
-    decidim_conferences ||--o{ decidim_conferences_conference_invites : ""
-    decidim_conferences ||--o{ decidim_conferences_conference_registrations : ""
-    decidim_conferences ||--o{ decidim_conferences_media_links : ""
-    decidim_conferences ||--o{ decidim_conferences_partners : ""
-    decidim_conferences ||--o{ decidim_conferences_registration_types : ""
-    decidim_consultations ||--o{ decidim_consultations_questions : ""
-    decidim_consultations_questions ||--o{ decidim_consultations_response_groups : ""
-    decidim_consultations_questions ||--o{ decidim_consultations_responses : ""
-    decidim_consultations_response_groups ||--o{ decidim_consultations_responses : ""
-    decidim_consultations_responses ||--o{ decidim_consultations_votes : ""
-    decidim_initiatives ||--o{ decidim_initiatives_votes : ""
+flowchart LR
+    decidim_conference_speaker_conference_meetings["conference_<br/>speaker_<br/>conference_<br/>meetings"]
+    decidim_conference_speakers["conference_<br/>speakers"]
+    decidim_conference_user_roles["conference_<br/>user_roles"]
+    decidim_conferences["conferences"]
+    decidim_conferences_conference_invites["conferences_<br/>conference_<br/>invites"]
+    decidim_conferences_conference_meeting_registration_types["conferences_<br/>conference_<br/>meeting_<br/>registration_<br/>types"]
+    decidim_conferences_conference_registrations["conferences_<br/>conference_<br/>registrations"]
+    decidim_conferences_media_links["conferences_<br/>media_links"]
+    decidim_conferences_partners["conferences_<br/>partners"]
+    decidim_conferences_registration_types["conferences_<br/>registration_<br/>types"]
+    decidim_conference_speaker_conference_meetings --> decidim_conferences_conference_meeting_registration_types
+    decidim_conference_speakers --> decidim_conference_speaker_conference_meetings
+    decidim_conferences --> decidim_conference_speakers
+    decidim_conferences --> decidim_conference_user_roles
+    decidim_conferences --> decidim_conferences_conference_invites
+    decidim_conferences --> decidim_conferences_conference_registrations
+    decidim_conferences --> decidim_conferences_media_links
+    decidim_conferences --> decidim_conferences_partners
+    decidim_conferences --> decidim_conferences_registration_types
+```
+
+**A partir de `decidim_consultations`**
+
+```mermaid
+flowchart TB
+    decidim_consultations["consultations"]
+    decidim_consultations_questions["consultations_<br/>questions"]
+    decidim_consultations_response_groups["consultations_<br/>response_<br/>groups"]
+    decidim_consultations_responses["consultations_<br/>responses"]
+    decidim_consultations_votes["consultations_<br/>votes"]
+    decidim_consultations --> decidim_consultations_questions
+    decidim_consultations_questions --> decidim_consultations_response_groups
+    decidim_consultations_questions --> decidim_consultations_responses
+    decidim_consultations_response_groups --> decidim_consultations_responses
+    decidim_consultations_responses --> decidim_consultations_votes
+```
+
+**Outras relações**
+
+```mermaid
+flowchart LR
+    decidim_initiatives["initiatives"]
+    decidim_initiatives_votes["initiatives_<br/>votes"]
+    decidim_initiatives --> decidim_initiatives_votes
 ```
 
 ## Tabelas

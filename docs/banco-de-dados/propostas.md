@@ -2,7 +2,7 @@
 icon: material/lightbulb-on
 ---
 
-<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T12:08:06+00:00. Não edite à mão. -->
+<!-- Gerado por scripts/banco_de_dados.py em 2026-10-07T13:00:08+00:00. Não edite à mão. -->
 
 # Propostas e texto participativo
 
@@ -12,14 +12,28 @@ Propostas, votos, emendas, coautorias, rascunhos colaborativos, avaliação e te
 
 ## Relacionamentos
 
-Relações entre as tabelas deste domínio. Referências para outros domínios aparecem nas tabelas abaixo.
+Cada seta vai da tabela referenciada para a tabela que guarda a referência. Referências para outros domínios aparecem na coluna **Referência** das tabelas abaixo.
+
+**A partir de `decidim_proposals_proposals`**
 
 ```mermaid
-erDiagram
-    decidim_proposals_collaborative_drafts ||--o{ decidim_proposals_collaborative_draft_collaborator_requests : ""
-    decidim_proposals_proposals ||--o{ decidim_proposals_proposal_notes : ""
-    decidim_proposals_proposals ||--o{ decidim_proposals_proposal_votes : ""
-    decidim_proposals_proposals ||--o{ decidim_proposals_valuation_assignments : ""
+flowchart LR
+    decidim_proposals_proposal_notes["proposals_<br/>proposal_<br/>notes"]
+    decidim_proposals_proposal_votes["proposals_<br/>proposal_<br/>votes"]
+    decidim_proposals_proposals["proposals_<br/>proposals"]
+    decidim_proposals_valuation_assignments["proposals_<br/>valuation_<br/>assignments"]
+    decidim_proposals_proposals --> decidim_proposals_proposal_notes
+    decidim_proposals_proposals --> decidim_proposals_proposal_votes
+    decidim_proposals_proposals --> decidim_proposals_valuation_assignments
+```
+
+**Outras relações**
+
+```mermaid
+flowchart LR
+    decidim_proposals_collaborative_draft_collaborator_requests["proposals_<br/>collaborative_<br/>draft_<br/>collaborator_<br/>requests"]
+    decidim_proposals_collaborative_drafts["proposals_<br/>collaborative_<br/>drafts"]
+    decidim_proposals_collaborative_drafts --> decidim_proposals_collaborative_draft_collaborator_requests
 ```
 
 ## Tabelas

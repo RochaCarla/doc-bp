@@ -42,10 +42,18 @@ Build estático, com a mesma verificação do CI:
 docker compose run --rm docs build --strict
 ```
 
+E-book em PDF (capa, folha de rosto, sumário, conteúdo completo e contracapa), em `dist/`:
+
+```bash
+./scripts/pdf.sh
+```
+
+No deploy, o PDF é gerado pelo CI e publicado em `documentacao-brasil-participativo.pdf`, na raiz do site.
+
 ### Sem Docker
 
 ```bash
-pip install "mkdocs>=1.6,<2" "mkdocs-material==9.7.7"
+pip install "mkdocs>=1.6,<2" "mkdocs-material==9.7.7" "mkdocs-print-site-plugin==2.9"
 mkdocs serve
 ```
 
