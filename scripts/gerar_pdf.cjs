@@ -98,12 +98,14 @@ async function renderPart(page, part, { margin, footer = false, outline = false 
     console.log(`Abrindo ${url}`);
     await page.goto(url, { waitUntil: "load", timeout: 180000 });
 
-    // Sumário montado pelo plugin e diagramas Mermaid (renderizados em shadow DOM pelo Material).
+    // Sumário montado pelo plugin.
     await page.waitForFunction(() => document.querySelectorAll("#print-page-toc li").length > 0,
       { timeout: 120000, polling: 500 });
+    // Diagramas Mermaid: o Material troca cada <pre class="mermaid"> por um <div class="mermaid">
+    // com o SVG num shadow DOM fechado. Renderizado = nenhum <pre> restante e todos com altura.
     await page.waitForFunction(
-      () => [...document.querySelectorAll(".mermaid")].every(
-        (el) => (el.shadowRoot && el.shadowRoot.querySelector("svg")) || el.querySelector("svg")),
+      () => document.querySelectorAll("pre.mermaid").length === 0 &&
+        [...document.querySelectorAll("div.mermaid")].every((el) => el.getBoundingClientRect().height > 0),
       { timeout: 300000, polling: 1000 });
     await page.evaluate(() => document.fonts.ready);
     const stats = await page.evaluate(() => ({
