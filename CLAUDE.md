@@ -9,6 +9,12 @@ Documentation site for **Brasil Participativo** — national participatory democ
 - **Core repo**: [gitlab.com/lappis-unb/decidimbr/decidim-govbr](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr)
 - **Components repo**: [gitlab.com/lappis-unb/decidimbr/components-brasil-participativo](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo)
 
+## Spec and domain language
+
+- `SPEC.md`: as-built specification of this documentation (scope, sources, generators, e-book, requirements with acceptance criteria). Update it when scope or requirements change.
+- `CONTEXT.md`: domain glossary (canonical terms, terms to avoid, flagged ambiguities). Use its terms in every page.
+- `docs/sobre/uso-de-ia.md`: AI usage statement and rules for AI-assisted contributions.
+
 ## Build & Development Commands
 
 ```bash

@@ -46,6 +46,10 @@ Todo o conteúdo deste site também está disponível como e-book, com capa, fol
 
 Para gerar localmente: `./scripts/pdf.sh` (resultado em `dist/`).
 
+## Uso de inteligência artificial
+
+Esta documentação foi produzida com apoio de IA generativa (Claude Code, modelo Claude Opus 5.5), sob direção e responsabilidade da equipe do LabLivre/UnB. Ferramentas, papéis, salvaguardas e limites estão em [Uso de IA](uso-de-ia.md).
+
 ## Licença do software
 
 O Brasil Participativo é software livre, distribuído sob a licença **GNU Affero General Public License v3 (AGPLv3)**, a mesma do Decidim.

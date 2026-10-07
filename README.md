@@ -82,6 +82,10 @@ O deploy é feito automaticamente via **GitHub Actions** para o GitHub Pages ao 
 - [Mermaid](https://mermaid.js.org/) — diagramas como código
 - [Design System gov.br](https://www.gov.br/ds/) — identidade visual (`docs/stylesheets/custom.css`, `overrides/`)
 
+## Uso de IA
+
+Esta documentação é produzida com apoio de IA generativa, sob responsabilidade da equipe. Veja a [declaração de uso de IA](docs/sobre/uso-de-ia.md), que traz também as regras para contribuições com IA.
+
 ## Licença
 
 Este projeto de documentação é mantido pelo LabLivre/UnB.
