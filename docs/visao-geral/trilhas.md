@@ -38,6 +38,18 @@ Por onde começar, de acordo com o seu papel. Cada trilha é uma sequência de l
     6. [Manual › Relatórios](../manual/relatorios.md)
     7. [Módulos](../modulos/propostas.md): o que cada componente faz
 
+=== ":material-swap-horizontal: Equipe receptora"
+
+    Para quem vai assumir a manutenção e a operação da plataforma.
+
+    1. [Transferência de Tecnologia](../transferencia/index.md): fases e critérios de aceite
+    2. [Inventário de ativos](../transferencia/inventario.md)
+    3. [Decisões de arquitetura](../transferencia/decisoes.md)
+    4. [Plano de repasse de conhecimento](../transferencia/repasse.md)
+    5. [Operação e continuidade](../transferencia/operacao.md)
+    6. [Segurança e LGPD](../transferencia/seguranca.md)
+    7. [Plano de atualização tecnológica](../transferencia/atualizacao.md)
+
 === ":material-chart-line: Gestão e pesquisa"
 
     Para quem acompanha a evolução do projeto.

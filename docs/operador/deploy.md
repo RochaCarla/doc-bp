@@ -35,6 +35,10 @@ graph LR
     WEB --> AF
 ```
 
+## Modelo de referência em máquina virtual
+
+O repositório traz, em `setup/`, arquivos para implantar em VM com **systemd** (`decide-puma.service`, `decide-sidekiq.service`), **nginx** (proxy por socket Unix), **logrotate** e diretório `/srv/decide`. O passo a passo de operação nesse modelo está em [Transferência › Operação e continuidade](../transferencia/operacao.md#modelo-de-implantacao-de-referencia), e o de publicação de versões em [Versionamento e release](../transferencia/release.md#implantar).
+
 ## Processos
 
 | Processo | Comando | Observação |

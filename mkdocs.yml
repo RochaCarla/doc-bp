@@ -195,6 +195,18 @@ nav:
         - decidim-module-common_questions: componentes/common-questions.md
         - decidim-module-questionnaires: componentes/questionnaires.md
         - decidim-participatory_text: componentes/participatory-text.md
+  - Transferência:
+    - transferencia/index.md
+    - Inventário de ativos: transferencia/inventario.md
+    - Operação e continuidade: transferencia/operacao.md
+    - Segurança e LGPD: transferencia/seguranca.md
+    - APIs: transferencia/apis.md
+    - Versionamento e release: transferencia/release.md
+    - Testes e qualidade: transferencia/testes.md
+    - Plano de atualização: transferencia/atualizacao.md
+    - Inventário de sobrescritas: transferencia/sobrescritas.md
+    - Decisões de arquitetura: transferencia/decisoes.md
+    - Repasse de conhecimento: transferencia/repasse.md
   - Manual de Uso:
     - manual/index.md
     - Criar e publicar um processo: manual/informacoes-gerais.md

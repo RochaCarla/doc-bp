@@ -52,7 +52,7 @@ Cada afirmação traz evidência (arquivo, commit ou merge request) e um rótulo
 
 A comparação usou:
 
-- o `decidim-govbr` nas branches `main` (produção) e `develop`;
+- o `decidim-govbr` nas branches `main` e `develop` (em produção está a v1.9.2, da linha de `develop`; veja [Versionamento e release](../transferencia/release.md));
 - o código do Decidim na tag `v0.27.2`, a versão fixada no `Gemfile`;
 - as descrições dos merge requests no GitLab.
 

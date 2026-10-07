@@ -92,6 +92,12 @@ Entenda [o que é a plataforma](visao-geral/sobre.md), [suba o ambiente local](d
 
     O que o Brasil Participativo mudou no Decidim, com foco em desempenho do texto participativo.
 
+-   **[Transferência de Tecnologia](transferencia/index.md)**
+
+    ---
+
+    Plano, inventário de ativos, operação, segurança, APIs, release e plano de atualização para assumir a plataforma.
+
 -   **[Glossário](visao-geral/glossario.md)**
 
     ---

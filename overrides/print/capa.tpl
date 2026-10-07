@@ -53,6 +53,7 @@
   <table class="bp-ficha">
     <tr><th>Trilhas e novidades</th><td>Por onde começar em cada perfil e mudanças recentes</td></tr>
     <tr><th>Documentação</th><td>Visão geral, arquitetura, desenvolvimento, operação, banco de dados, módulos e componentes</td></tr>
+    <tr><th>Transferência</th><td>Plano de transferência, inventário, operação, segurança, APIs, release, testes e atualização tecnológica</td></tr>
     <tr><th>Manual de Uso</th><td>Guias passo a passo para gestores de processos participativos</td></tr>
     <tr><th>Design System</th><td>Como o padrão visual gov.br foi aplicado na plataforma</td></tr>
     <tr><th>Inovação</th><td>O que mudou em relação ao Decidim, com foco em desempenho</td></tr>
@@ -64,6 +65,7 @@
   <h2 class="bp-rosto__heading">Para quem</h2>
   <table class="bp-ficha">
     <tr><th>Desenvolvedores</th><td>Documentação › Desenvolvimento, Banco de Dados, Design System e Inovação</td></tr>
+    <tr><th>Equipe receptora</th><td>Transferência, Documentação e Banco de Dados</td></tr>
     <tr><th>Equipes de operação</th><td>Documentação › Operação e Banco de Dados</td></tr>
     <tr><th>Gestores de processos</th><td>Manual de Uso e Módulos</td></tr>
     <tr><th>Gestão e pesquisa</th><td>Estudos, Estatísticas e Inovação</td></tr>
