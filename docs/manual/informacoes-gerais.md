@@ -4,7 +4,7 @@ icon: material/file-document-edit
 
 # Criar e publicar um processo
 
-Este guia orienta a pessoa administradora no preenchimento das **Informações Gerais** e na criação de etapas e componentes, até a publicação do processo. Vale para todos os tipos de processo participativo.
+Este guia orienta o gestor de processo no preenchimento das **Informações Gerais** e na criação de etapas e componentes, até a publicação do processo. Vale para todos os tipos de processo participativo.
 
 [:material-open-in-new: Guia original com capturas de tela](https://brasilparticipativo.presidencia.gov.br/pages/tutorial-informacoes-gerais){ .md-button }
 
@@ -15,7 +15,7 @@ São a base de configuração do processo: nome, endereço público (URL), datas
 !!! warning "Etapa obrigatória"
     Sem as Informações Gerais preenchidas, não é possível criar nem vincular os componentes do processo. Preencha-as primeiro, com o ponto focal da Coordenação-Geral de Participação Digital.
 
-Ao abrir o processo como administrador, os recursos de configuração ficam na coluna à esquerda. Clique em **Informação geral**.
+Ao abrir o processo no painel de administração, os recursos de configuração ficam na coluna à esquerda. Clique em **Informação geral**.
 
 ## Etapa 1: Criar o processo
 

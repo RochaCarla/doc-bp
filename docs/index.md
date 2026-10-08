@@ -38,7 +38,7 @@ Entenda [o que é a plataforma](visao-geral/sobre.md), [suba o ambiente local](d
 
     Deploy, variáveis de ambiente, integrações (gov.br, OP-BP, EJ) e administração em `/system` e `/admin`.
 
-    [:octicons-arrow-right-24: Guia do operador](operador/index.md)
+    [:octicons-arrow-right-24: Guia de Operação](operador/index.md)
 
 -   :material-account-tie:{ .lg .middle } **Gestão de processos**
 

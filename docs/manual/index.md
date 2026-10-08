@@ -7,7 +7,7 @@ Guias passo a passo para quem administra processos participativos no Brasil Part
 
 ## Antes de começar
 
-- Você precisa de um **perfil de administrador** no processo participativo. Peça o acesso aos administradores do Brasil Participativo.
+- Você precisa do **papel de administrador de espaço** no processo participativo. Peça o acesso aos administradores da organização no Brasil Participativo.
 - A criação de um processo é feita em conjunto com o **ponto focal da Coordenação-Geral de Participação Digital**, que revisa e valida as informações.
 - Todo o trabalho acontece no **painel de administração** (`/admin`).
 
@@ -82,4 +82,4 @@ flowchart TB
 
 Dúvidas, sugestões ou solicitações: **brasilparticipativo@presidencia.gov.br**, de segunda a sexta-feira, das 9h às 12h e das 14h às 18h.
 
-Para detalhes técnicos de cada funcionalidade, veja também [Administração](../operador/administracao.md) no Guia do Operador.
+Para detalhes técnicos de cada funcionalidade, veja também [Administração](../operador/administracao.md) no Guia de Operação.

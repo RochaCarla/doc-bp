@@ -133,7 +133,7 @@ Com o bot funcionando, cada novo conteúdo gera um aviso no grupo.
 ### Reportar o conteúdo
 
 1. Clique no link **acesse aqui** enviado pelo bot.
-2. Faça login com o perfil de administrador.
+2. Faça login com a conta que tem o papel de moderador ou de administrador de espaço.
 3. Clique em **Moderação** (denunciar).
 4. Em **Comentários adicionais**, explique o motivo (discurso de ódio, *fake news*, informações pessoais etc.) e clique em **Reportar**.
 

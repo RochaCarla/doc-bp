@@ -71,6 +71,6 @@ Proposta para a fase de operação autônoma. **R** = executa, **A** = responde 
 A transferência termina com:
 
 1. os [critérios de aceite](index.md#criterios-de-aceite) cumpridos;
-2. contas e acessos do [Inventário](inventario.md) transferidos ou com a equipe receptora como administradora;
+2. contas e acessos do [Inventário](inventario.md) transferidos ou com acesso de administração da equipe receptora;
 3. acessos do LabLivre revogados ou reduzidos ao combinado;
 4. termo de aceite assinado pela SNPS.

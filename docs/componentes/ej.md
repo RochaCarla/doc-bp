@@ -40,7 +40,7 @@ No painel admin, ao adicionar o componente EJ a um espaço:
 2. Configure opções de visualização
 
 !!! warning "Dependência externa"
-    O EJ é um serviço externo que precisa estar rodando e acessível. Se a API do EJ estiver indisponível, o componente não funcionará. Consulte o [Guia do Operador — Configuração](../operador/configuracao.md) para detalhes.
+    O EJ é um serviço externo que precisa estar rodando e acessível. Se a API do EJ estiver indisponível, o componente não funcionará. Consulte o [Guia de Operação › Configuração](../operador/configuracao.md) para detalhes.
 
 ## Sobre o Empurrando Juntas
 

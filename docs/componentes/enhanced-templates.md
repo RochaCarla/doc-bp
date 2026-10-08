@@ -13,7 +13,7 @@ Componente que oferece templates melhorados para criação de processos particip
 - **Templates pré-configurados** — modelos prontos para tipos comuns de processos (consulta pública, conferência, orçamento participativo)
 - **Componentes inclusos** — templates já incluem os componentes e configurações recomendadas
 - **Customização** — templates podem ser ajustados após aplicação
-- **Reuso** — administradores podem criar templates a partir de processos existentes
+- **Reuso** — templates podem ser criados a partir de processos existentes
 
 ## Motivação
 

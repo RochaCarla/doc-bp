@@ -42,7 +42,7 @@ Situação de cada documento exigido numa transferência de tecnologia.
 | [Banco de dados](../banco-de-dados/index.md) | Dicionário de dados e consultas | :white_check_mark: |
 | [Configuração](../operador/configuracao.md) | Variáveis de ambiente | :white_check_mark: |
 | [Deploy](../operador/deploy.md) | Implantação | :white_check_mark: |
-| [Administração](../operador/administracao.md) e [Manual de uso](../manual/index.md) | Operar os painéis e apoiar gestores | :white_check_mark: |
+| [Administração](../operador/administracao.md) e [Manual de uso](../manual/index.md) | Operar os painéis e apoiar gestores de processo | :white_check_mark: |
 | [Inventário de ativos](inventario.md) | Repositórios, imagens, serviços, contas e credenciais a transferir | :white_check_mark: nesta seção (itens marcados "a confirmar") |
 | [Operação e continuidade](operacao.md) | Rotinas, monitoramento, incidentes, backup e recuperação | :white_check_mark: nesta seção |
 | [Segurança e LGPD](seguranca.md) | Controles, riscos conhecidos e dados pessoais | :white_check_mark: nesta seção |

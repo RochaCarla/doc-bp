@@ -33,7 +33,7 @@ Resumo das mudanças relevantes no `decidim-govbr` (branch `main`), agrupadas po
 
 ### Comentários
 
-- **Edição limitada a 5 minutos** após a criação; administradores só editam o próprio comentário.
+- **Edição limitada a 5 minutos** após a criação; administradores da organização e moderadores do espaço não têm esse limite.
 - **Exportação de comentários** inclui as colunas `deletado_em` e `moderado_em`.
 
 ### Espaços participativos

@@ -15,7 +15,7 @@ O componente **Página Inicial** monta a apresentação visual de um processo pa
 
 ## Criar o componente
 
-1. No painel de administrador, abra o processo.
+1. No painel de administração, abra o processo.
 2. Na barra lateral, clique em **Componentes**.
 3. Clique em **Adicionar componente** e escolha **Página Inicial**.
 4. Preencha as informações e clique em **Adicionar componente**.

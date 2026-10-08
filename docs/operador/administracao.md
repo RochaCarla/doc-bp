@@ -85,7 +85,7 @@ Participantes denunciam conteúdo impróprio. Moderadores revisam em **Admin →
 Regras de comentários no Brasil Participativo:
 
 - o autor pode editar o comentário por até **5 minutos** após criá-lo;
-- administradores só editam os próprios comentários;
+- administradores da organização e moderadores do espaço não têm esse limite e podem excluir comentários de outros participantes;
 - a exportação de comentários traz `deletado_em` e `moderado_em`.
 
 ## Exportações e relatórios

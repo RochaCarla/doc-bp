@@ -47,7 +47,7 @@ O arquivo aparece em **Anexos**, onde pode ser editado ou excluído.
 !!! warning "Os anexos não aparecem sozinhos"
     Para que os anexos fiquem visíveis na página pública, é preciso ativar a aba de mobilização nas configurações avançadas do processo.
 
-1. Com o perfil de administrador, abra o processo.
+1. No painel de administração, abra o processo.
 2. No menu à esquerda, clique em **Informação geral**.
 3. No fim da página, abra **Configurações avançadas**.
 4. Ative **Mostrar mobilização**.

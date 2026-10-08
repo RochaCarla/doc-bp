@@ -8,7 +8,7 @@ O módulo de blog permite publicar posts e notícias dentro de espaços particip
 
 - **Publicação de posts** — título, corpo com editor rico, imagem de capa
 - **Comentários** — discussão encadeada em cada post
-- **Autoria** — posts assinados por administradores ou pela organização
+- **Autoria** — posts assinados por administradores (da organização ou de espaço) ou pela organização
 - **Cronologia** — listagem ordenada por data de publicação
 
 ## Uso Típico

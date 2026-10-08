@@ -2,9 +2,9 @@
 icon: material/server
 ---
 
-# Guia do Operador
+# Guia de Operação
 
-Para quem implanta, configura, integra e administra o Brasil Participativo.
+Para a **equipe de operação**: quem implanta, configura, integra e administra o Brasil Participativo.
 
 <div class="grid cards" markdown>
 

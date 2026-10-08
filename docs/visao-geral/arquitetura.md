@@ -24,7 +24,7 @@ Esta página vai do geral ao detalhe, em quatro níveis:
 ```mermaid
 flowchart LR
     P([Participante]) --> BP
-    A([Administrador]) --> BP
+    A([Gestor de processo]) --> BP
     BOT([WhatsApp / Telegram<br/>via API OP-BP]) --> BP
     BP[Brasil Participativo]
     BP --> GOV[gov.br<br/>login]

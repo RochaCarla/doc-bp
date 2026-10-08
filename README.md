@@ -8,7 +8,7 @@ O Brasil Participativo é construído como um **fork direto do [Decidim](https:/
 
 Esta documentação é resultado do trabalho do LabLivre/UnB em um Termo de Execução Descentralizada (TED) com a Secretaria Nacional de Participação Social. Ela cobre:
 
-- **Documentação**: visão geral, arquitetura, guia do desenvolvedor, guia do operador, banco de dados, módulos e componentes
+- **Documentação**: visão geral, arquitetura, guia do desenvolvedor, guia de operação, banco de dados, módulos e componentes
 - **Manual de Uso**: guias para gestores de processos participativos
 - **Design System**: como o padrão gov.br foi aplicado na plataforma
 - **Inovação**: diferenças em relação ao Decidim, com foco em desempenho

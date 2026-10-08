@@ -14,7 +14,7 @@ A função **Exportar**, também chamada de **devolutivas**, reúne em um relat�
 
 ## Gerar um relatório
 
-1. Entre na plataforma com o perfil de administrador.
+1. Entre na plataforma com o papel de administrador de espaço.
 2. No menu lateral, clique em **Processos** e escolha o processo.
 3. Clique em **Componentes**.
 4. Escolha o componente de onde quer extrair os dados, por exemplo **Eventos** ou **Propostas**.

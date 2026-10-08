@@ -15,7 +15,7 @@ Riscos estruturais, que não são vulnerabilidades exploráveis:
     Ruby 3.0 (fim do suporte em 04/2024), Rails 6.1 (10/2024) e Node 16 na imagem base (09/2023) não recebem mais correções. O Decidim 0.27 está 5 versões menores atrás. Veja o [Plano de atualização tecnológica](atualizacao.md).
 
 !!! warning "HTML e JavaScript editáveis pelo painel"
-    Os exemplos de ambiente ligam os *snippets* de HTML no cabeçalho das páginas, e a página inicial depende de um bloco HTML com JavaScript editado no painel e **não versionado**. **Recomendação:** versionar o bloco da home, revisar quem tem papel de administrador e avaliar desligar os *snippets*.
+    Os exemplos de ambiente ligam os *snippets* de HTML no cabeçalho das páginas, e a página inicial depende de um bloco HTML com JavaScript editado no painel e **não versionado**. **Recomendação:** versionar o bloco da home, revisar quem tem o papel de administrador da organização e avaliar desligar os *snippets*.
 
 !!! warning "Análises de segurança não bloqueiam o CI"
     Os jobs de Brakeman (SAST) e Trivy (SCA) não bloqueiam o pipeline, e um relatório gerado (`brakeman_report.html`) está versionado. **Recomendação:** tornar os jobs bloqueantes para vulnerabilidades altas e remover o relatório do repositório.
@@ -28,7 +28,7 @@ Riscos estruturais, que não são vulnerabilidades exploráveis:
 | Controle | Implementação |
 |----------|---------------|
 | Autenticação de participantes | gov.br via OpenID Connect com PKCE |
-| Senha de administradores | Mínimo de 15 caracteres, expiração em 90 dias, 5 senhas anteriores bloqueadas (`DECIDIM_ADMIN_PASSWORD_*`) |
+| Senha de administradores da organização | Mínimo de 15 caracteres, expiração em 90 dias, 5 senhas anteriores bloqueadas (`DECIDIM_ADMIN_PASSWORD_*`) |
 | Sessão | Expira após 30 minutos de inatividade (`DECIDIM_EXPIRE_SESSION_AFTER`) |
 | Limite de requisições | 100 requisições por minuto por IP (`DECIDIM_THROTTLING_*`) |
 | Painel de filas | `/sidekiq` com Basic Auth em produção |

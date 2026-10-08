@@ -9,7 +9,7 @@ O módulo de propostas é o principal mecanismo de participação. Participantes
 - **Criação de propostas** com título e corpo.
 - **Votação** e apoio.
 - **Comentários** encadeados.
-- **Moderação e avaliação** por administradores.
+- **Moderação e avaliação** por moderadores, avaliadores e administradores de espaço.
 - **Propostas oficiais** e propostas criadas a partir de reuniões.
 - **Emendas**.
 - **Georreferenciamento**.

@@ -6,7 +6,7 @@ title: Glossário
 
 # Glossário
 
-Linguagem oficial do Brasil Participativo e desta documentação: 45 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
+Linguagem oficial do Brasil Participativo e desta documentação: 48 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
 
 !!! info "Fonte única"
     Esta página é gerada a partir do `CONTEXT.md` do repositório. Para mudar um termo, edite o `CONTEXT.md` e rode `python3 scripts/glossario.py`.
@@ -36,10 +36,32 @@ TED
 Dataprev
 :   Empresa pública que hospeda o **Brasil Participativo** em **produção**.
 
+## Pessoas e papéis
+
+Participante
+:   Pessoa com conta **gov.br** na plataforma que participa de um **espaço participativo**: propõe, vota, comenta ou responde formulários.
+
+    *Evite:* usuário (só ao contar contas, em rótulos da interface e ao falar do código ou do banco), cidadão (só em nomes oficiais e para o público em geral, com ou sem conta)
+
+Gestor de processo
+:   Servidor de um órgão que cria, publica e acompanha **espaços participativos** pelo painel da plataforma, com o **papel** de administrador de espaço.
+
+    *Evite:* administrador (é o papel, não a pessoa), admin
+
+Equipe de operação
+:   Equipe técnica que implanta, configura, monitora e recupera a plataforma.
+
+    *Evite:* operador (na LGPD, é quem trata dados em nome do controlador), sysadmin
+
 Equipe receptora
 :   Equipe que assume a manutenção e a operação da plataforma ao fim da **transferência de tecnologia**.
 
     *Evite:* "governo" (genérico), cliente
+
+Papel
+:   Nível de acesso de uma pessoa aos painéis da plataforma: administrador de sistema, administrador da organização, administrador de espaço, moderador, avaliador ou colaborador.
+
+    *Evite:* perfil (é a página pública do participante)
 
 ## Plataforma e código
 
@@ -94,11 +116,6 @@ Versão candidata
     *Evite:* beta, build
 
 ## Participação
-
-Participante
-:   Pessoa com conta **gov.br** na plataforma que participa de um **espaço participativo**: propõe, vota, comenta ou responde formulários.
-
-    *Evite:* usuário (só ao contar contas, em rótulos da interface e ao falar do código ou do banco), cidadão (só em nomes oficiais e para o público em geral, com ou sem conta)
 
 Espaço participativo
 :   Lugar onde a participação acontece: um **processo participativo** ou uma **instância**. Um espaço tem muitos **componentes**.
@@ -249,6 +266,7 @@ Palavras que aparecem com mais de um sentido no projeto, e o sentido que vale.
 - **"OP"**: aparece em nomes técnicos e nos documentos do projeto para o **Orçamento do Povo**. Termo canônico: **Orçamento do Povo** em texto corrido.
 - **"Orçamento participativo"**: com minúscula, é a prática de participação em geral. O **módulo Decidim** de votação de projetos com teto de gastos se chama **Orçamentos**, e o **Orçamento do Povo** não o usa: nele, os participantes votam em **propostas**. Termo canônico: **Orçamento do Povo** para o programa federal; **Orçamentos** para o módulo.
 - **"Prestação de contas" × "devolutiva"**: **Prestação de contas** é o **módulo Decidim** que acompanha a execução dos resultados da participação; "accountability" fica só no nome da gem. A **devolutiva** é o retorno aos participantes e pode usar esse módulo, mas não se resume a ele. Em texto corrido, "prestação de contas" também é o dever geral de transparência do poder público. Termo canônico: **módulo Prestação de contas** para o módulo; **devolutiva** para o retorno.
+- **"Administrador"**: nomeia três **papéis**, de sistema, da organização e de espaço, e era usado também para a pessoa que conduz o processo. Termo canônico: qualifique sempre o papel (por exemplo, administrador de espaço); para a pessoa, use **gestor de processo** ou **equipe de operação**.
 - **"Fork"**: a documentação antiga chamava o **core** de "fork do Decidim". Termo canônico: **core com sobrescritas**, porque ele instala o Decidim em vez de copiar seu repositório.
 
 ??? example "Diálogo de exemplo"
@@ -261,7 +279,7 @@ Palavras que aparecem com mais de um sentido no projeto, e o sentido que vale.
     >
     > **Especialista**: Nunca no Decidim. Vejam se o arquivo já é uma **sobrescrita** no **core**. Se for, a correção vai nela, com teste. Se não for, avaliem se dá para resolver sem criar mais uma sobrescrita.
     >
-    > **Equipe receptora**: Um gestor pediu um espaço para o conselho do ministério. É um **processo participativo**?
+    > **Equipe receptora**: Um **gestor de processo** pediu um espaço para o conselho do ministério. É um **processo participativo**?
     >
     > **Especialista**: Conselhos são **instâncias**, e a instância do órgão é criada automaticamente. Processos servem a consultas, conferências, planos e audiências, cada um com seu **tipo de processo**.
     >
