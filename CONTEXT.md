@@ -81,12 +81,16 @@ _Avoid_: tenant, site, instância (é outro conceito)
 A versão do **Brasil Participativo** publicada no site oficial, identificada pelo rodapé.
 _Avoid_: "a main" como sinônimo de produção
 
+**Homologação**:
+Ambiente em que a **versão candidata** é validada com a **SNPS** antes de ir para **produção**.
+_Avoid_: laboratório (é o LabLivre), lab, staging
+
 **Versão estável**:
 Versão liberada para **produção**.
 _Avoid_: release (sem qualificar)
 
 **Versão candidata**:
-Versão em homologação antes de se tornar **versão estável**.
+Versão em **homologação** antes de se tornar **versão estável**.
 _Avoid_: beta, build
 
 ### Participação

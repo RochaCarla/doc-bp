@@ -44,7 +44,7 @@ O grupo [`lappis-unb/decidimbr`](https://gitlab.com/lappis-unb/decidimbr) perten
 | Ambiente | Endereço | Hospedagem | Situação |
 |----------|----------|------------|----------|
 | Produção | brasilparticipativo.presidencia.gov.br | Dataprev | Em operação |
-| Laboratório / homologação | **a confirmar** (há referência a `lab-decide.dataprev.gov.br` no `.env.example`) | Dataprev | **a confirmar** |
+| Homologação | **a confirmar** (há referência a `lab-decide.dataprev.gov.br` no `.env.example`) | Dataprev | **a confirmar** |
 | API OP-BP | `api-opbp.lablivre.rocks` (padrão do código) | LabLivre | **a confirmar** se fica com o receptor |
 | Desenvolvimento | Docker Compose local | Máquina do desenvolvedor | [Setup local](../dev/setup.md) |
 

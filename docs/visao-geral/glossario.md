@@ -6,7 +6,7 @@ title: Glossário
 
 # Glossário
 
-Linguagem oficial do Brasil Participativo e desta documentação: 50 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
+Linguagem oficial do Brasil Participativo e desta documentação: 51 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
 
 !!! info "Fonte única"
     Esta página é gerada a partir do `CONTEXT.md` do repositório. Para mudar um termo, edite o `CONTEXT.md` e rode `python3 scripts/glossario.py`.
@@ -105,13 +105,18 @@ Produção
 
     *Evite:* "a main" como sinônimo de produção
 
+Homologação
+:   Ambiente em que a **versão candidata** é validada com a **SNPS** antes de ir para **produção**.
+
+    *Evite:* laboratório (é o LabLivre), lab, staging
+
 Versão estável
 :   Versão liberada para **produção**.
 
     *Evite:* release (sem qualificar)
 
 Versão candidata
-:   Versão em homologação antes de se tornar **versão estável**.
+:   Versão em **homologação** antes de se tornar **versão estável**.
 
     *Evite:* beta, build
 
