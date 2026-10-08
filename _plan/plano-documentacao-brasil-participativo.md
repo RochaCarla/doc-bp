@@ -222,7 +222,7 @@ nav:
 | **Font código** | JetBrains Mono |
 | **CSS custom** | `docs/stylesheets/custom.css` |
 | **Copyright** | LabLivre/UnB 2025 |
-| **Deploy** | GitHub Pages → `https://rochacarla.github.io/doc-bp/` |
+| **Deploy** | GitHub Pages → `https://lablivre-unb.github.io/doc-bp/` |
 
 ---
 

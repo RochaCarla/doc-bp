@@ -1,13 +1,13 @@
 site_name: Brasil Participativo — Documentação Técnica
-site_url: https://rochacarla.github.io/doc-bp/
+site_url: https://lablivre-unb.github.io/doc-bp/
 site_author: LabLivre/UnB
 site_description: >-
   Documentação técnica do Brasil Participativo,
   plataforma de participação digital do governo federal baseada no Decidim.
 
 # Repositório desta documentação (botões de edição e issues)
-repo_name: RochaCarla/doc-bp
-repo_url: https://github.com/RochaCarla/doc-bp
+repo_name: lablivre-unb/doc-bp
+repo_url: https://github.com/lablivre-unb/doc-bp
 edit_uri: edit/main/docs/
 docs_dir: docs
 # Decisões de arquitetura da documentação: versionadas no repositório, fora do site
@@ -98,7 +98,7 @@ extra:
       - nome: Código no GitLab
         url: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
       - nome: Baixar PDF
-        url: https://rochacarla.github.io/doc-bp/documentacao-brasil-participativo.pdf
+        url: https://lablivre-unb.github.io/doc-bp/documentacao-brasil-participativo.pdf
   social:
     - icon: fontawesome/brands/gitlab
       link: https://gitlab.com/lappis-unb/decidimbr/decidim-govbr
@@ -134,7 +134,7 @@ plugins:
       enumerate_figures: false
       add_full_urls: false
       add_print_site_banner: false
-      path_to_pdf: https://rochacarla.github.io/doc-bp/documentacao-brasil-participativo.pdf
+      path_to_pdf: https://lablivre-unb.github.io/doc-bp/documentacao-brasil-participativo.pdf
       exclude:
         - index.md
 

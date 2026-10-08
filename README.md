@@ -17,7 +17,7 @@ Esta documentação é resultado do trabalho do LabLivre/UnB em um Termo de Exec
 
 ## Acesso
 
-📖 **Site publicado**: [rochacarla.github.io/doc-bp](https://rochacarla.github.io/doc-bp/)
+📖 **Site publicado**: [lablivre-unb.github.io/doc-bp](https://lablivre-unb.github.io/doc-bp/)
 
 ## Repositórios Relacionados
 

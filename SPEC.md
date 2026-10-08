@@ -10,7 +10,7 @@ Os termos em **negrito** estão definidos em [CONTEXT.md](./CONTEXT.md). As deci
 
 **Está no escopo**
 
-- Site em português, publicado no GitHub Pages em `https://rochacarla.github.io/doc-bp/`, com nove abas: Início, Documentação, Transferência, Manual de Uso, Design System, Inovação, Estudos, Estatísticas e Sobre.
+- Site em português, publicado no GitHub Pages em `https://lablivre-unb.github.io/doc-bp/`, com nove abas: Início, Documentação, Transferência, Manual de Uso, Design System, Inovação, Estudos, Estatísticas e Sobre.
 - Documentação do **core** (`decidim-govbr`): arquitetura, desenvolvimento, operação, configuração, integrações, administração, **banco de dados**, **módulos** e **componentes customizados**.
 - Pacote de **transferência de tecnologia** para a **equipe receptora**.
 - **Manual de uso** para gestores de processos, reescrito a partir dos guias publicados na plataforma.
@@ -196,6 +196,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 | Secretaria como assinatura em texto | Falta o arquivo oficial da marca e há regras próprias no período eleitoral |
 | Um único workflow de deploy | Três workflows publicavam no mesmo destino e podiam apagar o e-book |
 | Manual reescrito, com link para o original | As capturas da plataforma estão em links temporários |
+| Repositório na organização `lablivre-unb` | A URL fica gravada no e-book e nas citações, e o GitHub não redireciona endereços do Pages; uma conta pessoal prende o produto a uma pessoa. Ver [ADR 0002](./docs/adr/0002-documentacao-na-organizacao-lablivre-unb.md) |
 | Vulnerabilidades abertas só em issue confidencial | Detalhar falha antes da correção entrega o caminho do ataque; ver [ADR 0001](./docs/adr/0001-vulnerabilidades-nao-corrigidas-fora-da-documentacao-publica.md) |
 
 ## 11. Regras editoriais
@@ -225,7 +226,8 @@ Adiadas de propósito:
 - Licença do conteúdo da documentação (o software é AGPLv3).
 - Número e vigência do TED; nomes da equipe na folha de rosto.
 - Arquivo oficial da marca da Secretaria, conforme as regras do período eleitoral.
-- Migração dos domínios `rochacarla.github.io/doc-bp` e `api-opbp.lablivre.rocks` para a equipe receptora.
+- Migração do domínio `api-opbp.lablivre.rocks` para a equipe receptora.
+- Domínio próprio para a documentação, sob `lablivre.unb.br`.
 
 ## 14. Verificação
 
