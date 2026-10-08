@@ -1,110 +1,288 @@
+---
+title: Glossário
+---
+
+<!-- Gerado por scripts/glossario.py a partir do CONTEXT.md. Não edite à mão: edite o CONTEXT.md. -->
+
 # Glossário
 
-Termos usados no Brasil Participativo e nesta documentação. Quando o nome na interface difere do nome no código, os dois aparecem.
+Linguagem oficial do Brasil Participativo e desta documentação: 44 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
 
-## Plataforma e instituições
+!!! info "Fonte única"
+    Esta página é gerada a partir do `CONTEXT.md` do repositório. Para mudar um termo, edite o `CONTEXT.md` e rode `python3 scripts/glossario.py`.
+
+## Instituições
 
 Brasil Participativo
-:   Plataforma de participação digital do governo federal, construída sobre o Decidim.
+:   Plataforma de participação digital do governo federal, na qual cidadãos com conta **gov.br** participam de **processos participativos** e **instâncias** de ministérios e órgãos federais.
 
-Decidim
-:   Framework de democracia participativa em Ruby on Rails, criado pela Prefeitura de Barcelona. O Brasil Participativo usa a versão 0.27.2.
+    *Evite:* BP (só em nomes técnicos, como OP-BP)
 
-`decidim-govbr`
-:   Repositório principal (core) do Brasil Participativo. Sobrescreve partes do Decidim para o contexto brasileiro.
+Secretaria Nacional de Participação Social (SNPS)
+:   Unidade da Secretaria-Geral da Presidência da República que administra o **Brasil Participativo** e é parte do **TED**.
 
-SNPS
-:   Secretaria Nacional de Participação Social, da Secretaria-Geral da Presidência da República. Administra a plataforma.
+    *Evite:* "a Secretaria" sem o nome completo na primeira menção
 
 LabLivre/UnB
-:   Laboratório de Competência em Software Livre da Universidade de Brasília. Desenvolve a plataforma.
+:   Laboratório de Competência em Software Livre da Universidade de Brasília, que desenvolve a plataforma e esta documentação.
+
+    *Evite:* LAPPIS (nome antigo)
 
 TED
-:   Termo de Execução Descentralizada. Instrumento de cooperação entre a Secretaria e a UnB. Veja [Sobre](../sobre/index.md).
+:   Termo de Execução Descentralizada entre a UnB e a **SNPS**, que viabiliza o desenvolvimento, a manutenção e a documentação da plataforma.
+
+    *Evite:* convênio, contrato
 
 Dataprev
-:   Empresa pública que hospeda a plataforma.
+:   Empresa pública que hospeda o **Brasil Participativo** em **produção**.
+
+Equipe receptora
+:   Equipe que assume a manutenção e a operação da plataforma ao fim da **transferência de tecnologia**.
+
+    *Evite:* "governo" (genérico), cliente
+
+## Plataforma e código
+
+Decidim
+:   Software livre de democracia participativa, base do **Brasil Participativo**.
+
+    *Evite:* upstream (só ao comparar código), plataforma base
+
+Core
+:   Repositório principal do **Brasil Participativo** (`decidim-govbr`): uma aplicação que instala o **Decidim** e altera seu comportamento por **sobrescritas**.
+
+    *Evite:* fork do Decidim, instância Decidim
+
+Sobrescrita
+:   Arquivo do **core** que substitui o arquivo de mesmo caminho numa gem do **Decidim**; é o principal custo de atualização.
+
+    *Evite:* patch, override, customização (genérico)
+
+Módulo Decidim
+:   Funcionalidade nativa do **Decidim**, como propostas, reuniões e formulários.
+
+    *Evite:* plugin, componente customizado
+
+Componente
+:   Funcionalidade adicionada pelo painel a um **espaço participativo**, como um conjunto de propostas ou uma **Página Inicial**.
+
+    *Evite:* módulo, gem
+
+Componente customizado
+:   Extensão do **Decidim** desenvolvida pelo **LabLivre/UnB**; pode estar instalada no **core** ou apenas existir no grupo de componentes.
+
+    *Evite:* plugin, módulo
+
+Organização
+:   Instalação lógica do **Brasil Participativo**, identificada por um endereço, que reúne participantes, **espaços participativos** e configurações.
+
+    *Evite:* tenant, site, instância (é outro conceito)
+
+Produção
+:   A versão do **Brasil Participativo** publicada no site oficial, identificada pelo rodapé.
+
+    *Evite:* "a main" como sinônimo de produção
+
+Versão estável
+:   Versão liberada para **produção**.
+
+    *Evite:* release (sem qualificar)
+
+Versão candidata
+:   Versão em homologação antes de se tornar **versão estável**.
+
+    *Evite:* beta, build
 
 ## Participação
 
 Espaço participativo
-:   Contêiner onde a participação acontece. No Brasil Participativo, é um **processo participativo** ou uma **instância**.
+:   Lugar onde a participação acontece: um **processo participativo** ou uma **instância**. Um espaço tem muitos **componentes**.
+
+    *Evite:* espaço (sozinho), página
 
 Processo participativo
-:   Espaço com etapas e prazo. Classificado por tipo: Consulta Pública, Conferência, Plano Participativo ou Audiência Pública. No código: `Decidim::ParticipatoryProcess`.
+:   Mecanismo institucional de interlocução entre a administração pública e os cidadãos para elaborar, executar, monitorar ou avaliar leis, projetos e políticas públicas. Tem **etapas** e um **tipo de processo**.
+
+    *Evite:* campanha, consulta (quando não for Consulta Pública)
+
+Tipo de processo
+:   Classificação de um **processo participativo** em Consulta Pública, Conferência, Plano Participativo ou Audiência Pública.
+
+    *Evite:* categoria (é outro conceito do Decidim)
+
+Modalidade de participação
+:   Cada forma de participação oferecida no menu da plataforma: os quatro **tipos de processo**, Conselhos e Colegiados e Fóruns de Participação.
+
+    *Evite:* tipo de espaço
 
 Instância
-:   Nome usado na interface para a assembleia do Decidim. Agrupa Conselhos e Colegiados e Fóruns de Participação. No código: `Decidim::Assembly`.
+:   **Espaço participativo** permanente de um órgão, como um conselho, colegiado ou fórum. Pode ter sub-instâncias, uma por setor do órgão.
 
-Sub-instância
-:   Instância filha de outra. Órgãos públicos viram instâncias, e seus setores, sub-instâncias.
+    *Evite:* assembleia (em texto voltado ao usuário)
 
 Etapa
-:   Fase de um processo participativo, com período definido. Muda automaticamente conforme as datas. No código: *step*.
+:   Fase de um **processo participativo**, com período definido.
 
-Componente
-:   Funcionalidade adicionada a um espaço: propostas, reuniões, formulários, blog, Página Inicial etc.
+    *Evite:* step (só no código)
 
 Proposta
-:   Contribuição de um participante. Pode ser votada, comentada e moderada.
+:   Contribuição de um participante, que pode ser votada, comentada e moderada.
 
 Texto participativo
-:   Documento dividido em parágrafos, cada um aberto a comentários e emendas. Implementado sobre o componente de propostas.
+:   Documento dividido em parágrafos, cada um aberto a comentários, publicado num **componente** de propostas.
 
-Devolutiva
-:   Retorno do poder público aos participantes. Na interface, também designa a exportação de relatórios.
+    *Evite:* minuta (só quando o documento de fato for uma minuta)
 
-OP
-:   Orçamento Participativo. Usa o componente de propostas com listagem e votação próprias.
+Página Inicial
+:   **Componente** que monta, com blocos, a vitrine de um **espaço participativo**.
 
-Votos mutuamente exclusivos
-:   Opção do processo que impede votar em mais de um componente de propostas do mesmo processo.
+    *Evite:* home (reservado para a página inicial do site)
 
 Moderação
-:   Análise e ocultação de conteúdo que viola os termos de uso.
+:   Análise e ocultação de conteúdo que viola os termos de uso da plataforma.
+
+    *Evite:* censura, remoção (o conteúdo é ocultado, não apagado)
+
+Devolutiva
+:   Retorno do poder público aos participantes sobre o que foi feito com a participação.
+
+    *Evite:* feedback
+
+Votos mutuamente exclusivos
+:   Regra de um **processo participativo** que limita o participante a votar em um único **componente** de propostas do processo.
+
+Orçamento do Povo
+:   Orçamento participativo federal, com participação pela web, por mensageria e presencial.
+
+    *Evite:* "OP" em texto corrido
 
 ## Integrações
 
 gov.br
-:   Login único do governo federal, usado por OpenID Connect.
+:   Login Único do governo federal, a identidade exigida para participar.
 
-OP-BP
-:   API que leva a participação para WhatsApp e Telegram e vincula a conta gov.br por um token JWT. Veja [Integração OP-BP](../operador/integracao-op-bp.md).
+Login externo
+:   Vínculo entre a conta **gov.br** e o participante que chegou por WhatsApp ou Telegram.
 
-EJ (Empurrando Juntas)
-:   Plataforma externa de conversas e opiniões, integrada pelo componente `decidim-ej`.
+    *Evite:* login social, SSO
 
-VLibras
-:   Ferramenta do governo federal que traduz conteúdo para Libras.
+API OP-BP
+:   Sistema externo que conduz a participação por mensageria e pede o **login externo**.
 
-Design System gov.br
-:   Padrão visual do governo federal, aplicado à interface da plataforma. Veja [Design System gov.br](../design-system/index.md).
+    *Evite:* bot (é só uma parte), N8N (implementação anterior)
 
-## Técnica
+Impersonação
+:   Acesso pelo qual a **API OP-BP** age em nome de um participante já vinculado.
 
-Módulo Decidim
-:   Funcionalidade nativa do Decidim (propostas, reuniões, formulários…), distribuída como gem.
+    *Evite:* login por API
 
-Componente customizado
-:   Gem desenvolvida pelo LabLivre que estende o Decidim, como `decidim-homes`.
+Empurrando Juntas (EJ)
+:   Plataforma externa de conversas e opiniões, integrada ao **Brasil Participativo** por um **componente customizado**.
 
-Sobrescrita
-:   Arquivo do core com o mesmo caminho de um arquivo do Decidim. O Rails carrega a versão do core.
+    *Evite:* módulo EJ, EJ interno
 
-Engine
-:   Mini-aplicação Rails empacotada como gem. O Decidim é formado por engines.
+## Documentação
+
+Página gerada
+:   Página da documentação produzida automaticamente a partir do código e de fontes públicas, e que não se edita à mão.
+
+    *Evite:* página automática, relatório
+
+Série analisada
+:   Período coberto pelas estatísticas do projeto, a partir de abril de 2023.
+
+    *Evite:* histórico completo
+
+Fator de ausência
+:   Menor número de pessoas que somam metade das contribuições de código.
+
+    *Evite:* bus factor (em texto corrido)
+
+A confirmar
+:   Marca de informação sem fonte verificável, que precisa ser levantada com a equipe atual.
+
+    *Evite:* TBD, a definir
+
+Medido / inferido
+:   Qualificação de uma afirmação de desempenho: *medido* quando há número publicado; *inferido* quando é conclusão da leitura do código.
+
+Transferência de tecnologia
+:   Passagem da plataforma do **LabLivre/UnB** para a **equipe receptora**, em fases, com critérios de aceite.
+
+    *Evite:* handover, repasse (repasse é só a fase de capacitação)
+
+Estudo
+:   Análise sobre a participação na plataforma, publicada com uma ficha padronizada.
+
+    *Evite:* relatório (é o documento de origem), pesquisa
+
+Trilha de aprendizado
+:   Sequência de leitura recomendada para um perfil de leitor.
+
+    *Evite:* tutorial
+
+E-book
+:   Versão em PDF, autônoma, de todo o conteúdo da documentação.
+
+    *Evite:* exportação, impressão
+
+Rodapé institucional
+:   Faixa no fim de toda página que identifica quem realiza a documentação e quem é parceiro.
+
+    *Evite:* rodapé (sozinho)
+
+## Ambiguidades resolvidas
+
+Palavras que aparecem com mais de um sentido no projeto, e o sentido que vale.
+
+- **"main" × produção**: as versões em **produção** deixaram de ser marcadas na branch `main`, e as branches divergiram. Termo canônico: **produção** é o que está publicado no site oficial; `main` é só o nome de uma branch.
+- **"Conferência"**: no menu da plataforma, é um **tipo de processo**. O **Decidim** também tem um espaço chamado conferência, que não é o usado nesse menu. Termo canônico: **Conferência** = tipo de processo.
+- **"Instância" × "assembleia"**: são o mesmo conceito. **Instância** em todo texto para leitores; assembleia só ao falar do código ou do banco.
+- **"Componente"**: no painel, é o item adicionado a um espaço; no repositório, a palavra também designa gems. Sempre qualifique: **componente** ou **componente customizado**.
+- **"Texto participativo"**: o recurso em uso é o do **componente** de propostas. Existe também um **componente customizado** de mesmo nome, que não está instalado.
+- **"Devolutiva"**: na política pública, é o retorno aos participantes; na interface da plataforma, também nomeia a exportação de relatórios. Explicite qual dos dois.
+- **"OP"**: aparece em nomes técnicos e nos documentos do projeto para o **Orçamento do Povo**. Termo canônico: **Orçamento do Povo** em texto corrido.
+- **"Fork"**: a documentação antiga chamava o **core** de "fork do Decidim". Termo canônico: **core com sobrescritas**, porque ele instala o Decidim em vez de copiar seu repositório.
+
+??? example "Diálogo de exemplo"
+
+    > **Equipe receptora**: Queremos corrigir um defeito e publicar. Partimos da `main`, que é a produção, certo?
+    >
+    > **Especialista**: Não. **Produção** é o que está publicado no site oficial, e essa versão não está marcada na `main`. Antes, reconciliem as branches e combinem como uma **versão candidata** vira **versão estável**.
+    >
+    > **Equipe receptora**: O defeito está numa tela de propostas. Corrigimos no **Decidim**?
+    >
+    > **Especialista**: Nunca no Decidim. Vejam se o arquivo já é uma **sobrescrita** no **core**. Se for, a correção vai nela, com teste. Se não for, avaliem se dá para resolver sem criar mais uma sobrescrita.
+    >
+    > **Equipe receptora**: Um gestor pediu um espaço para o conselho do ministério. É um **processo participativo**?
+    >
+    > **Especialista**: Conselhos são **instâncias**, e a instância do órgão é criada automaticamente. Processos servem a consultas, conferências, planos e audiências, cada um com seu **tipo de processo**.
+    >
+    > **Equipe receptora**: E a participação pelo WhatsApp?
+    >
+    > **Especialista**: A **API OP-BP** conduz a conversa e pede o **login externo**. Depois do vínculo, ela usa a **impersonação** para agir em nome do participante. É o ponto de segurança mais sensível que vocês vão herdar.
+
+## Termos técnicos
+
+Conceitos gerais de tecnologia usados nesta documentação.
+
+Rails Engine
+:   Mini-aplicação Rails empacotada como gem. O Decidim e seus módulos são formados por engines.
 
 Command, Form, Cell, Permission
-:   Padrões de código do Decidim. Veja [Arquitetura › Camadas](arquitetura.md#camadas).
-
-Organização
-:   *Tenant* do Decidim, identificado pelo host. Configurado em `/system`.
+:   Padrões de código do Decidim: regra de negócio, validação de entrada, componente de interface e regra de acesso. Veja [Arquitetura › Camadas](arquitetura.md#camadas).
 
 Sidekiq
-:   Processador de tarefas em segundo plano, usando Redis.
+:   Processador de tarefas em segundo plano, que usa o Redis como fila.
 
 whenever
 :   Gem que transforma `config/schedule.rb` em tarefas do cron.
 
-Fator de ausência
-:   Menor número de pessoas que somam metade dos commits. Veja [Estatísticas](../estatisticas/contribuicoes.md).
+Design System gov.br
+:   Padrão visual do governo federal, aplicado à interface da plataforma. Veja [Design System gov.br](../design-system/index.md).
+
+VLibras
+:   Ferramenta do governo federal que traduz conteúdo para Libras.
+
+Mermaid
+:   Linguagem de diagramas em texto usada nesta documentação.

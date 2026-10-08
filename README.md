@@ -68,6 +68,7 @@ Algumas seções são geradas a partir do repositório `decidim-govbr` e da API 
 | `python3 scripts/estatisticas.py` | `docs/estatisticas/` (commits, MRs, contribuições, qualidade) |
 | `python3 scripts/banco_de_dados.py` | `docs/banco-de-dados/` (dicionário de dados), exceto `consultas.md` |
 | `python3 scripts/sobrescritas.py` | `docs/transferencia/sobrescritas.md` (arquivos do Decidim sobrescritos) |
+| `python3 scripts/glossario.py` | `docs/visao-geral/glossario.md`, a partir do `CONTEXT.md` |
 
 Os scripts clonam o repositório em `.cache/` (ignorado pelo git). Defina `GITLAB_TOKEN` para aumentar o limite da API.
 

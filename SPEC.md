@@ -89,6 +89,7 @@ Scripts em `scripts/`, em Python só com a biblioteca padrão (3.9+), reproduzí
 | `estatisticas.py` | Clone do core, API do GitLab, rubygems, endoflife.date | `docs/estatisticas/*.md` e `dados.json` |
 | `banco_de_dados.py` | `db/schema.rb` e `db/migrate/` da `main` | `docs/banco-de-dados/*.md`, exceto `consultas.md` |
 | `sobrescritas.py` | Arquivos de `app/`, `lib/` e `config/initializers/` da `main` e o Decidim `v0.27.2` | `docs/transferencia/sobrescritas.md` |
+| `glossario.py` | `CONTEXT.md` e `scripts/glossario_tecnico.md` | `docs/visao-geral/glossario.md` |
 | `gerar_pdf.cjs` | Site já construído (pasta) | E-book em PDF |
 
 **Invariantes**
@@ -148,6 +149,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 | RF09 | Todo estudo DEVE ter a ficha da § 3 do índice de Estudos e o link para o documento original. |
 | RF10 | Todo guia do Manual de Uso DEVE apontar para o guia original na plataforma. |
 | RF11 | O rodapé institucional DEVE exibir Realização e Parceria a partir de `extra.institucional`. |
+| RF12 | O Glossário publicado DEVE ser gerado do `CONTEXT.md`, a fonte única da linguagem do domínio. |
 
 **Não funcionais**
 
@@ -177,6 +179,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 | RF08 | `docs/transferencia/index.md` tem uma linha por documento do pacote, com situação. |
 | RF09 | `docs/estudos/orcamento-do-povo.md` tem a tabela "Ficha" e o link do documento. |
 | RF10 | Cada página em `docs/manual/`, exceto índice e cidadão, tem o botão "Guia original". |
+| RF12 | Rodar `python3 scripts/glossario.py` não produz diferença em `docs/visao-geral/glossario.md`; todo termo do `CONTEXT.md` aparece na página. |
 | RF11 | Remover `image` do item UnB em `extra.institucional` faz o rodapé exibi-lo como texto, sem erro de build. |
 | RNF02 | `docker compose run --rm docs build --strict` termina sem `WARNING`. |
 | RNF03 | `python3 scripts/medir_diagramas.py` (Mermaid 11, coluna de 690 px) termina com código 0: todos os diagramas com escala ≥ 0,85. |
@@ -238,6 +241,7 @@ docker compose run --rm docs build --strict          # RNF02, RF01, RF03
 python3 scripts/estatisticas.py                      # RF05, RF06
 python3 scripts/banco_de_dados.py                    # RF05, RF07
 python3 scripts/sobrescritas.py                      # RF05
+python3 scripts/glossario.py                         # RF12
 ./scripts/pdf.sh                                     # RF04 (dist/documentacao-brasil-participativo.pdf)
 python3 scripts/medir_diagramas.py                   # RNF03 (requer Google Chrome)
 grep -rE "@(gmail|hotmail|protonmail)\.com" docs     # RNF05: sem saída

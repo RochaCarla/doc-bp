@@ -55,6 +55,10 @@ _Avoid_: módulo, gem
 Extensão do **Decidim** desenvolvida pelo **LabLivre/UnB**; pode estar instalada no **core** ou apenas existir no grupo de componentes.
 _Avoid_: plugin, módulo
 
+**Organização**:
+Instalação lógica do **Brasil Participativo**, identificada por um endereço, que reúne participantes, **espaços participativos** e configurações.
+_Avoid_: tenant, site, instância (é outro conceito)
+
 **Produção**:
 A versão do **Brasil Participativo** publicada no site oficial, identificada pelo rodapé.
 _Avoid_: "a main" como sinônimo de produção
@@ -103,6 +107,10 @@ _Avoid_: minuta (só quando o documento de fato for uma minuta)
 **Página Inicial**:
 **Componente** que monta, com blocos, a vitrine de um **espaço participativo**.
 _Avoid_: home (reservado para a página inicial do site)
+
+**Moderação**:
+Análise e ocultação de conteúdo que viola os termos de uso da plataforma.
+_Avoid_: censura, remoção (o conteúdo é ocultado, não apagado)
 
 **Devolutiva**:
 Retorno do poder público aos participantes sobre o que foi feito com a participação.
