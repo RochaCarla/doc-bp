@@ -88,6 +88,8 @@ Esta documentação é produzida com apoio de IA generativa, sob responsabilidad
 
 ## Licença
 
-O conteúdo desta documentação (textos, diagramas e e-book) está licenciado sob a [Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.pt-br); o texto legal está em [`LICENSE-CONTEUDO.txt`](LICENSE-CONTEUDO.txt). Logos e marcas institucionais não estão incluídos. O software Brasil Participativo é distribuído sob AGPLv3.
+O conteúdo desta documentação (textos, diagramas e e-book) está licenciado sob a [Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.pt-br); o texto legal está em [`LICENSE-CONTEUDO.txt`](LICENSE-CONTEUDO.txt). Logos e marcas institucionais não estão incluídos.
+
+O código deste repositório (geradores em `scripts/`, tema e templates) está sob a [GNU Affero General Public License v3 (AGPLv3)](LICENSE), a mesma do Brasil Participativo.
 
 Documentação mantida pelo LabLivre/UnB.

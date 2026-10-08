@@ -35,7 +35,7 @@
     <tr><th>Código-fonte</th><td>gitlab.com/lappis-unb/decidimbr/decidim-govbr</td></tr>
     <tr><th>Fontes do conteúdo</th><td>Código do <code>decidim-govbr</code>, páginas institucionais e guias da plataforma, API pública do GitLab e estudos do LabLivre</td></tr>
     <tr><th>Uso de IA</th><td>Produzido com apoio de IA generativa (Claude Code, modelo Claude Opus 5.5), sob direção e revisão da equipe. Ver Sobre › Uso de IA</td></tr>
-    <tr><th>Licença</th><td>Conteúdo sob Creative Commons Atribuição 4.0 Internacional (CC BY 4.0), exceto logos e marcas institucionais. Software Brasil Participativo: AGPLv3</td></tr>
+    <tr><th>Licença</th><td>Conteúdo sob Creative Commons Atribuição 4.0 Internacional (CC BY 4.0), exceto logos e marcas institucionais. Código desta documentação e software Brasil Participativo: AGPLv3</td></tr>
     <tr><th>Versão on-line</th><td>{{ config.site_url }}</td></tr>
     <tr><th>Contato</th><td>brasilparticipativo@presidencia.gov.br · decidim@unb.br</td></tr>
   </table>

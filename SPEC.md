@@ -19,7 +19,7 @@ Os termos em **negrito** estão definidos em [CONTEXT.md](./CONTEXT.md). As deci
 - **Páginas geradas** por scripts a partir do código e de APIs públicas.
 - **E-book** com todo o conteúdo do site, gerado a cada publicação.
 - Identidade visual baseada no Design System gov.br, com **rodapé institucional**.
-- Conteúdo licenciado sob CC BY 4.0, exceto logos e marcas institucionais.
+- Conteúdo licenciado sob CC BY 4.0, exceto logos e marcas institucionais; código do repositório sob AGPLv3.
 
 **Não está no escopo**
 
@@ -197,6 +197,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 | Secretaria como assinatura em texto | Falta o arquivo oficial da marca e há regras próprias no período eleitoral |
 | Um único workflow de deploy | Três workflows publicavam no mesmo destino e podiam apagar o e-book |
 | Manual reescrito, com link para o original | As capturas da plataforma estão em links temporários |
+| Código do repositório sob AGPLv3 | Mesma licença do Brasil Participativo e do Decidim; quem modificar e publicar os geradores mantém o código aberto. Texto em `LICENSE` |
 | Conteúdo sob CC BY 4.0, exceto marcas | Mesma licença do site do LabLivre; permite que outros órgãos reutilizem o conteúdo e o e-book com atribuição. Texto legal em `LICENSE-CONTEUDO.txt` |
 | Repositório na organização `lablivre-unb` | A URL fica gravada no e-book e nas citações, e o GitHub não redireciona endereços do Pages; uma conta pessoal prende o produto a uma pessoa. Ver [ADR 0002](./docs/adr/0002-documentacao-na-organizacao-lablivre-unb.md) |
 | Vulnerabilidades abertas só em issue confidencial | Detalhar falha antes da correção entrega o caminho do ataque; ver [ADR 0001](./docs/adr/0001-vulnerabilidades-nao-corrigidas-fora-da-documentacao-publica.md) |
@@ -225,7 +226,6 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 
 Adiadas de propósito:
 
-- Licença do código deste repositório (scripts, tema e templates).
 - Número e vigência do TED; nomes da equipe na folha de rosto.
 - Arquivo oficial da marca da Secretaria, conforme as regras do período eleitoral.
 - Migração do domínio `api-opbp.lablivre.rocks` para a equipe receptora.

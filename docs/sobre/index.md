@@ -56,6 +56,7 @@ Esta documentação foi produzida com apoio de IA generativa (Claude Code, model
 |-------|---------|
 | Conteúdo desta documentação (textos, diagramas, e-book) | [Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.pt-br) |
 | Logos e marcas da UnB, do LabLivre e do governo federal | Não incluídos na licença; uso sujeito às regras de cada instituição |
+| Código desta documentação (geradores em `scripts/`, tema e templates) | GNU Affero General Public License v3 (AGPLv3) |
 | Software Brasil Participativo e Decidim | GNU Affero General Public License v3 (AGPLv3) |
 
 Com a CC BY 4.0, qualquer pessoa pode copiar, adaptar e redistribuir o conteúdo, inclusive para fins comerciais, desde que cite a autoria (LabLivre/UnB) e indique se houve modificações. Use o "Como citar" da ficha técnica do e-book.
