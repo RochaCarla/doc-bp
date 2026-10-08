@@ -242,6 +242,7 @@ Palavras que aparecem com mais de um sentido no projeto, e o sentido que vale.
 - **"Texto participativo"**: o recurso em uso é o do **componente** de propostas. Existe também um **componente customizado** de mesmo nome, que não está instalado.
 - **"Devolutiva"**: na política pública, é o retorno aos participantes; na interface da plataforma, também nomeia a exportação de relatórios. Explicite qual dos dois.
 - **"OP"**: aparece em nomes técnicos e nos documentos do projeto para o **Orçamento do Povo**. Termo canônico: **Orçamento do Povo** em texto corrido.
+- **"Orçamento participativo"**: com minúscula, é a prática de participação em geral. O **módulo Decidim** de votação de projetos com teto de gastos se chama **Orçamentos**, e o **Orçamento do Povo** não o usa: nele, os participantes votam em **propostas**. Termo canônico: **Orçamento do Povo** para o programa federal; **Orçamentos** para o módulo.
 - **"Fork"**: a documentação antiga chamava o **core** de "fork do Decidim". Termo canônico: **core com sobrescritas**, porque ele instala o Decidim em vez de copiar seu repositório.
 
 ??? example "Diálogo de exemplo"

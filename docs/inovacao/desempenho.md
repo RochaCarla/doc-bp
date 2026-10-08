@@ -81,8 +81,8 @@ Para evitar interpretações erradas sobre commits com "performance" na mensagem
 
 ## Riscos e regressões
 
-!!! danger "Regressão: Orçamento Participativo sem paginação (inferido)"
-    A listagem própria do OP usa `.page(params[:page]).per(proposals.size)`, ou seja, carrega **todas** as propostas numa página (`proposals_controller.rb`). Em processos com muitas propostas, isso pode ficar lento.
+!!! danger "Regressão: listagem do Orçamento do Povo sem paginação (inferido)"
+    A listagem própria do Orçamento do Povo usa `.page(params[:page]).per(proposals.size)`, ou seja, carrega **todas** as propostas numa página (`proposals_controller.rb`). Em processos com muitas propostas, isso pode ficar lento.
 
 !!! warning "Download de anexos de formulários (inferido)"
     O serviço que gera ZIPs de até 300 MB (MR !709):

@@ -49,7 +49,7 @@ Os componentes são ativados pela classe no HTML. Um `br-modal` ganha comportame
 | Cabeçalho e menu | `br-header`, `br-menu`, `br-avatar`, `br-sign-in`, `br-button`, `br-list` | `layouts/decidim/_wrapper.html.erb` |
 | Rodapé | `br-footer`, `br-list`, `br-container-lg` | `layouts/decidim/_main_footer.html.erb` |
 | Login, cadastro e senha | `br-input`, `br-button` | `decidim/devise/*/new.html.erb` |
-| Propostas e Orçamento Participativo | `br-button`, `br-message`, `br-magic-button` | `decidim/proposals/proposals/` |
+| Propostas e Orçamento do Povo | `br-button`, `br-message`, `br-magic-button` | `decidim/proposals/proposals/` |
 | Texto participativo | `br-sign-in`, `br-button` | `decidim/proposals/proposals/participatory_texts/`, `decidim/proposals/participatory_text_proposal/` |
 | Formulários | `br-input`, `br-upload` | `decidim/forms/questionnaires/` |
 | Filtros de componentes | `br-radio` | `decidim/components/_filter.html.erb` |

@@ -201,6 +201,8 @@ _Avoid_: rodapé (sozinho)
 
 **"OP"**: aparece em nomes técnicos e nos documentos do projeto para o **Orçamento do Povo**. Termo canônico: **Orçamento do Povo** em texto corrido.
 
+**"Orçamento participativo"**: com minúscula, é a prática de participação em geral. O **módulo Decidim** de votação de projetos com teto de gastos se chama **Orçamentos**, e o **Orçamento do Povo** não o usa: nele, os participantes votam em **propostas**. Termo canônico: **Orçamento do Povo** para o programa federal; **Orçamentos** para o módulo.
+
 **"Fork"**: a documentação antiga chamava o **core** de "fork do Decidim". Termo canônico: **core com sobrescritas**, porque ele instala o Decidim em vez de copiar seu repositório.
 
 ## Example dialogue

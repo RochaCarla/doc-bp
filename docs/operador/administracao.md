@@ -62,7 +62,7 @@ Usadas para Conselhos e Colegiados e Fóruns de Participação.
 
 | Componente | Uso típico |
 |-----------|------------|
-| Propostas | Contribuições, votação, textos participativos, Orçamento Participativo |
+| Propostas | Contribuições, votação, textos participativos, Orçamento do Povo |
 | Reuniões | Eventos e audiências |
 | Formulários | Enquetes e questionários |
 | Blog | Notícias |

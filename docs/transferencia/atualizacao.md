@@ -80,6 +80,7 @@ A estratégia que mais reduz o custo de cada atualização é **sobrescrever men
 Itens identificados durante a documentação para incluir no plano:
 
 - endpoint de verificação de saúde (`/health`);
+- slug e endereço da [listagem do Orçamento do Povo](../modulos/propostas.md#listagem-do-orcamento-do-povo) configuráveis no painel, em vez de fixos no código;
 - versão do rodapé gerada a partir da tag;
 - bloco HTML da página inicial versionado no repositório;
 - política de segurança (`SECURITY.md`) e notas de versão;

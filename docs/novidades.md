@@ -20,7 +20,7 @@ Resumo das mudanças relevantes no `decidim-govbr` (branch `main`), agrupadas po
 
 - **Votos mutuamente exclusivos** entre componentes de propostas de um mesmo processo (opção do processo participativo).
 - **Exibir votos** — nova opção `show_votes` no componente de propostas.
-- **Listagem customizada para Orçamento Participativo** — página única, ordenação, cards e contador de votos.
+- **Listagem customizada para o Orçamento do Povo** — página única, ordenação, cards e contador de votos.
 - **Exportação** passa a incluir nome e ID do autor.
 - **Componente "Texto participativo"** na lista de componentes: habilita os textos participativos e esconde configurações que não se aplicam (MR !777). Detalhes em [Inovação › Texto participativo](inovacao/texto-participativo.md).
 

@@ -21,7 +21,7 @@ O que o Brasil Participativo acrescentou ao Decidim 0.27.2, por área. Cada item
 | Funcionalidade | Onde |
 |----------------|------|
 | Votos mutuamente exclusivos entre componentes de um processo | `app/queries/decidim/proposals/govbr/exclusive_proposal_components_user_already_voted_for.rb` |
-| Listagem e votação próprias do Orçamento Participativo | `app/views/decidim/proposals/proposals/op_custom_index.html.erb` |
+| Listagem e votação próprias do Orçamento do Povo | `app/views/decidim/proposals/proposals/op_custom_index.html.erb` |
 | Exibir contagem de votos (`show_votes`) | `config/initializers/proposals.rb` |
 | Perfil completo obrigatório para participar | `should_have_user_full_profile` em processos |
 | Estados extras: parcialmente aceita, desqualificada | `app/models/decidim/proposals/proposal.rb` |

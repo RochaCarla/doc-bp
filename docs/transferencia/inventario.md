@@ -87,3 +87,5 @@ Trocar `SECRET_KEY_BASE` desloga todos os usuários. Trocar `SECRET_KEY_JWT` inv
 | brasilparticipativo.presidencia.gov.br | Produção | Presidência/Dataprev |
 | api-opbp.lablivre.rocks | API OP-BP | LabLivre (**a migrar**) |
 | lablivre-unb.github.io/doc-bp | Documentação | LabLivre (organização `lablivre-unb`). O endereço antigo, `rochacarla.github.io/doc-bp`, não redireciona |
+
+O domínio de produção também está escrito no código da [listagem do Orçamento do Povo](../modulos/propostas.md#listagem-do-orcamento-do-povo). Uma troca de domínio exige alterar esse arquivo.

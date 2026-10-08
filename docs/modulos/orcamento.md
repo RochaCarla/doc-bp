@@ -1,8 +1,11 @@
-# Orçamento Participativo
+# Orçamentos
 
 **Gem**: `decidim-budgets`
 
-O módulo de orçamento participativo permite que cidadãos votem em projetos dentro de um limite orçamentário definido, priorizando onde recursos públicos devem ser investidos.
+O módulo de orçamentos permite que participantes votem em projetos dentro de um limite orçamentário definido, priorizando onde recursos públicos devem ser investidos.
+
+!!! note "Não é o Orçamento do Povo"
+    No **Orçamento do Povo**, os participantes votam em **propostas**, numa listagem própria do core, e não neste módulo. Veja [Propostas › Listagem do Orçamento do Povo](propostas.md#listagem-do-orcamento-do-povo).
 
 ## Funcionalidades
 

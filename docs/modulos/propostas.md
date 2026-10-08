@@ -2,7 +2,7 @@
 
 **Gem**: `decidim-proposals` (com sobrescritas no core)
 
-O módulo de propostas é o principal mecanismo de participação. Participantes criam, comentam e votam propostas dentro de processos e instâncias. No Brasil Participativo ele também é usado para textos participativos e para o Orçamento Participativo.
+O módulo de propostas é o principal mecanismo de participação. Participantes criam, comentam e votam propostas dentro de processos e instâncias. No Brasil Participativo ele também é usado para textos participativos e para o Orçamento do Povo.
 
 ## Funcionalidades
 
@@ -26,16 +26,27 @@ O módulo de propostas é o principal mecanismo de participação. Participantes
 | **Tempo de edição** (`proposal_edit_time`, `proposal_edit_before_minutes`) | Configuração do componente | Limita a edição após publicar; `infinite` remove o limite |
 | **Texto participativo** | Lista de componentes | Opção própria que habilita os textos participativos e esconde configurações que não se aplicam. Veja [Inovação › Texto participativo](../inovacao/texto-participativo.md) |
 
-## Orçamento Participativo
+## Listagem do Orçamento do Povo
 
-Quando o componente de propostas é usado para Orçamento Participativo, o core usa uma listagem própria:
+No processo do Orçamento do Povo, o core troca a listagem de propostas por uma própria (`op_custom_index.html.erb`):
 
 - página única com ordenação;
 - cards com botão de voto de texto e ícone dinâmicos;
 - contador de votos restantes por mensagem;
 - ao esgotar os votos, o participante é direcionado ao botão de confirmar.
 
+No mesmo processo, o formulário de reuniões troca títulos e rótulos por textos próprios do Orçamento do Povo.
+
 O participante que chega pelo WhatsApp ou Telegram vincula a conta pelo [fluxo OP-BP](../operador/integracao-op-bp.md).
+
+!!! warning "Ligada a um slug e a um endereço fixos"
+    O comportamento é ativado pelo slug `orcamento-participativo`, escrito no código (`op_spaces_slugs` em `proposals_controller.rb` e `op_space?` em `meetings_helper.rb`). O botão de confirmar votos leva sempre a `https://brasilparticipativo.presidencia.gov.br/processes/orcamento-participativo/f/3373/`. Consequências:
+
+    - mudar o slug do processo desliga a listagem;
+    - um novo ciclo do Orçamento do Povo com outro slug não recebe a listagem;
+    - em homologação ou em outra organização, o botão de confirmar leva à produção.
+
+    Recomenda-se trocar o slug e o endereço fixos por opções do processo ou do componente. Veja [Plano de atualização › Melhorias de operação](../transferencia/atualizacao.md#melhorias-de-operacao).
 
 ## Exportação
 
