@@ -224,7 +224,7 @@ nav:
       - Orçamentos: modulos/orcamento.md
       - Debates: modulos/debates.md
       - Páginas: modulos/paginas.md
-      - Accountability: modulos/accountability.md
+      - Prestação de contas: modulos/accountability.md
       - Sorteios: modulos/sorteios.md
     - Componentes Customizados:
       - Instalados no core:

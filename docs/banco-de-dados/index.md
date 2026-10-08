@@ -105,7 +105,7 @@ Dicionário de dados do PostgreSQL do Brasil Participativo, gerado a partir do `
 
     ---
 
-    Demais módulos nativos do Decidim: orçamentos, accountability, debates, blog, páginas e sorteios.
+    Demais módulos nativos do Decidim: orçamentos, prestação de contas, debates, blog, páginas e sorteios.
 
     11 tabelas
 

@@ -70,7 +70,7 @@ DOMAINS = [
      [r"^decidim_moderations$", r"^decidim_reports$", r"^decidim_user_moderations$", r"^decidim_user_reports$",
       r"^decidim_user_blocks$", r"^decidim_action_logs$", r"^versions$", r"^decidim_metrics$"]),
     ("outros-modulos", "Orçamentos, debates, blog e outros módulos", "material/view-grid-plus",
-     "Demais módulos nativos do Decidim: orçamentos, accountability, debates, blog, páginas e sorteios.",
+     "Demais módulos nativos do Decidim: orçamentos, prestação de contas, debates, blog, páginas e sorteios.",
      [r"^decidim_budgets_", r"^decidim_accountability_", r"^decidim_debates_", r"^decidim_blogs_",
       r"^decidim_pages_", r"^decidim_sortitions_"]),
     ("extensoes", "Extensões do Brasil Participativo", "material/flag",
@@ -159,7 +159,7 @@ TABLE_DOCS = {
     "decidim_debates_debates": "Debates.",
     "decidim_blogs_posts": "Posts do blog (notícias).",
     "decidim_pages_pages": "Conteúdo do componente Páginas.",
-    "decidim_accountability_results": "Resultados acompanhados no accountability.",
+    "decidim_accountability_results": "Resultados acompanhados na prestação de contas.",
     "decidim_sortitions_sortitions": "Sorteios de propostas.",
 }
 

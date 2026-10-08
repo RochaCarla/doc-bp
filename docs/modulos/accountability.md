@@ -1,8 +1,11 @@
-# Accountability
+# Prestação de contas
 
 **Gem**: `decidim-accountability`
 
-O módulo de accountability (prestação de contas) permite acompanhar a execução de resultados vinculados a propostas aceitas, dando transparência ao que foi decidido coletivamente.
+O módulo de prestação de contas permite acompanhar a execução de resultados vinculados a propostas aceitas, dando transparência ao que foi decidido coletivamente.
+
+!!! note "Não é sinônimo de devolutiva"
+    A **devolutiva** é o retorno do poder público aos participantes sobre o que foi feito com a participação. Este módulo pode ser um dos meios de devolutiva, mas ela também acontece por outros, como os [relatórios](../manual/relatorios.md).
 
 ## Funcionalidades
 
@@ -30,4 +33,4 @@ flowchart TB
 
 ## Referência
 
-- [Documentação oficial do Decidim — Accountability](https://docs.decidim.org/en/develop/admin/components/accountability/)
+- [Documentação oficial do Decidim — Prestação de contas (Accountability)](https://docs.decidim.org/en/develop/admin/components/accountability/)

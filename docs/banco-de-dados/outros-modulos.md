@@ -7,7 +7,7 @@ icon: material/view-grid-plus
 
 # Orçamentos, debates, blog e outros módulos
 
-Demais módulos nativos do Decidim: orçamentos, accountability, debates, blog, páginas e sorteios.
+Demais módulos nativos do Decidim: orçamentos, prestação de contas, debates, blog, páginas e sorteios.
 
 **11 tabelas.** Schema versão `20260405195511`. Legenda da coluna **Referência**: *FK* = chave estrangeira declarada no banco; *→* = referência por convenção de nome (sem restrição no banco).
 
@@ -44,7 +44,7 @@ flowchart TB
 
 | Tabela | Descrição | Colunas | Origem |
 |---|---|---:|---|
-| [`decidim_accountability_results`](#decidim-accountability-results) | Resultados acompanhados no accountability. | 17 | Decidim |
+| [`decidim_accountability_results`](#decidim-accountability-results) | Resultados acompanhados na prestação de contas. | 17 | Decidim |
 | [`decidim_accountability_statuses`](#decidim-accountability-statuses) | — | 8 | Decidim |
 | [`decidim_accountability_timeline_entries`](#decidim-accountability-timeline-entries) | — | 7 | Decidim |
 | [`decidim_blogs_posts`](#decidim-blogs-posts) | Posts do blog (notícias). | 13 | Decidim |
@@ -58,7 +58,7 @@ flowchart TB
 
 ### `decidim_accountability_results` { #decidim-accountability-results }
 
-Resultados acompanhados no accountability.
+Resultados acompanhados na prestação de contas.
 
 Origem: Decidim.
 
