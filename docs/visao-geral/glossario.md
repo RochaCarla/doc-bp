@@ -6,7 +6,7 @@ title: Glossário
 
 # Glossário
 
-Linguagem oficial do Brasil Participativo e desta documentação: 44 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
+Linguagem oficial do Brasil Participativo e desta documentação: 45 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
 
 !!! info "Fonte única"
     Esta página é gerada a partir do `CONTEXT.md` do repositório. Para mudar um termo, edite o `CONTEXT.md` e rode `python3 scripts/glossario.py`.
@@ -14,7 +14,7 @@ Linguagem oficial do Brasil Participativo e desta documentação: 44 termos, com
 ## Instituições
 
 Brasil Participativo
-:   Plataforma de participação digital do governo federal, na qual cidadãos com conta **gov.br** participam de **processos participativos** e **instâncias** de ministérios e órgãos federais.
+:   Plataforma de participação digital do governo federal, na qual **participantes** atuam em **processos participativos** e **instâncias** de ministérios e órgãos federais.
 
     *Evite:* BP (só em nomes técnicos, como OP-BP)
 
@@ -94,6 +94,11 @@ Versão candidata
     *Evite:* beta, build
 
 ## Participação
+
+Participante
+:   Pessoa com conta **gov.br** na plataforma que participa de um **espaço participativo**: propõe, vota, comenta ou responde formulários.
+
+    *Evite:* usuário (só ao contar contas, em rótulos da interface e ao falar do código ou do banco), cidadão (só em nomes oficiais e para o público em geral, com ou sem conta)
 
 Espaço participativo
 :   Lugar onde a participação acontece: um **processo participativo** ou uma **instância**. Um espaço tem muitos **componentes**.

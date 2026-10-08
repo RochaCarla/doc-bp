@@ -41,7 +41,7 @@ Registro das principais decisões técnicas do Brasil Participativo (ADR, *Archi
 
 ## ADR 4 · Login gov.br por OpenID Connect
 
-- **Contexto:** a participação exige identidade confiável e uma conta por cidadão.
+- **Contexto:** a participação exige identidade confiável e uma conta por pessoa.
 - **Decisão:** autenticar pelo Login Único gov.br com OpenID Connect, PKCE e o escopo `govbr_confiabilidades`. O CPF fica em `decidim_identities.uid`.
 - **Consequências:** unicidade e confiabilidade, ao custo de excluir quem não tem conta gov.br. Um job remove identidades duplicadas.
 - **Evidência:** `config/initializers/omniauth_govbr.rb`; `RemoveDuplicatedGovbrIdentitiesJob`.

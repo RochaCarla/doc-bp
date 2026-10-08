@@ -76,7 +76,7 @@ O core não tem um endpoint de verificação de saúde (*health check*). Recomen
 
 ## Incidentes comuns
 
-??? question "Usuários não conseguem entrar com o gov.br"
+??? question "Participantes não conseguem entrar com o gov.br"
     1. Verifique se o callback `OMNIAUTH_GOVBR_REDIRECT_URI` corresponde ao domínio em uso.
     2. Confira o status do Login Único.
     3. Procure erros do OmniAuth no log.

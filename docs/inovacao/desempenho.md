@@ -33,7 +33,7 @@ expires_in 5.minutes, public: true, stale_while_revalidate: 10.minutes
 |---|---|---|
 | Consulta | Pré-carrega autor, grupo, votos positivos e negativos. Ordens "mais votados" e "mais discutidos" ordenam em Ruby, carregando tudo | Sem pré-carregar votos. Só ordens "recentes" e "antigos", feitas no banco |
 | Paginação | Nenhuma | 30 por página, com botão "carregar mais" |
-| Atualização | *Polling* contínuo a cada **15 s** por página aberta | Um carregamento ao abrir e um novo só depois que o próprio usuário comenta |
+| Atualização | *Polling* contínuo a cada **15 s** por página aberta | Um carregamento ao abrir e um novo só depois que o próprio participante comenta |
 
 **Efeito (inferido):** menos linhas e consultas por requisição e fim do tráfego em segundo plano. Com o Decidim, cada página aberta faz 4 requisições por minuto.
 
@@ -95,7 +95,7 @@ Para evitar interpretações erradas sobre commits com "performance" na mensagem
     Pendências de segurança deste serviço estão em canal restrito ([Segurança e LGPD](../transferencia/seguranca.md#riscos-conhecidos)).
 
 !!! warning "Cache do filtro de categorias (inferido)"
-    O HTML em cache inclui o estado marcado das caixas de seleção e um id de objeto, que não fazem parte da chave do cache. Um usuário pode receber o filtro com marcações de outro.
+    O HTML em cache inclui o estado marcado das caixas de seleção e um id de objeto, que não fazem parte da chave do cache. Uma pessoa pode receber o filtro com as marcações de outra.
 
 ## Configuração de servidor
 

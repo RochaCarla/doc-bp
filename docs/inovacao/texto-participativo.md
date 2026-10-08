@@ -24,7 +24,7 @@ Ressalvas importantes estão no [fim da página](#ressalvas).
 
     A página renderiza **uma *cell* por parágrafo**. Cada *cell*:
 
-    - renderiza o botão "seguir", que consulta se o usuário segue o parágrafo (**1 consulta por parágrafo**, se logado);
+    - renderiza o botão "seguir", que consulta se o participante segue o parágrafo (**1 consulta por parágrafo**, se logado);
     - verifica e conta as emendas visíveis (**1 a 2 consultas por parágrafo**);
     - gera 3 a 4 URLs com `resource_locator`;
     - aplica `simple_format` e sanitização.

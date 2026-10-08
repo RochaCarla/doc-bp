@@ -93,7 +93,7 @@ Regras de comentários no Brasil Participativo:
 - **Propostas**: a exportação inclui nome e ID do autor.
 - **Comentários**: inclui datas de exclusão e moderação.
 - **Inscrições em reuniões**: exportáveis pela rota pública de exportação do evento.
-- **Estatísticas de propostas por usuário**: configuradas por processo (`/admin/participatory_processes/:slug/user_proposals_statistic_settings`), com exportação e atualização forçada. Os dados são recalculados diariamente à 01:00.
+- **Estatísticas de propostas por participante**: configuradas por processo (`/admin/participatory_processes/:slug/user_proposals_statistic_settings`), com exportação e atualização forçada. Os dados são recalculados diariamente à 01:00.
 - **Anexos de formulários**: download individual ou em ZIP.
 
 ## Newsletter

@@ -67,7 +67,7 @@ O que o Brasil Participativo acrescentou ao Decidim 0.27.2, por área. Cada item
 |----------------|------|
 | Feature flags da organização em `/system` | `decidim_organizations.prune_duplicated_govbr_identities` |
 | Super admins por organização | `decidim_organizations.super_admins` |
-| Estatísticas de propostas por usuário | `decidim_govbr_user_proposals_statistics` |
+| Estatísticas de propostas por participante | `decidim_govbr_user_proposals_statistics` |
 | Relatórios via Airflow | `Decidim::Govbr::Airflow::TriggerAirflowReport` |
 | Acesso ao painel de relatórios para administradores de espaço | `app/views/decidim/proposals/proposals/_admin_actions.html.erb` (`7b7b26d2`) |
 | Sitemap diário | `config/sitemap.rb` |

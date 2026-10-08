@@ -8,7 +8,7 @@ O módulo de debates permite abrir discussões temáticas dentro de espaços par
 
 - **Criação de debates** — título, descrição e contexto do tema
 - **Comentários encadeados** — discussão estruturada em threads
-- **Debates oficiais e cidadãos** — administradores ou participantes podem iniciar
+- **Debates oficiais e de participantes** — administradores ou participantes podem iniciar
 - **Categorias** — organização por tema
 - **Debate finito ou aberto** — com ou sem data de encerramento
 

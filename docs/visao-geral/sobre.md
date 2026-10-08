@@ -1,6 +1,6 @@
 # Sobre a Plataforma
 
-O **Brasil Participativo** é a plataforma de participação digital do governo federal. Por meio dela, cidadãos com cadastro ativo no [gov.br](https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br) interagem em processos de criação, monitoramento e aperfeiçoamento de políticas públicas: enviam e votam propostas e participam de consultas públicas, conferências, planos, formulários e enquetes promovidos por ministérios e órgãos federais.
+O **Brasil Participativo** é a plataforma de participação digital do governo federal. Por meio dela, qualquer pessoa com cadastro ativo no [gov.br](https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br) interage em processos de criação, monitoramento e aperfeiçoamento de políticas públicas: envia e vota propostas e participa de consultas públicas, conferências, planos, formulários e enquetes promovidos por ministérios e órgãos federais.
 
 Produção: [brasilparticipativo.presidencia.gov.br](https://brasilparticipativo.presidencia.gov.br/)
 
@@ -71,7 +71,7 @@ flowchart LR
 |-------------|-----------|------|
 | **decidim-govbr** | Core da plataforma | [GitLab](https://gitlab.com/lappis-unb/decidimbr/decidim-govbr) |
 | **components-brasil-participativo** | Grupo com os componentes customizados (um repositório por gem) | [GitLab](https://gitlab.com/lappis-unb/decidimbr/components-brasil-participativo) |
-| **decidim-extra_user_fields** | Campos extras no cadastro de usuário | [GitLab](https://gitlab.com/lappis-unb/decidimbr/decidim-extra_user_fields) |
+| **decidim-extra_user_fields** | Campos extras no cadastro do participante | [GitLab](https://gitlab.com/lappis-unb/decidimbr/decidim-extra_user_fields) |
 | **decidim-module-mobile** | Suporte ao app móvel | [GitLab](https://gitlab.com/lappis-unb/decidimbr/bp-mobile/decidim-module-mobile) |
 
 ## Módulos e componentes

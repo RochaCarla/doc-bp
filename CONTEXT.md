@@ -7,7 +7,7 @@ Linguagem do Brasil Participativo, a plataforma de participação digital do gov
 ### Instituições
 
 **Brasil Participativo**:
-Plataforma de participação digital do governo federal, na qual cidadãos com conta **gov.br** participam de **processos participativos** e **instâncias** de ministérios e órgãos federais.
+Plataforma de participação digital do governo federal, na qual **participantes** atuam em **processos participativos** e **instâncias** de ministérios e órgãos federais.
 _Avoid_: BP (só em nomes técnicos, como OP-BP)
 
 **Secretaria Nacional de Participação Social (SNPS)**:
@@ -72,6 +72,10 @@ Versão em homologação antes de se tornar **versão estável**.
 _Avoid_: beta, build
 
 ### Participação
+
+**Participante**:
+Pessoa com conta **gov.br** na plataforma que participa de um **espaço participativo**: propõe, vota, comenta ou responde formulários.
+_Avoid_: usuário (só ao contar contas, em rótulos da interface e ao falar do código ou do banco), cidadão (só em nomes oficiais e para o público em geral, com ou sem conta)
 
 **Espaço participativo**:
 Lugar onde a participação acontece: um **processo participativo** ou uma **instância**. Um espaço tem muitos **componentes**.

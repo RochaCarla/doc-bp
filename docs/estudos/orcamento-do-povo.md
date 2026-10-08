@@ -319,16 +319,16 @@ A participação funciona como um funil em dois níveis:
 
 | Etapa / canal | Riscos operacionais e tecnológicos | Riscos de segurança, LGPD e político-metodológicos |
 |---------------|------------------------------------|---------------------------------------------------|
-| Identificação — WhatsApp | Demanda de suporte sem equipe dedicada; bases com lacunas; ConectaGov sob alta demanda; vários usuários por número | Dados sensíveis em canal inadequado; consentimento; fraude por identificação probabilística; voto percebido como menos válido |
+| Identificação — WhatsApp | Demanda de suporte sem equipe dedicada; bases com lacunas; ConectaGov sob alta demanda; várias pessoas por número | Dados sensíveis em canal inadequado; consentimento; fraude por identificação probabilística; voto percebido como menos válido |
 | Autenticação — Web (Gov.br) | Dependência total da Dataprev; atualização de infraestrutura; abandono no fluxo | Exclusão de quem não tem Gov.br; necessidade de comunicação clara |
 | Autenticação — WhatsApp (link único) | Fluxo complexo entre Gov.br, Decidim e WhatsApp; falhas de token; dependência de redirecionamento | Proteção de tokens e sessões; explicar o peso dos votos; percepção de injustiça |
 
-Referências de escala usadas no estudo: a infraestrutura precisaria suportar até **20 milhões** de participantes; o Gov.br, com cerca de **180 milhões** de usuários, faz cerca de **40 mil atendimentos por dia**; a API de mensageria tem janela gratuita de **48 horas** após o contato do usuário.
+Referências de escala usadas no estudo: a infraestrutura precisaria suportar até **20 milhões** de participantes; o Gov.br, com cerca de **180 milhões** de usuários, faz cerca de **40 mil atendimentos por dia**; a API de mensageria tem janela gratuita de **48 horas** após o contato da pessoa.
 
 ## Resultados políticos e metodológicos
 
 - **Incidência orçamentária**: é a consequência institucional que distingue o processo de uma consulta simbólica. Nos municípios médios, o efeito é buscado em 2026; nas capitais, no orçamento de 2027. É a maior força e o maior risco do processo.
-- **Pactuação interinstitucional**: cardápio e execução com os ministérios; autenticação e dados cadastrais com o MGI/Gov.br (incluindo usuários em planos de *zero-rating*); infraestrutura com a Dataprev; verificação de CPF com o Serpro. As lacunas nessas pactuações viraram limitações técnicas.
+- **Pactuação interinstitucional**: cardápio e execução com os ministérios; autenticação e dados cadastrais com o MGI/Gov.br (incluindo pessoas em planos de *zero-rating*); infraestrutura com a Dataprev; verificação de CPF com o Serpro. As lacunas nessas pactuações viraram limitações técnicas.
 - **Peso dos votos e legitimidade**: três níveis de voto (anônimo, fora do resultado oficial; identificado, confiabilidade intermediária; autenticado, peso máximo). Hoje a plataforma contabiliza só participações autenticadas. O risco central é a frustração de quem descobre depois que seu voto teve menor peso.
 - **Inclusão**: o WhatsApp alcança públicos menos presentes em plataformas institucionais, mas ampliar o acesso implica validação mais frágil.
 

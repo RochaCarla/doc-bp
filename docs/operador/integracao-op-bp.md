@@ -56,7 +56,7 @@ O core envia um `POST` JSON para `callback_url`:
 
 Cabeçalhos: `Content-Type: application/json` e `Authorization: Bearer <OP_BP_CALLBACK_API_KEY>`.
 
-O callback também é enviado quando a conta já estava vinculada ao mesmo `source_id`. Falhas são registradas no log com o prefixo `[ExternalAuth]` e não interrompem o fluxo do usuário.
+O callback também é enviado quando a conta já estava vinculada ao mesmo `source_id`. Falhas são registradas no log com o prefixo `[ExternalAuth]` e não interrompem o fluxo do participante.
 
 ## Variáveis de ambiente
 

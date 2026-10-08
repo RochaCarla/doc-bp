@@ -27,7 +27,7 @@ Riscos estruturais, que não são vulnerabilidades exploráveis:
 
 | Controle | Implementação |
 |----------|---------------|
-| Autenticação de cidadãos | gov.br via OpenID Connect com PKCE |
+| Autenticação de participantes | gov.br via OpenID Connect com PKCE |
 | Senha de administradores | Mínimo de 15 caracteres, expiração em 90 dias, 5 senhas anteriores bloqueadas (`DECIDIM_ADMIN_PASSWORD_*`) |
 | Sessão | Expira após 30 minutos de inatividade (`DECIDIM_EXPIRE_SESSION_AFTER`) |
 | Limite de requisições | 100 requisições por minuto por IP (`DECIDIM_THROTTLING_*`) |
@@ -35,7 +35,7 @@ Riscos estruturais, que não são vulnerabilidades exploráveis:
 | Tokens do login externo | JWT HS256 com expiração obrigatória e allowlist de links de retorno por canal |
 | API GraphQL | Leitura pública de dados públicos; ações autenticadas por JWT (`decidim-apiauth`, `SECRET_KEY_JWT`) |
 | Permissões | Sistema de permissões do Decidim por espaço e componente |
-| Moderação | Denúncias, ocultação e bloqueio de usuários |
+| Moderação | Denúncias, ocultação e bloqueio de participantes |
 | Auditoria | `decidim_action_logs` (ações administrativas) e `versions` (PaperTrail) |
 | Análise no CI | RuboCop, Brakeman, Trivy |
 
@@ -60,7 +60,7 @@ O Decidim publica alertas de segurança no [repositório oficial](https://github
 | `decidim_authorizations` | `unique_id`, `metadata`, `verification_metadata` | Dados das verificações |
 | `decidim_forms_answers` | `body`, `ip_hash`, `session_token` | Respostas podem conter dados pessoais e sensíveis, conforme as perguntas |
 | `decidim_meetings_registrations` | vínculo usuário–reunião, `code` | |
-| `decidim_messaging_messages` | `body` | Mensagens privadas entre usuários |
+| `decidim_messaging_messages` | `body` | Mensagens privadas entre participantes |
 | `decidim_user_reports` | `reason`, `details` | Denúncias |
 | `decidim_initiatives_votes` | `encrypted_metadata`, `hash_id` | Assinaturas de iniciativas |
 | `versions` | `object`, `object_changes` | Histórico pode conter cópias de dados pessoais |

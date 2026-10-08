@@ -9,7 +9,7 @@ Resumo das mudanças relevantes no `decidim-govbr` (branch `main`), agrupadas po
 
 ### Autenticação e integração OP-BP
 
-- **Login externo via WhatsApp/Telegram** — o fluxo `/external_auth/link` vincula a conta do Brasil Participativo ao usuário de um canal de mensagens. O redirecionamento pós-vínculo agora vem assinado no JWT (não mais configurado no admin), e a tela de sucesso exibe um botão "Voltar para o WhatsApp". Detalhes em [Integração OP-BP](operador/integracao-op-bp.md).
+- **Login externo via WhatsApp/Telegram** — o fluxo `/external_auth/link` vincula a conta do Brasil Participativo à identidade do participante num canal de mensagens. O redirecionamento pós-vínculo agora vem assinado no JWT (não mais configurado no admin), e a tela de sucesso exibe um botão "Voltar para o WhatsApp". Detalhes em [Integração OP-BP](operador/integracao-op-bp.md).
 - **Novas variáveis** `OP_BP_JWT_SECRET`, `OP_BP_API_KEY`, `OP_BP_CALLBACK_API_KEY`, `OP_BP_CALLBACK_ALLOWED_HOSTS` e `OP_BP_FALLBACK_WHATSAPP_URL`. `EXTERNAL_AUTH_SECRET` e `N8N_SECRET_KEY` continuam aceitas como fallback legado, com aviso no log.
 - **Tokens exigem `exp`**: links capturados do histórico de conversa não podem ser reutilizados indefinidamente.
 - **Callback para a API OP-BP** envia `cpf`, `name` e `email` e usa `Authorization: Bearer`.

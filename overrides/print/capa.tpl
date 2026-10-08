@@ -47,7 +47,7 @@
 <div class="bp-front bp-front--apresentacao">
   <h1 class="bp-apresentacao__title">Apresentação</h1>
 
-  <p>O Brasil Participativo é a plataforma de participação digital do governo federal. Por ela, cidadãos com conta gov.br enviam e votam propostas e participam de consultas públicas, conferências, planos, formulários e enquetes promovidos por ministérios e órgãos federais.</p>
+  <p>O Brasil Participativo é a plataforma de participação digital do governo federal. Por ela, qualquer pessoa com conta gov.br envia e vota propostas e participa de consultas públicas, conferências, planos, formulários e enquetes promovidos por ministérios e órgãos federais.</p>
 
   <p>Este documento reúne, em português, o conhecimento técnico e operacional sobre a plataforma. Ele é gerado a partir da versão on-line da documentação, que é atualizada continuamente com base no código-fonte. Em caso de divergência, vale a versão on-line.</p>
 

@@ -225,7 +225,7 @@ Definidas em `config/sidekiq.yml` (o número é o peso de prioridade):
 |-----------|--------|
 | Diária, 00:00–00:40 | Limpeza de "baixar meus dados", métricas, dados abertos, lembretes, iniciativas, resumo diário de notificações |
 | Sábado, 01:00 | Resumo semanal de notificações |
-| Diária, 01:00 | Estatísticas de propostas por usuário |
+| Diária, 01:00 | Estatísticas de propostas por participante |
 | Diária, 02:00 | Sitemap |
 | De hora em hora | Troca automática de fase dos processos |
 | De hora em hora | Criação de instâncias a partir de órgãos públicos |
@@ -283,7 +283,7 @@ Tabelas próprias do Brasil Participativo:
 
 | Tabela | Uso |
 |--------|-----|
-| `decidim_govbr_user_proposals_statistics` | Estatísticas de propostas por usuário |
+| `decidim_govbr_user_proposals_statistics` | Estatísticas de propostas por participante |
 | `decidim_govbr_user_proposals_statistic_settings` | Configuração desses relatórios por processo |
 | `decidim_govbr_partners` | Parceiros exibidos em processos e instâncias |
 | `decidim_govbr_media_links` | Links de mídia |
