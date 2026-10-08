@@ -39,6 +39,14 @@
           {% for l in inst.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.nome }}</a>{% if not loop.last %} · {% endif %}{% endfor %}
         </p>
       {% endif %}
+      {% if inst.licenca %}
+        <p class="bp-inst__licenca">
+          <a href="{{ inst.licenca.url }}" target="_blank" rel="license noopener" class="bp-inst__cc" title="CC BY 4.0">
+            {% include ".icons/fontawesome/brands/creative-commons.svg" %}{% include ".icons/fontawesome/brands/creative-commons-by.svg" %}
+          </a>
+          <span>{{ inst.licenca.texto }}</span>
+        </p>
+      {% endif %}
     </div>
   </div>
 </div>

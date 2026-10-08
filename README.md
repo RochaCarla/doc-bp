@@ -88,4 +88,6 @@ Esta documentação é produzida com apoio de IA generativa, sob responsabilidad
 
 ## Licença
 
-Este projeto de documentação é mantido pelo LabLivre/UnB.
+O conteúdo desta documentação (textos, diagramas e e-book) está licenciado sob a [Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.pt-br); o texto legal está em [`LICENSE-CONTEUDO.txt`](LICENSE-CONTEUDO.txt). Logos e marcas institucionais não estão incluídos. O software Brasil Participativo é distribuído sob AGPLv3.
+
+Documentação mantida pelo LabLivre/UnB.

@@ -14,7 +14,7 @@ docs_dir: docs
 exclude_docs: |
   adr/
 
-copyright: © 2026 LabLivre/UnB · Brasil Participativo é software livre (AGPLv3)
+copyright: © 2026 LabLivre/UnB · Conteúdo sob CC BY 4.0 · Brasil Participativo é software livre (AGPLv3)
 
 theme:
   name: material
@@ -87,6 +87,12 @@ extra:
     texto: >-
       Documentação produzida pelo LabLivre/UnB no âmbito do Termo de Execução Descentralizada
       com a Secretaria Nacional de Participação Social.
+    licenca:
+      texto: >-
+        Exceto onde indicado, o conteúdo desta documentação está licenciado sob a
+        Creative Commons Atribuição 4.0 Internacional (CC BY 4.0). Logos e marcas
+        institucionais não estão incluídos na licença.
+      url: https://creativecommons.org/licenses/by/4.0/deed.pt-br
     contatos:
       - decidim@unb.br
       - brasilparticipativo@presidencia.gov.br

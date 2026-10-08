@@ -50,9 +50,15 @@ Para gerar localmente: `./scripts/pdf.sh` (resultado em `dist/`).
 
 Esta documentação foi produzida com apoio de IA generativa (Claude Code, modelo Claude Opus 5.5), sob direção e responsabilidade da equipe do LabLivre/UnB. Ferramentas, papéis, salvaguardas e limites estão em [Uso de IA](uso-de-ia.md).
 
-## Licença do software
+## Licenças
 
-O Brasil Participativo é software livre, distribuído sob a licença **GNU Affero General Public License v3 (AGPLv3)**, a mesma do Decidim.
+| O quê | Licença |
+|-------|---------|
+| Conteúdo desta documentação (textos, diagramas, e-book) | [Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.pt-br) |
+| Logos e marcas da UnB, do LabLivre e do governo federal | Não incluídos na licença; uso sujeito às regras de cada instituição |
+| Software Brasil Participativo e Decidim | GNU Affero General Public License v3 (AGPLv3) |
+
+Com a CC BY 4.0, qualquer pessoa pode copiar, adaptar e redistribuir o conteúdo, inclusive para fins comerciais, desde que cite a autoria (LabLivre/UnB) e indique se houve modificações. Use o "Como citar" da ficha técnica do e-book.
 
 ## Contribua com a documentação
 
