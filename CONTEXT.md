@@ -108,8 +108,16 @@ Cada forma de participação oferecida no menu da plataforma: os quatro **tipos 
 _Avoid_: tipo de espaço
 
 **Instância**:
-**Espaço participativo** permanente de um órgão, como um conselho, colegiado ou fórum. Pode ter sub-instâncias, uma por setor do órgão.
-_Avoid_: assembleia (em texto voltado ao usuário)
+**Espaço participativo** permanente de um **órgão**, como um conselho, colegiado ou fórum. Pode ter sub-instâncias, uma por **setor** do órgão.
+_Avoid_: assembleia (só ao falar do código ou do banco)
+
+**Órgão**:
+Órgão público federal cadastrado na plataforma. Cada órgão ganha uma **instância** própria, criada automaticamente.
+_Avoid_: escopo (é o mecanismo do Decidim que guarda o cadastro), public body
+
+**Setor**:
+Unidade de um **órgão**. Cada setor ganha uma sub-instância dentro da **instância** do órgão.
+_Avoid_: subescopo
 
 **Etapa**:
 Fase de um **processo participativo**, com período definido.
@@ -224,6 +232,8 @@ _Avoid_: rodapé (sozinho)
 **"Prestação de contas" × "devolutiva"**: **Prestação de contas** é o **módulo Decidim** que acompanha a execução dos resultados da participação; "accountability" fica só no nome da gem. A **devolutiva** é o retorno aos participantes e pode usar esse módulo, mas não se resume a ele. Em texto corrido, "prestação de contas" também é o dever geral de transparência do poder público. Termo canônico: **módulo Prestação de contas** para o módulo; **devolutiva** para o retorno.
 
 **"Administrador"**: nomeia três **papéis**, de sistema, da organização e de espaço, e era usado também para a pessoa que conduz o processo. Termo canônico: qualifique sempre o papel (por exemplo, administrador de espaço); para a pessoa, use **gestor de processo** ou **equipe de operação**.
+
+**"Escopo"**: no **Decidim**, classifica conteúdo por território ou tema; no **Brasil Participativo**, também guarda o cadastro de **órgãos** e **setores**. A palavra ainda aparece no login **gov.br** (escopo de autorização) e no sentido comum. Termo canônico: **órgão** e **setor** para o cadastro institucional; "escopo" só para a classificação do Decidim ou para a autorização, sempre qualificado.
 
 **"Fork"**: a documentação antiga chamava o **core** de "fork do Decidim". Termo canônico: **core com sobrescritas**, porque ele instala o Decidim em vez de copiar seu repositório.
 

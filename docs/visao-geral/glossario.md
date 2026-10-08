@@ -6,7 +6,7 @@ title: Glossário
 
 # Glossário
 
-Linguagem oficial do Brasil Participativo e desta documentação: 48 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
+Linguagem oficial do Brasil Participativo e desta documentação: 50 termos, com as palavras a evitar e as ambiguidades já resolvidas. Use estes termos em textos, telas e código.
 
 !!! info "Fonte única"
     Esta página é gerada a partir do `CONTEXT.md` do repositório. Para mudar um termo, edite o `CONTEXT.md` e rode `python3 scripts/glossario.py`.
@@ -138,9 +138,19 @@ Modalidade de participação
     *Evite:* tipo de espaço
 
 Instância
-:   **Espaço participativo** permanente de um órgão, como um conselho, colegiado ou fórum. Pode ter sub-instâncias, uma por setor do órgão.
+:   **Espaço participativo** permanente de um **órgão**, como um conselho, colegiado ou fórum. Pode ter sub-instâncias, uma por **setor** do órgão.
 
-    *Evite:* assembleia (em texto voltado ao usuário)
+    *Evite:* assembleia (só ao falar do código ou do banco)
+
+Órgão
+:   Órgão público federal cadastrado na plataforma. Cada órgão ganha uma **instância** própria, criada automaticamente.
+
+    *Evite:* escopo (é o mecanismo do Decidim que guarda o cadastro), public body
+
+Setor
+:   Unidade de um **órgão**. Cada setor ganha uma sub-instância dentro da **instância** do órgão.
+
+    *Evite:* subescopo
 
 Etapa
 :   Fase de um **processo participativo**, com período definido.
@@ -267,6 +277,7 @@ Palavras que aparecem com mais de um sentido no projeto, e o sentido que vale.
 - **"Orçamento participativo"**: com minúscula, é a prática de participação em geral. O **módulo Decidim** de votação de projetos com teto de gastos se chama **Orçamentos**, e o **Orçamento do Povo** não o usa: nele, os participantes votam em **propostas**. Termo canônico: **Orçamento do Povo** para o programa federal; **Orçamentos** para o módulo.
 - **"Prestação de contas" × "devolutiva"**: **Prestação de contas** é o **módulo Decidim** que acompanha a execução dos resultados da participação; "accountability" fica só no nome da gem. A **devolutiva** é o retorno aos participantes e pode usar esse módulo, mas não se resume a ele. Em texto corrido, "prestação de contas" também é o dever geral de transparência do poder público. Termo canônico: **módulo Prestação de contas** para o módulo; **devolutiva** para o retorno.
 - **"Administrador"**: nomeia três **papéis**, de sistema, da organização e de espaço, e era usado também para a pessoa que conduz o processo. Termo canônico: qualifique sempre o papel (por exemplo, administrador de espaço); para a pessoa, use **gestor de processo** ou **equipe de operação**.
+- **"Escopo"**: no **Decidim**, classifica conteúdo por território ou tema; no **Brasil Participativo**, também guarda o cadastro de **órgãos** e **setores**. A palavra ainda aparece no login **gov.br** (escopo de autorização) e no sentido comum. Termo canônico: **órgão** e **setor** para o cadastro institucional; "escopo" só para a classificação do Decidim ou para a autorização, sempre qualificado.
 - **"Fork"**: a documentação antiga chamava o **core** de "fork do Decidim". Termo canônico: **core com sobrescritas**, porque ele instala o Decidim em vez de copiar seu repositório.
 
 ??? example "Diálogo de exemplo"

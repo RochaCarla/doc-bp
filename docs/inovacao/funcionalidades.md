@@ -10,7 +10,7 @@ O que o Brasil Participativo acrescentou ao Decidim 0.27.2, por área. Cada item
 
 | Funcionalidade | Onde |
 |----------------|------|
-| Login gov.br via OpenID Connect, com PKCE e escopo `govbr_confiabilidades` | `config/initializers/omniauth_govbr.rb` |
+| Login gov.br via OpenID Connect, com PKCE e escopo de autorização `govbr_confiabilidades` | `config/initializers/omniauth_govbr.rb` |
 | Vínculo de conta com WhatsApp e Telegram ([OP-BP](../operador/integracao-op-bp.md)) | `app/services/external_auth_service.rb` |
 | Tela de login simplificada para o login externo | `app/views/decidim/devise/sessions/new.html.erb` |
 | Remoção de identidades gov.br duplicadas, ligada por organização | `app/jobs/decidim/remove_duplicated_govbr_identities_job.rb` |

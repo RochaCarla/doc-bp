@@ -55,8 +55,15 @@ Usados para Consultas Públicas, Conferências, Planos Participativos e Audiênc
 
 Usadas para Conselhos e Colegiados e Fóruns de Participação.
 
-- **Criação automática**: um job horário cria uma instância para cada escopo de órgão público e sub-instâncias para seus setores, já com o componente `homes`.
+- **Criação automática**: um job horário (`app/jobs/decidim/public_bodies_to_instances_job.rb`) percorre os **órgãos** cadastrados como escopos e:
+    1. cria uma instância para cada órgão e uma sub-instância para cada **setor**, com o tipo de instância correspondente ao tipo do escopo e o componente Página Inicial (`homes`);
+    2. dá o papel de **administrador de espaço** da sub-instância aos membros do setor;
+    3. liga à sub-instância os processos do grupo de processos do setor.
 - **Não listada**: marque **unlisted** para deixar a instância acessível só por link, fora das listagens.
+
+!!! warning "Limites da criação automática (leitura do código)"
+    - Membros e processos só são vinculados quando a sub-instância é criada. Mudanças posteriores no setor não chegam a ela.
+    - O job reconhece uma instância existente pelo título em português. Renomear uma instância no painel faz o job tentar criar outra na execução seguinte.
 
 ## Componentes
 
