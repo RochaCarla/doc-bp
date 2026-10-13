@@ -17,7 +17,7 @@ Tudo o que precisa mudar de mãos. Os itens marcados **a confirmar** não estão
 | [decidim-module-mobile](https://gitlab.com/lappis-unb/decidimbr/bp-mobile/decidim-module-mobile) | Suporte ao app móvel | `main` | Gemfile |
 | [decidim-whatsapp-integration](https://gitlab.com/lappis-unb/decidimbr/decidim-whatsapp-integration) | Integração com WhatsApp | — | Estudo [Orçamento do Povo](../estudos/orcamento-do-povo.md) |
 | [multi-channel-participation](https://gitlab.com/lappis-unb/decidimbr/multi-channel-participation) | Participação multicanal (API OP-BP) | — | Estudo Orçamento do Povo |
-| [doc-bp](https://github.com/lablivre-unb/doc-bp) | Esta documentação | `main` | GitHub Pages |
+| [doc-bp](https://github.com/RochaCarla/doc-bp) | Esta documentação | `main` | GitHub Pages |
 
 O grupo [`lappis-unb/decidimbr`](https://gitlab.com/lappis-unb/decidimbr) pertence ao laboratório. A transferência deve definir se os repositórios **migram** para um grupo institucional ou se o receptor ganha papel de *maintainer* no grupo atual.
 
@@ -86,6 +86,6 @@ Trocar `SECRET_KEY_BASE` desloga todos os usuários. Trocar `SECRET_KEY_JWT` inv
 |---------|-----|-------------|
 | brasilparticipativo.presidencia.gov.br | Produção | Presidência/Dataprev |
 | api-opbp.lablivre.rocks | API OP-BP | LabLivre (**a migrar**) |
-| lablivre-unb.github.io/doc-bp | Documentação | LabLivre (organização `lablivre-unb`). O endereço antigo, `rochacarla.github.io/doc-bp`, não redireciona |
+| rochacarla.github.io/doc-bp | Documentação | Conta pessoal `RochaCarla` no GitHub. A transferência para a organização `lablivre-unb` está decidida (ADR 0002) e ainda não foi feita; depois dela o endereço passa a ser `lablivre-unb.github.io/doc-bp`, sem redirecionamento do atual |
 
 O domínio de produção também está escrito no código da [listagem do Orçamento do Povo](../modulos/propostas.md#listagem-do-orcamento-do-povo). Uma troca de domínio exige alterar esse arquivo.

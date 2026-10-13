@@ -10,7 +10,7 @@ Os termos em **negrito** estão definidos em [CONTEXT.md](./CONTEXT.md). As deci
 
 **Está no escopo**
 
-- Site em português, publicado no GitHub Pages em `https://lablivre-unb.github.io/doc-bp/`, com nove abas: Início, Documentação, Transferência, Manual de Uso, Design System, Inovação, Estudos, Estatísticas e Sobre.
+- Site em português, publicado no GitHub Pages em `https://rochacarla.github.io/doc-bp/` (`https://lablivre-unb.github.io/doc-bp/` depois da transferência para a organização `lablivre-unb`, prevista no ADR 0002), com nove abas: Início, Documentação, Transferência, Manual de Uso, Design System, Inovação, Estudos, Estatísticas e Sobre.
 - Documentação do **core** (`decidim-govbr`): arquitetura, desenvolvimento, operação, configuração, integrações, administração, **banco de dados**, **módulos** e **componentes customizados**.
 - Pacote de **transferência de tecnologia** para a **equipe receptora**.
 - **Manual de uso** para gestores de processos, reescrito a partir dos guias publicados na plataforma.
