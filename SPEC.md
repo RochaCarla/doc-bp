@@ -10,7 +10,7 @@ Os termos em **negrito** estão definidos em [CONTEXT.md](./CONTEXT.md). As deci
 
 **Está no escopo**
 
-- Site em português, publicado no GitHub Pages em `https://rochacarla.github.io/doc-bp/` (`https://lablivre-unb.github.io/doc-bp/` depois da transferência para a organização `lablivre-unb`, prevista no ADR 0002), com nove abas: Início, Documentação, Transferência, Manual de Uso, Design System, Inovação, Estudos, Estatísticas e Sobre.
+- Site em português, publicado no GitHub Pages em `https://rochacarla.github.io/doc-bp/` (`https://lablivre-unb.github.io/doc-bp/` depois da transferência para a organização `lablivre-unb`, prevista no ADR 0002), com dez abas: Início, Documentação, Transferência, Manual de Uso, Design System, Inovação, Estudos, Estatísticas, Equipe e Sobre.
 - Documentação do **core** (`decidim-govbr`): arquitetura, desenvolvimento, operação, configuração, integrações, administração, **banco de dados**, **módulos** e **componentes customizados**.
 - Pacote de **transferência de tecnologia** para a **equipe receptora**.
 - **Manual de uso** para gestores de processos, reescrito a partir dos guias publicados na plataforma.
@@ -76,6 +76,7 @@ Todo conteúdo técnico vem de uma fonte verificável. Fontes em uso:
 | Inovação | 4 páginas | Manual |
 | Estudos | Índice e um estudo | Manual |
 | Estatísticas | 5 páginas e `dados.json` | Gerado |
+| Equipe | Lista da equipe com foto, nome e perfil no GitLab (fora do e-book, que tem a página "Autoria e equipe") | Gerado por `scripts/equipe.py` a partir de `scripts/equipe.json`, copiado da página Equipe do portal de conhecimento |
 | Sobre | Sobre e Uso de IA | Manual |
 
 São 80 páginas Markdown, das quais 18 são geradas, com 56 diagramas. Toda página nova entra no `nav:` do `mkdocs.yml`.
@@ -118,7 +119,7 @@ Gerado por `scripts/gerar_pdf.cjs` a partir da página única `/print_page/` (pl
 |---|---|---|---|
 | Capa | Fundo azul em página A4 inteira, título, instituições, edição | Nenhuma | Não |
 | Folha de rosto e apresentação | Ficha técnica, "como citar", organização, públicos, convenções | 22 mm | Não |
-| Autoria e equipe | Nomes da equipe em ordem alfabética, gerados por `scripts/autores.py` a partir de `scripts/autores.json` (página Equipe do portal de conhecimento: Notion + Git) | 22 mm | Não |
+| Autoria e equipe | Nomes da equipe em ordem alfabética, gerados por `scripts/equipe.py` a partir de `scripts/equipe.json` (página Equipe do portal de conhecimento: Notion + Git) | 22 mm | Não |
 | Miolo | Sumário e todo o conteúdo, uma seção por página, abas em sequência com título, blocos recolhidos abertos | 18 × 16 mm | Rodapé com título e número; marcadores do PDF |
 | Contracapa | Resumo, logos, "Dinheiro público, código público." | Nenhuma | Não |
 
@@ -139,7 +140,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 
 | ID | Requisito |
 |---|---|
-| RF01 | O site DEVE organizar o conteúdo nas nove abas da § 4, cada uma com uma página de entrada. |
+| RF01 | O site DEVE organizar o conteúdo nas dez abas da § 4, cada uma com uma página de entrada. |
 | RF02 | O site DEVE oferecer busca em português em todo o conteúdo. |
 | RF03 | Toda página, exceto a home, DEVE ter o rodapé de página com reportar problema, baixar PDF e sugerir edição. |
 | RF04 | O e-book DEVE conter todas as páginas do site, exceto a home, na estrutura da § 7. |
@@ -170,7 +171,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 
 | ID | Critério verificável |
 |---|---|
-| RF01 | O `nav:` do `mkdocs.yml` tem exatamente as nove abas da § 4, cada uma com `index.md` ou página inicial. |
+| RF01 | O `nav:` do `mkdocs.yml` tem exatamente as dez abas da § 4, cada uma com `index.md` ou página inicial. |
 | RF02 | Buscar "instância" no site retorna o Glossário e Processos e instâncias. |
 | RF03 | O HTML de qualquer página, exceto `/`, contém `bp-page-footer` com os três links. |
 | RF04 | `./scripts/pdf.sh` (ou o log do CI) termina com "PDF gerado"; a página 1 é a capa, a 2 a folha de rosto, a 3 a apresentação, a 4 o sumário e a última a contracapa; o sumário lista todas as abas, exceto a home. |

@@ -143,6 +143,7 @@ plugins:
       path_to_pdf: https://rochacarla.github.io/doc-bp/documentacao-brasil-participativo.pdf
       exclude:
         - index.md
+        - equipe/index.md
 
 markdown_extensions:
   - abbr
@@ -276,6 +277,7 @@ nav:
     - Merge Requests: estatisticas/merge-requests.md
     - Contribuições: estatisticas/contribuicoes.md
     - Qualidade: estatisticas/qualidade.md
+  - Equipe: equipe/index.md
   - Sobre:
     - sobre/index.md
     - Uso de IA: sobre/uso-de-ia.md
