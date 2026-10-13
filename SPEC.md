@@ -118,6 +118,7 @@ Gerado por `scripts/gerar_pdf.cjs` a partir da página única `/print_page/` (pl
 |---|---|---|---|
 | Capa | Fundo azul em página A4 inteira, título, instituições, edição | Nenhuma | Não |
 | Folha de rosto e apresentação | Ficha técnica, "como citar", organização, públicos, convenções | 22 mm | Não |
+| Autoria e equipe | Nomes da equipe em ordem alfabética, gerados por `scripts/autores.py` a partir de `scripts/autores.json` (página Equipe do portal de conhecimento: Notion + Git) | 22 mm | Não |
 | Miolo | Sumário e todo o conteúdo, uma seção por página, abas em sequência com título, blocos recolhidos abertos | 18 × 16 mm | Rodapé com título e número; marcadores do PDF |
 | Contracapa | Resumo, logos, "Dinheiro público, código público." | Nenhuma | Não |
 
@@ -229,7 +230,7 @@ A home fica fora do e-book (`exclude: index.md`). A data da edição, a versão 
 
 Adiadas de propósito:
 
-- Número e vigência do TED; nomes da equipe na folha de rosto.
+- Número e vigência do TED.
 - Arquivo oficial da marca da Secretaria, conforme as regras do período eleitoral.
 - Migração do domínio `api-opbp.lablivre.rocks` para a equipe receptora.
 - Domínio próprio para a documentação, sob `lablivre.unb.br`.
