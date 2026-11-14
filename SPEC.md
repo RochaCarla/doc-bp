@@ -105,7 +105,8 @@ Material for MkDocs com o tema do Design System gov.br (`docs/stylesheets/custom
 
 - **Tokens**: azul `#1351b4` (*blue-warm-vivid-70*), `#0c326f` e `#071d41`; cinzas e cores de status do padrão; fonte Rawline, com Raleway como reserva.
 - **Cabeçalho e abas**: fundo claro, aba ativa com barra azul de 4 px. Modo escuro com fundo `#0b1a33`.
-- **Um só menu**: no desktop, a navegação é feita só pelas abas do topo; a barra lateral de navegação fica oculta em todas as páginas, como na home. Em telas menores que 1220 px, onde as abas não aparecem, a navegação fica no menu da gaveta.
+- **Um só menu**: no desktop, a navegação é feita só pelas abas do topo; a barra lateral de navegação fica oculta em todas as páginas, como na home. Em telas menores que 1220 px, onde as abas não aparecem, a navegação fica no menu da gaveta, que abre sempre na lista das abas (`docs/javascripts/menu.js`), e não dentro da seção da página atual.
+- **Página inicial didática**: destaque, roteiro numerado da página, "em 3 passos" (abrir, participar, devolutiva), "como as peças se encaixam" (diagramas de participação e de código, com os termos do CONTEXT.md), trilhas por perfil com o primeiro passo, mapa das abas, "quem faz" (TED e LabLivre, painel escuro com os logos em branco), números da plataforma com data de coleta, novidades e links úteis.
 - **Componentes**: botões em pílula, *cards* com sombra do padrão, avisos com as cores de status, tabelas com cabeçalho `#edf5ff`.
 - **Barra de aviso** no topo, dispensável pelo usuário.
 - **Rodapé de página**, em toda página exceto a home: "Reportar um problema" (abre issue no GitHub com o título da página), "Baixar tudo em PDF" e "Sugerir uma edição".

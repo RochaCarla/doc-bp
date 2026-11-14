@@ -17,13 +17,13 @@ A versão atual é uma evolução do fork do projeto [decide](https://gitlab.com
 
 ## Brasil Participativo em números
 
-Valores exibidos na página [Sobre o Brasil Participativo](https://brasilparticipativo.presidencia.gov.br/processes/brasilparticipativo/f/1400/) em outubro de 2026:
+Valores exibidos na [página inicial do Brasil Participativo](https://brasilparticipativo.presidencia.gov.br/) em 14 de novembro de 2026:
 
 | Indicador | Valor |
 |-----------|-------|
-| Usuários | 1.942.985 |
-| Acessos | 12.406.894 |
-| Processos | 463 |
+| Participantes | 2.000.089 |
+| Acessos | 13.265.773 |
+| Processos participativos | 596 |
 
 !!! warning "Período eleitoral de 2026"
     Por determinação da legislação eleitoral, os processos já encerrados estão temporariamente ocultos na plataforma e voltam após as eleições de 2026. As bases de dados abertos continuam disponíveis.

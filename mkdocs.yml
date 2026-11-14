@@ -122,6 +122,9 @@ extra_css:
   - stylesheets/custom.css
   - stylesheets/print.css
 
+extra_javascript:
+  - javascripts/menu.js
+
 plugins:
   - search:
       lang: pt
