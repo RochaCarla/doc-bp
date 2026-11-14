@@ -161,6 +161,13 @@ body {
 }
 
 /* ------------------------------------------------------------------ Navegação lateral */
+/* Um só menu: no desktop ficam apenas as abas do topo, como na página Início.
+   Abaixo de 1220px as abas somem e a lateral vira o menu da gaveta (mantido). */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    display: none;
+  }
+}
 .md-nav__title {
   font-weight: 700;
 }
